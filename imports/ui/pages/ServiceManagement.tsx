@@ -7,11 +7,18 @@ import useDialog from "../hooks/useDialog";
 
 export const ServiceManagement = () => {
   const services = useTracker(() => {
-    return ServicesCollection.find().fetch();
+    return ServicesCollection.find(
+      {},
+      { fields: { _id: 1, status: 1, icon: 1, text: 1 } }
+    ).fetch();
+  });
+
+  const test = useTracker(() => {
+    return ServicesCollection.findOne({ _id: "4yWKhRZ73fwHCFc6m" });
   });
   const { open, onOpenDialog, onCloseDialog } = useDialog();
 
-  console.log(services);
+  console.log(test);
 
   const headers = ["Title", "Status", "Icon"];
 
