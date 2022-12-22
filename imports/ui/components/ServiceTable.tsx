@@ -9,9 +9,10 @@ import { convertWithCurrency } from "../utils/utils";
 interface ServiceTableProps {
   rows: Service[];
   headers: string[];
+  onClickRow: () => void;
 }
 
-const ServiceTable = ({ rows, headers }: ServiceTableProps) => {
+const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
   const header = (
     <TableRow>
       {headers.map((header, index) => (
@@ -27,7 +28,14 @@ const ServiceTable = ({ rows, headers }: ServiceTableProps) => {
       {rows.map((row) => (
         <TableRow
           key={row._id}
-          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+          hover
+          sx={{
+            "&:last-child td, &:last-child th": {
+              border: 0,
+            },
+            cursor: "pointer",
+          }}
+          onClick={onClickRow}
         >
           <TableCell>{row.text["en"]}</TableCell>
           <TableCell>{row.status}</TableCell>
