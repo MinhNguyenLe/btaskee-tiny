@@ -4,7 +4,6 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { Service } from "../utils/types";
 import ServiceIcon from "./ServiceIcon";
-import { convertWithCurrency } from "../utils/utils";
 
 interface ServiceTableProps {
   rows: Service[];

@@ -5,6 +5,15 @@ import ServiceTable from "../components/ServiceTable";
 import DialogServiceDetail from "../components/DialogServiceDetail";
 import useDialog from "../hooks/useDialog";
 
+// function methodCall<T>(query, ...args) {
+//   return new Promise((resolve, reject) => {
+//     Meteor.call(query, ...args, (error, result) => {
+//       if (error) reject(error);
+//       else resolve(result);
+//     });
+//   });
+// }
+
 export const ServiceManagement = () => {
   const services = useTracker(() => {
     return ServicesCollection.find(

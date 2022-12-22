@@ -1,9 +1,8 @@
 import React from "react";
 
-interface ServiceIconProps {
+interface ServiceIconProps extends Pick<React.ImgHTMLAttributes<HTMLImageElement>,"loading"> {
   src: string;
   alt: string;
-  loading?: "lazy" | "eager";
 }
 
 const ServiceIcon = ({ src, alt, loading }: ServiceIconProps) => {
