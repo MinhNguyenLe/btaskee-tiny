@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+
+import Button from "@mui/material/Button";
 
 export const Hello = () => {
   const [counter, setCounter] = useState(0);
@@ -9,7 +11,9 @@ export const Hello = () => {
 
   return (
     <div>
-      <button onClick={increment}>Click Me</button>
+      <Button variant="contained" onClick={increment}>
+        Click Me
+      </Button>
       <p>You've pressed the button {counter} times.</p>
     </div>
   );
