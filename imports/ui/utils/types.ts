@@ -5,20 +5,10 @@ interface Lang {
   th: string;
 }
 
-interface DiscountByDuration {
-  duration: number;
-  discount: number;
-}
-
-interface DiscountByDoneTask {
-  number: number;
-  discount: number;
-}
-
 interface City {
   name: string;
   baseCost: number;
-  district: {
+  district: Array<{
     name: string;
     time: {
       date: Date;
@@ -27,12 +17,12 @@ interface City {
       percent: number;
       startTime: number;
     };
-  };
-  specialTime: {
+  }>;
+  specialTime: Array<{
     formDate: Date;
     toDate: Date;
     percentage: number;
-  };
+  }>;
 }
 
 interface CityServices {
@@ -78,8 +68,14 @@ export interface Service {
   detail: {
     city: CityDetail[];
   };
-  discountByDuration: DiscountByDuration[];
-  discountByDoneTask: DiscountByDoneTask[];
+  discountByDuration: Array<{
+    duration: number;
+    discount: number;
+  }>;
+  discountByDoneTask: Array<{
+    number: number;
+    discount: number;
+  }>;
   icon: string;
   limitDateOfBooking_Timestamp: {
     second: number;
@@ -114,10 +110,16 @@ export interface Service {
   _id: string;
 }
 
-export interface FormService {
+export interface TypeFormService {
   icon: string;
   status: string;
   onlyShowTasker: boolean;
   name?: string;
   costSuggestion?: number;
+  textVi: Lang["vi"];
+  textEn: Lang["en"];
+  textTh: Lang["th"];
+  textKo: Lang["ko"];
+  cityName: City["name"];
+  cityBaseCost: City["baseCost"];
 }

@@ -6,7 +6,7 @@ import { Service } from "../utils/types";
 import ServiceIcon from "./Icon/ServiceIcon";
 
 interface ServiceTableProps {
-  rows: Service[] | unknown;
+  rows: Service[] | unknown; //TODO: refactor type
   headers: string[];
   onClickRow: (idService) => void;
 }

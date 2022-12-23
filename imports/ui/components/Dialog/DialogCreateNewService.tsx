@@ -3,13 +3,20 @@ import { UseDialogReturn } from "../../hooks/useDialog";
 import DialogBase from "../../mui-base/Dialog/DialogBase";
 import FormService from "../Form/FormService";
 import { useForm, FormProvider } from "react-hook-form";
+import { TypeFormService } from "../../utils/types";
 
-const defaultValues: FormService = {
-  name: "122222",
+const defaultValues: TypeFormService = {
+  name: "",
   status: "",
   icon: "",
   onlyShowTasker: false,
-  costSuggestion: 110,
+  costSuggestion: 0,
+  textVi: "",
+  textEn: "",
+  textKo: "",
+  textTh: "",
+  cityName: "",
+  cityBaseCost: 0,
 };
 
 interface DialogCreateNewServiceProps extends UseDialogReturn {}
@@ -21,7 +28,7 @@ const DialogCreateNewService = ({
 }: DialogCreateNewServiceProps) => {
   const content = <FormService />;
 
-  const methods = useForm<FormService>({ defaultValues });
+  const methods = useForm<TypeFormService>({ defaultValues });
 
   return (
     <FormProvider {...methods}>
@@ -31,6 +38,7 @@ const DialogCreateNewService = ({
         onCloseDialog={onCloseDialog}
         title="Create new service"
         content={content}
+        maxWidth="md"
       />
     </FormProvider>
   );

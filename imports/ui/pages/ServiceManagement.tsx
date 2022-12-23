@@ -7,6 +7,7 @@ import useGetServiceDetail from "../hooks/useGetServiceDetail";
 import { Box, Button } from "@mui/material";
 import DialogCreateNewService from "../components/Dialog/DialogCreateNewService";
 
+//TODO: refactor re-render
 export const ServiceManagement = () => {
   const { isLoading, data: services } = useGetListServices();
 
