@@ -1,3 +1,7 @@
+import { Control } from "react-hook-form";
+
+export type ControlHookForm = Control<any, any>;
+
 interface Lang {
   vi: string;
   en: string;
@@ -8,17 +12,17 @@ interface Lang {
 interface City {
   name: string;
   baseCost: number;
-  district: Array<{
+  district?: Array<{
     name: string;
-    time: {
+    time: Array<{
       date: Date;
       endDate: Date;
       endTime: number;
       percent: number;
       startTime: number;
-    };
+    }>;
   }>;
-  specialTime: Array<{
+  specialTime?: Array<{
     formDate: Date;
     toDate: Date;
     percentage: number;
@@ -120,6 +124,5 @@ export interface TypeFormService {
   textEn: Lang["en"];
   textTh: Lang["th"];
   textKo: Lang["ko"];
-  cityName: City["name"];
-  cityBaseCost: City["baseCost"];
+  city: City[];
 }

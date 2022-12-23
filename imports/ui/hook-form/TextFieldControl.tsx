@@ -2,11 +2,12 @@ import React from "react";
 import TextFieldBase, {
   TextFieldBaseProps,
 } from "../mui-base/Form/TextFieldBase";
-import { Control, Controller } from "react-hook-form";
+import { Controller } from "react-hook-form";
+import { ControlHookForm } from "../utils/types";
 
 export interface TextFieldControlProps
   extends Omit<TextFieldBaseProps, "innerRef" | "name"> {
-  control: Control<any, any>;
+  control: ControlHookForm;
   name: string;
 }
 

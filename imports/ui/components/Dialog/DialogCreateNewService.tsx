@@ -1,7 +1,7 @@
 import React from "react";
 import { UseDialogReturn } from "../../hooks/useDialog";
 import DialogBase from "../../mui-base/Dialog/DialogBase";
-import FormService from "../Form/FormService";
+import FormService from "../Form/FormService/FormService";
 import { useForm, FormProvider } from "react-hook-form";
 import { TypeFormService } from "../../utils/types";
 
@@ -15,8 +15,26 @@ const defaultValues: TypeFormService = {
   textEn: "",
   textKo: "",
   textTh: "",
-  cityName: "",
-  cityBaseCost: 0,
+  city: [
+    {
+      name: "",
+      baseCost: 10,
+      district: [
+        {
+          name: "1",
+          time: [
+            {
+              date: new Date(),
+              endDate: new Date(),
+              endTime: 0,
+              percent: 0,
+              startTime: 0,
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 interface DialogCreateNewServiceProps extends UseDialogReturn {}
