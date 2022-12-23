@@ -1,41 +1,48 @@
-import React from "react";
-import { useTracker } from "meteor/react-meteor-data";
-import { ServicesCollection } from "../../api/services";
+import React, { useMemo, useState } from "react";
 import ServiceTable from "../components/ServiceTable";
-import DialogServiceDetail from "../components/DialogServiceDetail";
+import DialogServiceDetail from "../components/Dialog/DialogServiceDetail";
 import useDialog from "../hooks/useDialog";
-
-// function methodCall<T>(query, ...args) {
-//   return new Promise((resolve, reject) => {
-//     Meteor.call(query, ...args, (error, result) => {
-//       if (error) reject(error);
-//       else resolve(result);
-//     });
-//   });
-// }
+import useGetListServices from "../hooks/useGetListServices";
+import useGetServiceDetail from "../hooks/useGetServiceDetail";
+import { Box, Button } from "@mui/material";
+import DialogCreateNewService from "../components/Dialog/DialogCreateNewService";
 
 export const ServiceManagement = () => {
-  const services = useTracker(() => {
-    return ServicesCollection.find(
-      {},
-      { fields: { _id: 1, status: 1, icon: 1, text: 1 } }
-    ).fetch();
-  });
+  const { isLoading, data: services } = useGetListServices();
 
-  const test = useTracker(() => {
-    return ServicesCollection.findOne({ _id: "4yWKhRZ73fwHCFc6m" });
-  });
+  const [idService, setIdService] = useState<string>("");
+
+  const { isLoading: isLoadingServiceDetail, data: serviceDetail } =
+    useGetServiceDetail(idService);
+
   const { open, onOpenDialog, onCloseDialog } = useDialog();
+  const {
+    open: openFormCreateService,
+    onOpenDialog: onOpenFormCreateService,
+    onCloseDialog: onCloseFormCreateService,
+  } = useDialog();
 
-  console.log(test);
+  const onClickRow = (idService: string) => {
+    onOpenDialog();
+    setIdService(idService);
+  };
 
-  const headers = ["Title", "Status", "Icon"];
+  console.log(isLoadingServiceDetail, serviceDetail);
+
+  const headers = useMemo(() => ["Title", "Status", "Icon"], []);
+
+  if (isLoading) return <>Loading services... </>;
 
   return (
     <>
-      <h1>Service Management</h1>
+      <Box display="flex" justifyContent="space-between">
+        <h1>Service Management</h1>
+        <Button onClick={onOpenFormCreateService} type="button">
+          Create new service
+        </Button>
+      </Box>
       <ServiceTable
-        onClickRow={onOpenDialog}
+        onClickRow={(idService) => onClickRow(idService)}
         rows={services}
         headers={headers}
       />
@@ -43,6 +50,11 @@ export const ServiceManagement = () => {
         open={open}
         onOpenDialog={onOpenDialog}
         onCloseDialog={onCloseDialog}
+      />
+      <DialogCreateNewService
+        open={openFormCreateService}
+        onOpenDialog={onOpenFormCreateService}
+        onCloseDialog={onCloseFormCreateService}
       />
     </>
   );

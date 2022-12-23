@@ -3,12 +3,12 @@ import TableBase from "../mui-base/Table/TableBase";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { Service } from "../utils/types";
-import ServiceIcon from "./ServiceIcon";
+import ServiceIcon from "./Icon/ServiceIcon";
 
 interface ServiceTableProps {
-  rows: Service[];
+  rows: Service[] | unknown;
   headers: string[];
-  onClickRow: () => void;
+  onClickRow: (idService) => void;
 }
 
 const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
@@ -24,25 +24,27 @@ const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
 
   const body = (
     <>
-      {rows.map((row) => (
-        <TableRow
-          key={row._id}
-          hover
-          sx={{
-            "&:last-child td, &:last-child th": {
-              border: 0,
-            },
-            cursor: "pointer",
-          }}
-          onClick={onClickRow}
-        >
-          <TableCell>{row.text["en"]}</TableCell>
-          <TableCell>{row.status}</TableCell>
-          <TableCell>
-            <ServiceIcon src={row.icon} alt="Icon not found" loading="lazy" />
-          </TableCell>
-        </TableRow>
-      ))}
+      {rows &&
+        Array.isArray(rows) &&
+        rows.map((row) => (
+          <TableRow
+            key={row._id}
+            hover
+            sx={{
+              "&:last-child td, &:last-child th": {
+                border: 0,
+              },
+              cursor: "pointer",
+            }}
+            onClick={() => onClickRow(row._id)}
+          >
+            <TableCell>{row.text["en"]}</TableCell>
+            <TableCell>{row.status}</TableCell>
+            <TableCell>
+              <ServiceIcon src={row.icon} alt="Icon not found" loading="lazy" />
+            </TableCell>
+          </TableRow>
+        ))}
     </>
   );
 

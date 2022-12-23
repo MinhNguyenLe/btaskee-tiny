@@ -1,10 +1,10 @@
 import Typography from "@mui/material/Typography";
 import React from "react";
-import { UseDialogReturn } from "../hooks/useDialog";
-import DialogBase from "../mui-base/Dialog/DialogBase";
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
+import { UseDialogReturn } from "../../hooks/useDialog";
+import DialogBase from "../../mui-base/Dialog/DialogBase";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
 
 interface DialogServiceDetailProps extends UseDialogReturn {}
 
@@ -37,7 +37,7 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -53,9 +53,13 @@ const DialogServiceDetail = ({
   };
 
   const content = (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
           <Tab label="Item One" {...a11yProps(0)} />
           <Tab label="Item Two" {...a11yProps(1)} />
         </Tabs>
