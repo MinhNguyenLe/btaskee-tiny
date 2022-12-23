@@ -2,8 +2,14 @@ import React from "react";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { useFormContext } from "react-hook-form";
+
+import { FormService } from "../../utils/types";
+import TextFieldControl from "../../hook-form/TextFieldControl";
 
 const FormService = () => {
+  const { control } = useFormContext<FormService>();
+
   return (
     <Box
       component="form"
@@ -14,6 +20,19 @@ const FormService = () => {
       autoComplete="off"
     >
       <div>
+        <TextFieldControl
+          // InputProps={{
+          //   readOnly: true,
+          // }}
+          control={control}
+          name="name"
+          label="Name"
+        />
+        <TextFieldControl
+          control={control}
+          name="costSuggestion"
+          label="Cost suggestion"
+        />
         <TextField
           required
           id="outlined-required"
