@@ -69,9 +69,7 @@ export interface Service {
   city: City[];
   costSuggestion?: number;
   defaultTaskTime: number;
-  detail: {
-    city: CityDetail[];
-  };
+  detail: any;
   discountByDuration: Array<{
     duration: number;
     discount: number;
@@ -112,6 +110,23 @@ export interface Service {
   };
   weight: number;
   _id: string;
+  minutesPostTaskAfterNow: Number;
+  minAvgRating: number;
+  minTaskDone: number;
+  serviceFeeLeaderTasker: number;
+  isTesting: boolean;
+  isNewService: boolean;
+  requireTaskerVersion: string;
+  limitDateOfBooking: Date;
+  limitNumberAcceptTaskInDay: number;
+  isSubscription: boolean;
+  taskServiceId: string;
+  maximumPSI: number;
+  minTaskOfSubscription: number;
+  requireAskerVersion: string;
+  isOpenGoMarketDefault: boolean;
+  linkContentInCar: string;
+  minMoneyDeposite: number;
 }
 
-export interface TypeFormService extends Omit<Service, "_id" | "weight"> {}
+export interface TypeFormService extends Omit<Service, "_id"> {}

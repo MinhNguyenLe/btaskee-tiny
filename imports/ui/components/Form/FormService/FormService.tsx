@@ -10,11 +10,22 @@ import CheckboxControl from "../../../hook-form/CheckboxControl";
 import { isActive } from "../../../utils/utils";
 import GroupDiscountByDuration from "./GroupDiscountByDuration";
 import GroupDiscountByDoneTask from "./GroupDiscountByDoneTask";
-import BoxCenter from "../../Grid/BoxCenter";
 import GroupCity from "./GroupCity";
+import JSONDetail from "./JSONDetail";
 
-const FormService = () => {
-  const { control } = useFormContext<TypeFormService>();
+export interface FormServiceProps {
+  isLoading?: boolean;
+}
+
+const FormService = ({ isLoading }: FormServiceProps) => {
+  const { control, setValue, getValues } = useFormContext<TypeFormService>();
+
+  const triggerStatus = (isChecked: boolean) => {
+    if (isChecked) setValue("status", "ACTIVE");
+    else setValue("status", "INACTIVE");
+  };
+
+  if (isLoading) return <>Loading (inserting or updating data) ...</>;
 
   return (
     <Box
@@ -55,13 +66,105 @@ const FormService = () => {
           name="name"
           label="Service's name"
         />
-        {/* <TextFieldControl
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="minutesPostTaskAfterNow"
+          label="Minutes post task after now"
+          type="number"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="minAvgRating"
+          label="Min avg rating"
+          type="number"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="minTaskDone"
+          label="Min task done"
+          type="number"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="serviceFeeLeaderTasker"
+          label="Servce fee leader tasker"
+          type="number"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="limitNumberAcceptTaskInDay"
+          label="Limit number accept task in day"
+          type="number"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="maximumPSI"
+          label="Maximum PSI"
+          type="number"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="minTaskOfSubscription"
+          label="Min task of subscription"
+          type="number"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="minMoneyDeposite"
+          label="Min money deposite"
+          type="number"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="requireTaskerVersion"
+          label="Require tasker version"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="taskServiceId"
+          label="Task service id"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="requireAskerVersion"
+          label="Require asker version"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="linkContentInCar"
+          label="Link content in car"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="limitDateOfBooking"
+          label="Limit date of booking"
+        />
+        <TextFieldControl
           control={control}
           variant="standard"
           name="weight"
           type="number"
-          label="Weight(order)"
-        /> */}
+          label="Weight"
+        />
+        <JSONDetail
+          placeholder={getValues("detail")}
+          onChange={(e) => {
+            if (!e.error) setValue("detail", JSON.parse(e.json));
+          }}
+        />
       </Box>
       <Box>
         <CheckboxControl
@@ -69,11 +172,28 @@ const FormService = () => {
           name="onlyShowTasker"
           label="Only show tasker"
         />
+        <CheckboxControl control={control} name="isTesting" label="Testing " />
+        <CheckboxControl
+          control={control}
+          name="isNewService"
+          label="New service"
+        />
+        <CheckboxControl
+          control={control}
+          name="isSubscription"
+          label="Subscription"
+        />
+        <CheckboxControl
+          control={control}
+          name="isOpenGoMarketDefault"
+          label="Open go market default"
+        />
         <CheckboxControl
           logicChecked={isActive}
           control={control}
           name="status"
           label="Active"
+          onChange={(e) => triggerStatus(e.target.checked)}
         />
       </Box>
       <GroupServiceContent

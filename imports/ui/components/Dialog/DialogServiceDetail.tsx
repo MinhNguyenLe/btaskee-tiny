@@ -5,8 +5,10 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import useFormService from "../../hooks/useFormService";
-import { Service } from "../../utils/types";
+import { Service, TypeFormService } from "../../utils/types";
 import FormService from "../Form/FormService/FormService";
+import useUpdateService from "../../hooks/useUpdateService";
+import { useFormContext } from "react-hook-form";
 export interface DialogServiceDetailProps extends UseDialogReturn {
   idService: Service["_id"];
 }
@@ -43,7 +45,6 @@ function a11yProps(index: number) {
 const DialogServiceDetail = ({
   open,
   onCloseDialog,
-  onOpenDialog,
   idService,
 }: DialogServiceDetailProps) => {
   const [value, setValue] = React.useState(0);
@@ -53,6 +54,15 @@ const DialogServiceDetail = ({
   };
 
   const { isLoading, reset } = useFormService({ idService });
+
+  const methods = useFormContext<TypeFormService>();
+
+  const { mutate: mutateUpdate, isLoading: isUpdating } = useUpdateService({
+    onSuccess: () => {
+      onCloseDialog();
+      methods.reset();
+    },
+  });
 
   const content = (
     <Box sx={{ width: "100%" }}>
@@ -83,11 +93,11 @@ const DialogServiceDetail = ({
   return (
     <DialogBase
       open={open}
-      onOpenDialog={onOpenDialog}
       onCloseDialog={onCloseDialogServiceDetail}
       title="Service's detail"
-      content={isLoading ? <>Loading ...</> : content}
+      content={isLoading || isUpdating ? <>Loading ...</> : content}
       maxWidth="md"
+      onSave={() => mutateUpdate({ idService, data: methods.getValues() })}
     />
   );
 };

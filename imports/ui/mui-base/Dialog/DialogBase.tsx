@@ -6,17 +6,20 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { UseDialogReturn } from "../../hooks/useDialog";
 
-interface DialogBaseProps extends DialogProps, UseDialogReturn {
+interface DialogBaseProps
+  extends DialogProps,
+    Omit<UseDialogReturn, "onOpenDialog"> {
   title: string;
   content: JSX.Element;
+  onSave?: () => void;
 }
 
 export default function DialogBase({
   open,
   onCloseDialog,
-  onOpenDialog,
   title,
   content,
+  onSave,
   ...props
 }: DialogBaseProps) {
   return (
@@ -29,7 +32,7 @@ export default function DialogBase({
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent id="alert-dialog-description">{content}</DialogContent>
       <DialogActions>
-        <Button onClick={onOpenDialog} autoFocus>
+        <Button onClick={onSave} autoFocus>
           Agree
         </Button>
         <Button onClick={onCloseDialog}>Cancel</Button>

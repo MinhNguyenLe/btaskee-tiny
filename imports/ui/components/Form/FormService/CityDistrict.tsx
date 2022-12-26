@@ -28,22 +28,20 @@ const CityDistrict = ({ nestIndex, control }: CityDistrictProps) => {
       </BoxCenter>
       {fields.map((item, index) => {
         return (
-          <Box>
-            <BoxCenter key={item.id}>
+          <Box key={item.id}>
+            <BoxCenter>
               <TextFieldControl
                 control={control}
                 name={`city.${nestIndex}.district.${index}.name`}
                 label="Name"
               />
-              <Box>
-                <RemoveItem title="district" onClick={() => remove(index)} />
-              </Box>
+              <RemoveItem title="district" onClick={() => remove(index)} />
             </BoxCenter>
-            <CityDistrictTime
+            {/* <CityDistrictTime
               control={control}
               nestIndex1={nestIndex}
               nestIndex2={index}
-            />
+            /> */}
           </Box>
         );
       })}
@@ -88,37 +86,35 @@ const CityDistrictTime = ({
           <BoxCenter key={item.id}>
             <TextFieldControl
               control={control}
-              name={`city.${nestIndex1}.district.${nestIndex1}.time.${index}.percent`}
+              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.percent`}
               label="Percent"
               type="number"
             />
             <TextFieldControl
               control={control}
-              name={`city.${nestIndex1}.district.${nestIndex1}.time.${index}.endTime`}
-              label="Percent"
+              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.endTime`}
+              label="End time"
               type="number"
             />
             <TextFieldControl
               control={control}
-              name={`city.${nestIndex1}.district.${nestIndex1}.time.${index}.startTime`}
-              label="Percent"
+              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.startTime`}
+              label="Start time"
               type="number"
             />
             <TextFieldControl
               control={control}
-              name={`city.${nestIndex1}.district.${nestIndex1}.time.${index}.date`}
-              label="Percent"
-              type="time"
+              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.date`}
+              label="Date"
+              type="date"
             />
             <TextFieldControl
               control={control}
-              name={`city.${nestIndex1}.district.${nestIndex1}.time.${index}.endDate`}
-              label="Percent"
-              type="time"
+              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.endDate`}
+              label="End date"
+              type="date"
             />
-            <Box>
-              <RemoveItem onClick={() => remove(index)} />
-            </Box>
+            <RemoveItem onClick={() => remove(index)} />
           </BoxCenter>
         );
       })}

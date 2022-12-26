@@ -5,13 +5,18 @@ import { App } from "../imports/ui/App";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+
 const queryClient = new QueryClient();
 
 Meteor.startup(() => {
   render(
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>,
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </LocalizationProvider>,
     document.getElementById("react-target")
   );
 });

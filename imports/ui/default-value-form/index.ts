@@ -7,7 +7,7 @@ export const defaultValueServiceCollection: TypeFormService = {
       baseCost: 10,
       district: [
         {
-          name: "1",
+          name: "Quan Btaskee",
           time: [
             {
               date: new Date(),
@@ -23,42 +23,6 @@ export const defaultValueServiceCollection: TypeFormService = {
   ],
   costSuggestion: 1,
   defaultTaskTime: 2,
-  detail: {
-    city: [
-      {
-        name: "",
-        type: [
-          {
-            name: "",
-            text: {
-              vi: "",
-              en: "",
-              th: "",
-              ko: "",
-            },
-            services: {
-              name: "",
-              text: {
-                vi: "",
-                en: "",
-                th: "",
-                ko: "",
-              },
-              prices: {
-                HPFrom: 0,
-                HPTo: 0,
-                price: 0,
-              },
-              discountByQty: {
-                qty: 0,
-                discount: 0,
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
   discountByDuration: [
     {
       duration: 0,
@@ -117,7 +81,7 @@ export const defaultValueServiceCollection: TypeFormService = {
     th: "",
     ko: "",
   },
-  status: "ActiVe",
+  status: "ACTIVE",
   text: {
     vi: "",
     en: "",
@@ -139,5 +103,23 @@ export const defaultValueServiceCollection: TypeFormService = {
       },
     ],
   },
-  //   weight: 0,
+  weight: 2,
+  minutesPostTaskAfterNow: 0,
+  minAvgRating: 0,
+  minTaskDone: 0,
+  serviceFeeLeaderTasker: 0,
+  isTesting: false,
+  isNewService: false,
+  requireTaskerVersion: "",
+  limitDateOfBooking: new Date(),
+  limitNumberAcceptTaskInDay: 0,
+  isSubscription: false,
+  taskServiceId: "",
+  maximumPSI: 0,
+  minTaskOfSubscription: 0,
+  requireAskerVersion: "",
+  isOpenGoMarketDefault: false,
+  linkContentInCar: "",
+  minMoneyDeposite: 0,
+  detail: {},
 };
