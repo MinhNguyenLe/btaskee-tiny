@@ -6,15 +6,17 @@ import useGetListServices from "../hooks/useGetListServices";
 import useGetServiceDetail from "../hooks/useGetServiceDetail";
 import { Box, Button } from "@mui/material";
 import DialogCreateNewService from "../components/Dialog/DialogCreateNewService";
+import { Service } from "../utils/types";
+import DialogServiceDetailControl from "../hook-form/DialogServiceDetailControl";
 
 //TODO: refactor re-render
 export const ServiceManagement = () => {
   const { isLoading, data: services } = useGetListServices();
 
-  const [idService, setIdService] = useState<string>("");
+  const [idService, setIdService] = useState<Service["_id"]>("");
 
   const { isLoading: isLoadingServiceDetail, data: serviceDetail } =
-    useGetServiceDetail(idService);
+    useGetServiceDetail({ idService });
 
   const { open, onOpenDialog, onCloseDialog } = useDialog();
   const {
@@ -47,10 +49,11 @@ export const ServiceManagement = () => {
         rows={services}
         headers={headers}
       />
-      <DialogServiceDetail
+      <DialogServiceDetailControl
         open={open}
         onOpenDialog={onOpenDialog}
         onCloseDialog={onCloseDialog}
+        idService={idService}
       />
       <DialogCreateNewService
         open={openFormCreateService}

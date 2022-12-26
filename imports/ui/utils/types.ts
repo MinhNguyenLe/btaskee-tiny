@@ -114,15 +114,4 @@ export interface Service {
   _id: string;
 }
 
-export interface TypeFormService {
-  icon: string;
-  status: string;
-  onlyShowTasker: boolean;
-  name?: string;
-  costSuggestion?: number;
-  textVi: Lang["vi"];
-  textEn: Lang["en"];
-  textTh: Lang["th"];
-  textKo: Lang["ko"];
-  city: City[];
-}
+export interface TypeFormService extends Omit<Service, "_id" | "weight"> {}

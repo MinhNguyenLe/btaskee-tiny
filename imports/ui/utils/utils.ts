@@ -18,3 +18,9 @@ export function meteorMethodCall(query, ...args) {
     });
   });
 }
+
+export const isActive = (status: any) => {
+  if (typeof status !== "string") return false;
+
+  return status.toLowerCase() === "active";
+};

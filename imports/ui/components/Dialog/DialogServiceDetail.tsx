@@ -1,12 +1,15 @@
-import Typography from "@mui/material/Typography";
 import React from "react";
 import { UseDialogReturn } from "../../hooks/useDialog";
 import DialogBase from "../../mui-base/Dialog/DialogBase";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-
-interface DialogServiceDetailProps extends UseDialogReturn {}
+import useFormService from "../../hooks/useFormService";
+import { Service } from "../../utils/types";
+import FormService from "../Form/FormService/FormService";
+export interface DialogServiceDetailProps extends UseDialogReturn {
+  idService: Service["_id"];
+}
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -25,11 +28,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -45,12 +44,15 @@ const DialogServiceDetail = ({
   open,
   onCloseDialog,
   onOpenDialog,
+  idService,
 }: DialogServiceDetailProps) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  const { isLoading, reset } = useFormService({ idService });
 
   const content = (
     <Box sx={{ width: "100%" }}>
@@ -60,26 +62,32 @@ const DialogServiceDetail = ({
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Service's detail" {...a11yProps(0)} />
+          <Tab label="Edit information" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Detail
+        <FormService />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Update
+        <FormService />
       </TabPanel>
     </Box>
   );
+
+  const onCloseDialogServiceDetail = () => {
+    onCloseDialog();
+    reset();
+  };
 
   return (
     <DialogBase
       open={open}
       onOpenDialog={onOpenDialog}
-      onCloseDialog={onCloseDialog}
+      onCloseDialog={onCloseDialogServiceDetail}
       title="Service's detail"
-      content={content}
+      content={isLoading ? <>Loading ...</> : content}
+      maxWidth="md"
     />
   );
 };
