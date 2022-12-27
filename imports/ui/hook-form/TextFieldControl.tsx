@@ -1,7 +1,7 @@
 import React from "react";
 import TextFieldBase, {
   TextFieldBaseProps,
-} from "../mui-base/Form/TextFieldBase";
+} from "../mui-base/TextField/TextFieldBase";
 import { Controller } from "react-hook-form";
 import { ControlHookForm } from "../utils/types";
 

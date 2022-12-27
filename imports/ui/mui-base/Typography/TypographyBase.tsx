@@ -3,7 +3,7 @@ import {
   TypographyProps as MuiTypographyProps,
 } from "@mui/material";
 import React, { PropsWithChildren } from "react";
-import { palette, PaletteProps } from "@material-ui/system";
+import { PaletteProps } from "@material-ui/system";
 
 export type TypographyProps = PaletteProps & Omit<MuiTypographyProps, "color">;
 

@@ -11,6 +11,7 @@ import useUpdateService from "../../hooks/useUpdateService";
 import { useFormContext } from "react-hook-form";
 import { preFetchDetailService } from "../../hooks/useGetServiceDetail";
 import { preFetchListServices } from "../../hooks/useGetListServices";
+import useDeleteService from "../../hooks/useDeleteService";
 export interface DialogServiceDetailProps extends UseDialogReturn {
   idService: Service["_id"];
 }
@@ -55,16 +56,26 @@ const DialogServiceDetail = ({
     setValue(newValue);
   };
 
-  const { isLoading, reset } = useFormService({ idService });
+  const { isLoading } = useFormService({ idService });
 
   const methods = useFormContext<TypeFormService>();
 
   const { mutate: mutateUpdate, isLoading: isUpdating } = useUpdateService({
     onSuccess: async () => {
+      await preFetchDetailService(idService);
+      await preFetchListServices();
+
+      onCloseDialog();
+      methods.reset();
+    },
+  });
+
+  const { mutate: deleteService, isLoading: isDeleting } = useDeleteService({
+    idService,
+    onSuccess: async () => {
       onCloseDialog();
       methods.reset();
 
-      await preFetchDetailService(idService);
       await preFetchListServices();
     },
   });
@@ -100,8 +111,11 @@ const DialogServiceDetail = ({
       open={open}
       onCloseDialog={onCloseDialogServiceDetail}
       title="Service's detail"
-      content={isLoading || isUpdating ? <>Loading ...</> : content}
+      content={
+        isLoading || isUpdating || isDeleting ? <>Loading ...</> : content
+      }
       maxWidth="lg"
+      onDelete={deleteService}
       onSave={() => mutateUpdate({ idService, data: methods.getValues() })}
     />
   );

@@ -12,6 +12,7 @@ interface DialogBaseProps
   title: string;
   content: JSX.Element;
   onSave?: () => void;
+  onDelete?: () => void;
 }
 
 export default function DialogBase({
@@ -20,6 +21,7 @@ export default function DialogBase({
   title,
   content,
   onSave,
+  onDelete,
   ...props
 }: DialogBaseProps) {
   return (
@@ -30,11 +32,16 @@ export default function DialogBase({
       {...props}
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
-      <DialogContent id="alert-dialog-description">{content}</DialogContent>
+      <DialogContent>{content}</DialogContent>
       <DialogActions>
         <Button onClick={onSave} autoFocus>
-          Agree
+          Save
         </Button>
+        {onDelete ? (
+          <Button onClick={onDelete} autoFocus>
+            Delete
+          </Button>
+        ) : null}
         <Button onClick={onCloseDialog}>Cancel</Button>
       </DialogActions>
     </Dialog>

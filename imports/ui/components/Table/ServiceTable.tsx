@@ -1,9 +1,9 @@
 import React from "react";
-import TableBase from "../mui-base/Table/TableBase";
+import TableBase from "../../mui-base/Table/TableBase";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import { Service } from "../utils/types";
-import ServiceIcon from "./Icon/ServiceIcon";
+import { Service } from "../../utils/types";
+import ServiceIcon from "../Icon/ServiceIcon";
 
 interface ServiceTableProps {
   rows: Service[] | unknown; //TODO: refactor type
@@ -48,7 +48,14 @@ const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
     </>
   );
 
-  return <TableBase header={header} body={body}></TableBase>;
+  return (
+    <TableBase
+      sx={{ minWidth: 650 }}
+      size="small"
+      header={header}
+      body={body}
+    ></TableBase>
+  );
 };
 
 export default ServiceTable;

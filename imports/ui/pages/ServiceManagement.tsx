@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ServiceTable from "../components/ServiceTable";
+import ServiceTable from "../components/Table/ServiceTable";
 import useDialog from "../hooks/useDialog";
 import useGetListServices from "../hooks/useGetListServices";
 import useGetServiceDetail from "../hooks/useGetServiceDetail";

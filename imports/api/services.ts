@@ -11,7 +11,9 @@ Meteor.methods({
   },
 
   getServiceDetail(idService: string) {
-    return ServicesCollection.findOne({ _id: idService });
+    if (idService) {
+      return ServicesCollection.findOne({ _id: idService });
+    } else throw new Error("Id not found");
   },
 
   insertNewService(data) {
@@ -24,5 +26,11 @@ Meteor.methods({
     if (typeof data === "object") {
       ServicesCollection.update(idService, data);
     } else throw new Error("No data to update");
+  },
+
+  deleteService(idService) {
+    if (idService) {
+      return ServicesCollection.remove({ _id: idService });
+    } else throw new Error("Id not found");
   },
 });

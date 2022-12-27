@@ -13,7 +13,7 @@ interface TableBaseProps extends TableProps {
 export default function TableBase({ header, body, ...props }: TableBaseProps) {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" {...props}>
+      <Table {...props}>
         <TableHead>{header}</TableHead>
         <TableBody>{body}</TableBody>
       </Table>

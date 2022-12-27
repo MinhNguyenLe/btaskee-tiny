@@ -56,15 +56,6 @@ interface SurgePriceTime {
   rate: number;
 }
 
-interface CityDetail {
-  name: string;
-  type: Array<{
-    name: string;
-    text: Lang;
-    services: CityServices;
-  }>;
-}
-
 export interface Service {
   city: City[];
   costSuggestion?: number;
