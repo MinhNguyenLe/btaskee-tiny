@@ -5,7 +5,7 @@ import { useFormContext } from "react-hook-form";
 
 import { TypeFormService } from "../../../utils/types";
 import TextFieldControl from "../../../hook-form/TextFieldControl";
-import GroupServiceContent from "./GroupServiceContent";
+import GroupLang from "./GroupLang";
 import CheckboxControl from "../../../hook-form/CheckboxControl";
 import { isActive } from "../../../utils/utils";
 import GroupDiscountByDuration from "./GroupDiscountByDuration";
@@ -13,6 +13,13 @@ import GroupDiscountByDoneTask from "./GroupDiscountByDoneTask";
 import GroupCity from "./GroupCity";
 import JSONDetail from "./JSONDetail";
 import DateDistrict from "./DateDistrict";
+import GroupBg from "./GroupBg";
+import PauseSetting from "./PauseSetting";
+import TypographyBase from "../../../mui-base/Typography/TypographyBase";
+import BoxChild from "./BoxChild";
+import PriceSettingFeeWeekendForCity from "./PriceSettingFeeWeekendForCity";
+import PriceSettingSuperPriceTime from "./PriceSettingSuperPriceTime";
+import TipRequirement from "./TipRequirement";
 
 export interface FormServiceProps {
   isLoading?: boolean;
@@ -38,6 +45,18 @@ const FormService = ({ isLoading }: FormServiceProps) => {
       autoComplete="off"
     >
       <Box>
+        <DateDistrict
+          control={control}
+          name="limitDateOfBooking"
+          label="Limit date of booking"
+        />
+        <TextFieldControl
+          control={control}
+          variant="standard"
+          name="weight"
+          type="number"
+          label="Weight"
+        />
         <TextFieldControl
           control={control}
           variant="standard"
@@ -147,24 +166,6 @@ const FormService = ({ isLoading }: FormServiceProps) => {
           name="linkContentInCar"
           label="Link content in car"
         />
-        <DateDistrict
-          control={control}
-          name="limitDateOfBooking"
-          label="Limit date of booking"
-        />
-        <TextFieldControl
-          control={control}
-          variant="standard"
-          name="weight"
-          type="number"
-          label="Weight"
-        />
-        <JSONDetail
-          placeholder={getValues("detail")}
-          onChange={(e) => {
-            if (!e.error) setValue("detail", JSON.parse(e.json));
-          }}
-        />
       </Box>
       <Box>
         <CheckboxControl
@@ -196,19 +197,80 @@ const FormService = ({ isLoading }: FormServiceProps) => {
           onChange={(e) => triggerStatus(e.target.checked)}
         />
       </Box>
-      <GroupServiceContent
-        control={control}
-        title="Text:"
-        groupData={[
-          { name: "text.vi", label: "Vietnamese" },
-          { name: "text.en", label: "English" },
-          { name: "text.ko", label: "Korea" },
-          { name: "text.th", label: "Thailand" },
-        ]}
+      <JSONDetail
+        placeholder={getValues("detail")}
+        onChange={(e) => {
+          if (!e.error) setValue("detail", JSON.parse(e.json));
+        }}
       />
+      <GroupBg>
+        <GroupLang control={control} title="Text:" namePrefix="text" />
+      </GroupBg>
+      <GroupBg>
+        <GroupLang
+          control={control}
+          title="short text:"
+          namePrefix="shortText"
+        />
+      </GroupBg>
       <GroupCity control={control} />
       <GroupDiscountByDuration control={control} />
       <GroupDiscountByDoneTask control={control} />
+      <PauseSetting control={control} />
+      <GroupBg>
+        <TypographyBase title="Posting limits" color="primary"></TypographyBase>
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="postingLimits.from"
+          label="From"
+        />
+        <TextFieldControl
+          variant="standard"
+          control={control}
+          name="postingLimits.to"
+          label="To"
+        />
+      </GroupBg>
+      <GroupBg>
+        <TypographyBase title="Price setting" color="primary"></TypographyBase>
+        <BoxChild>
+          <TextFieldControl
+            variant="standard"
+            control={control}
+            name="priceSetting.costForChooseTasker"
+            label="Cost for choose tasker"
+            type="number"
+          />
+          <TextFieldControl
+            variant="standard"
+            control={control}
+            name="priceSetting.emergencyTaskWithin"
+            label="Emergency task within"
+            type="number"
+          />
+          <TextFieldControl
+            variant="standard"
+            control={control}
+            name="priceSetting.feeForEmergencyTask"
+            label="Fee for emergency task"
+            type="number"
+          />
+          <TextFieldControl
+            variant="standard"
+            control={control}
+            name="priceSetting.feeForWeekend"
+            label="Fee for weekend"
+            type="number"
+          />
+          <PriceSettingFeeWeekendForCity control={control} />
+          <PriceSettingSuperPriceTime control={control} />
+        </BoxChild>
+      </GroupBg>
+      <GroupBg>
+        <TypographyBase title="Tip" color="primary"></TypographyBase>
+        <TipRequirement control={control} />
+      </GroupBg>
     </Box>
   );
 };

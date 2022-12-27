@@ -66,6 +66,11 @@ function useFormService({
       if (data.weight) setValue("weight", data.weight);
       if (data.detail) setValue("detail", data.detail);
       if (data.city) setValue("city", data.city);
+      if (data.pauseSetting) setValue("pauseSetting", data.pauseSetting);
+      if (data.postingLimits) setValue("postingLimits", data.postingLimits);
+      if (data.priceSetting) setValue("priceSetting", data.priceSetting);
+      if (data.shortText) setValue("shortText", data.shortText);
+      if (data.tip) setValue("tip", data.tip);
 
       // const test =
       // data.city[0]?.district && data.city[0]?.district[0]?.time[0]?.date;

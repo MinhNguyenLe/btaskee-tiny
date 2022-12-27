@@ -33,7 +33,7 @@ const DialogCreateNewService = ({
         onCloseDialog={onCloseDialog}
         title="Create new service"
         content={content}
-        maxWidth="md"
+        maxWidth="lg"
         onSave={() => mutateInsert(methods.getValues())}
       />
     </FormProvider>

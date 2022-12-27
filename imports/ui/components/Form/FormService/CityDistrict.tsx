@@ -38,11 +38,11 @@ const CityDistrict = ({ nestIndex, control }: CityDistrictProps) => {
               />
               <RemoveItem title="district" onClick={() => remove(index)} />
             </BoxCenter>
-            <CityDistrictTime
+            {/* <CityDistrictTime
               control={control}
               nestIndex1={nestIndex}
               nestIndex2={index}
-            />
+            /> */}
           </Box>
         );
       })}

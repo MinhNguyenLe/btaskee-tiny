@@ -4,29 +4,24 @@ import TextFieldControl from "../../../hook-form/TextFieldControl";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
 import { ControlHookForm } from "../../../utils/types";
 import BoxCenter from "../../Grid/BoxCenter";
-import GroupBg from "./GroupBg";
 
-interface GroupServiceContent {
-  name: string;
-  label: string;
-}
-
-interface GroupServiceContentProps {
+interface GroupLangProps {
   title: string;
-  groupData: GroupServiceContent[];
   control: ControlHookForm;
+  namePrefix: string;
 }
 
-const GroupServiceContent = ({
-  title,
-  groupData,
-  control,
-}: GroupServiceContentProps) => {
+const GroupLang = ({ namePrefix, title, control }: GroupLangProps) => {
   return (
-    <GroupBg>
+    <>
       <TypographyBase title={title} color="primary"></TypographyBase>
       <BoxCenter>
-        {groupData.map(({ name, label }, index) => {
+        {[
+          { name: `${namePrefix}.vi`, label: "Vietnamese" },
+          { name: `${namePrefix}.en`, label: "English" },
+          { name: `${namePrefix}.ko`, label: "Korea" },
+          { name: `${namePrefix}.th`, label: "Thailand" },
+        ].map(({ name, label }, index) => {
           return (
             <TextFieldControl
               variant="standard"
@@ -38,8 +33,8 @@ const GroupServiceContent = ({
           );
         })}
       </BoxCenter>
-    </GroupBg>
+    </>
   );
 };
 
-export default GroupServiceContent;
+export default GroupLang;

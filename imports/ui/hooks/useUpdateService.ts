@@ -10,8 +10,10 @@ const useUpdateService = (options) => {
     idService: string;
     data: TypeFormService;
   }): any {
-    console.log(data, "----");
-    meteorMethodCall("updateService", idService, data);
+    meteorMethodCall("updateService", idService, {
+      ...data,
+      limitDateOfBooking: new Date(data.limitDateOfBooking).toISOString(),
+    });
   }
 
   return useMutation(mutationCallback, options);

@@ -96,7 +96,7 @@ const DialogServiceDetail = ({
       onCloseDialog={onCloseDialogServiceDetail}
       title="Service's detail"
       content={isLoading || isUpdating ? <>Loading ...</> : content}
-      maxWidth="md"
+      maxWidth="lg"
       onSave={() => mutateUpdate({ idService, data: methods.getValues() })}
     />
   );

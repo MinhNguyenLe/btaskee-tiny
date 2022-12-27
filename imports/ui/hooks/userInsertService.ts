@@ -4,8 +4,10 @@ import { meteorMethodCall } from "../utils/utils";
 
 const useInsertService = (options) => {
   function mutationCallback(data: TypeFormService): any {
-    console.log(data, "----");
-    meteorMethodCall("insertNewService", data);
+    meteorMethodCall("insertNewService", {
+      ...data,
+      limitDateOfBooking: new Date(data.limitDateOfBooking).toISOString(),
+    });
   }
 
   return useMutation(mutationCallback, options);

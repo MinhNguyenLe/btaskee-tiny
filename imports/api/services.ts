@@ -15,12 +15,14 @@ Meteor.methods({
   },
 
   insertNewService(data) {
-    if (typeof data === "object") ServicesCollection.insert(data);
-    else throw new Error("No data to insert");
+    if (typeof data === "object") {
+      ServicesCollection.insert(data);
+    } else throw new Error("No data to insert");
   },
 
   updateService(idService, data) {
-    if (typeof data === "object") ServicesCollection.update(idService, data);
-    else throw new Error("No data to update");
+    if (typeof data === "object") {
+      ServicesCollection.update(idService, data);
+    } else throw new Error("No data to update");
   },
 });

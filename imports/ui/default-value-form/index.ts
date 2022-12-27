@@ -1,40 +1,40 @@
 import { TypeFormService } from "../utils/types";
 
+export const defaultCityDistrict = {
+  name: "Quan Btaskee",
+  time: [
+    {
+      date: new Date(),
+      endDate: new Date(),
+      endTime: 0,
+      percent: 0,
+      startTime: 0,
+    },
+  ],
+};
+
+export const defaultDiscountByDuration = {
+  duration: 0,
+  discount: 0,
+};
+
+export const defaultDiscountByDoneTask = {
+  number: 0,
+  discount: 0,
+};
+
 export const defaultValueServiceCollection: TypeFormService = {
   city: [
     {
       name: "",
-      baseCost: 10,
-      district: [
-        {
-          name: "Quan Btaskee",
-          time: [
-            {
-              date: new Date(),
-              endDate: new Date(),
-              endTime: 0,
-              percent: 0,
-              startTime: 0,
-            },
-          ],
-        },
-      ],
+      baseCost: 0,
+      district: [],
     },
   ],
-  costSuggestion: 1,
-  defaultTaskTime: 2,
-  discountByDuration: [
-    {
-      duration: 0,
-      discount: 0,
-    },
-  ],
-  discountByDoneTask: [
-    {
-      number: 0,
-      discount: 0,
-    },
-  ],
+  costSuggestion: 0,
+  defaultTaskTime: 0,
+  discountByDuration: [],
+  discountByDoneTask: [],
   icon: "",
   limitDateOfBooking_Timestamp: {
     second: 0,
@@ -103,7 +103,7 @@ export const defaultValueServiceCollection: TypeFormService = {
       },
     ],
   },
-  weight: 2,
+  weight: 1,
   minutesPostTaskAfterNow: 0,
   minAvgRating: 0,
   minTaskDone: 0,
