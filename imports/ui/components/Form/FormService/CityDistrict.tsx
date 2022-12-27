@@ -8,6 +8,7 @@ import RemoveItem from "./RemoveItem";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
 import BoxCenter from "../../Grid/BoxCenter";
 import BoxChild from "./BoxChild";
+import DateDistrict from "./DateDistrict";
 
 export interface CityDistrictProps {
   nestIndex: number;
@@ -37,11 +38,11 @@ const CityDistrict = ({ nestIndex, control }: CityDistrictProps) => {
               />
               <RemoveItem title="district" onClick={() => remove(index)} />
             </BoxCenter>
-            {/* <CityDistrictTime
+            <CityDistrictTime
               control={control}
               nestIndex1={nestIndex}
               nestIndex2={index}
-            /> */}
+            />
           </Box>
         );
       })}
@@ -84,6 +85,16 @@ const CityDistrictTime = ({
       {fields.map((item, index) => {
         return (
           <BoxCenter key={item.id}>
+            <DateDistrict
+              control={control}
+              label="Date"
+              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.date`}
+            />
+            <DateDistrict
+              control={control}
+              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.endDate`}
+              label="End date"
+            />
             <TextFieldControl
               control={control}
               name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.percent`}
@@ -101,18 +112,6 @@ const CityDistrictTime = ({
               name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.startTime`}
               label="Start time"
               type="number"
-            />
-            <TextFieldControl
-              control={control}
-              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.date`}
-              label="Date"
-              type="date"
-            />
-            <TextFieldControl
-              control={control}
-              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.endDate`}
-              label="End date"
-              type="date"
             />
             <RemoveItem onClick={() => remove(index)} />
           </BoxCenter>

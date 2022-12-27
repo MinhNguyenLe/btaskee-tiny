@@ -87,7 +87,7 @@ const DialogServiceDetail = ({
 
   const onCloseDialogServiceDetail = () => {
     onCloseDialog();
-    reset();
+    // reset();
   };
 
   return (

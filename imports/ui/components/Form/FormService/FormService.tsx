@@ -12,6 +12,7 @@ import GroupDiscountByDuration from "./GroupDiscountByDuration";
 import GroupDiscountByDoneTask from "./GroupDiscountByDoneTask";
 import GroupCity from "./GroupCity";
 import JSONDetail from "./JSONDetail";
+import DateDistrict from "./DateDistrict";
 
 export interface FormServiceProps {
   isLoading?: boolean;
@@ -146,8 +147,7 @@ const FormService = ({ isLoading }: FormServiceProps) => {
           name="linkContentInCar"
           label="Link content in car"
         />
-        <TextFieldControl
-          variant="standard"
+        <DateDistrict
           control={control}
           name="limitDateOfBooking"
           label="Limit date of booking"

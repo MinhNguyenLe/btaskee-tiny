@@ -67,9 +67,9 @@ function useFormService({
       if (data.detail) setValue("detail", data.detail);
       if (data.city) setValue("city", data.city);
 
-      const test =
-        data.city[0]?.district && data.city[0]?.district[0]?.time[0]?.date;
-      console.log(test, typeof test);
+      // const test =
+      // data.city[0]?.district && data.city[0]?.district[0]?.time[0]?.date;
+      // console.log(test, typeof test);
     },
   });
 

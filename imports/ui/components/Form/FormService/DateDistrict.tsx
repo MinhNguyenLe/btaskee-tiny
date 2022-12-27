@@ -1,20 +1,28 @@
 import React from "react";
-import DatePickerControl from "../../../hook-form/DatePickerControl";
+import DatePickerControl, {
+  DatePickerControlProps,
+} from "../../../hook-form/DatePickerControl";
+import { ControlHookForm } from "../../../utils/types";
 
-export interface DateDistrictProps {
+export interface DateDistrictProps extends DatePickerControlProps<Date, Date> {
   control: ControlHookForm;
   name: string;
   label: string;
 }
 
-const DateDistrict = ({ label, name, control }) => {
+const DateDistrict = ({
+  label,
+  name,
+  control,
+  ...props
+}: DateDistrictProps) => {
   return (
-    <DatePickerControl<Date, Date>
+    <DatePickerControl
       label={label}
       control={control}
       name={name}
       inputFormat="MM/DD/YYYY"
-      onChange={() => {}}
+      {...props}
     />
   );
 };

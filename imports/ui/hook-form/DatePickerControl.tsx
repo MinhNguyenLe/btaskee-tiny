@@ -6,8 +6,11 @@ import DatePickerBase, {
 import TextFieldBase from "../mui-base/Form/TextFieldBase";
 import { ControlHookForm } from "../utils/types";
 
-export interface TextFieldControlProps<TInputDate, TDate>
-  extends Omit<DatePickerBaseProps<TInputDate, TDate>, "name" | "renderInput"> {
+export interface DatePickerControlProps<TInputDate, TDate>
+  extends Omit<
+    DatePickerBaseProps<TInputDate, TDate>,
+    "name" | "renderInput" | "value" | "onChange" | "onBlur"
+  > {
   control: ControlHookForm;
   name: string;
 }
@@ -16,7 +19,7 @@ function DatePickerControl<TInputDate, TDate>({
   name,
   control,
   ...props
-}: TextFieldControlProps<TInputDate, TDate>) {
+}: DatePickerControlProps<TInputDate, TDate>) {
   return (
     <Controller
       name={name}

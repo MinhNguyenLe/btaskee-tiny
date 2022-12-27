@@ -1,6 +1,5 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import ServiceTable from "../components/ServiceTable";
-import DialogServiceDetail from "../components/Dialog/DialogServiceDetail";
 import useDialog from "../hooks/useDialog";
 import useGetListServices from "../hooks/useGetListServices";
 import useGetServiceDetail from "../hooks/useGetServiceDetail";
@@ -32,8 +31,6 @@ export const ServiceManagement = () => {
 
   console.log(isLoadingServiceDetail, serviceDetail);
 
-  const headers = useMemo(() => ["Title", "Status", "Icon"], []);
-
   if (isLoading) return <>Loading services... </>;
 
   return (
@@ -47,7 +44,7 @@ export const ServiceManagement = () => {
       <ServiceTable
         onClickRow={(idService) => onClickRow(idService)}
         rows={services}
-        headers={headers}
+        headers={["Title", "Status", "Icon"]}
       />
       <DialogServiceDetailControl
         open={open}
