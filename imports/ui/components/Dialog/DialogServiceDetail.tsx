@@ -9,6 +9,8 @@ import { Service, TypeFormService } from "../../utils/types";
 import FormService from "../Form/FormService/FormService";
 import useUpdateService from "../../hooks/useUpdateService";
 import { useFormContext } from "react-hook-form";
+import { preFetchDetailService } from "../../hooks/useGetServiceDetail";
+import { preFetchListServices } from "../../hooks/useGetListServices";
 export interface DialogServiceDetailProps extends UseDialogReturn {
   idService: Service["_id"];
 }
@@ -58,9 +60,12 @@ const DialogServiceDetail = ({
   const methods = useFormContext<TypeFormService>();
 
   const { mutate: mutateUpdate, isLoading: isUpdating } = useUpdateService({
-    onSuccess: () => {
+    onSuccess: async () => {
       onCloseDialog();
       methods.reset();
+
+      await preFetchDetailService(idService);
+      await preFetchListServices();
     },
   });
 

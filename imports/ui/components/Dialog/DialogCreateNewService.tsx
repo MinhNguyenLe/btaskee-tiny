@@ -6,6 +6,9 @@ import { useForm, FormProvider } from "react-hook-form";
 import { TypeFormService } from "../../utils/types";
 import { defaultValueServiceCollection } from "../../default-value-form";
 import useInsertService from "../../hooks/userInsertService";
+import { queryClient } from "../../AppProvider";
+import { meteorMethodCall } from "../../utils/utils";
+import { preFetchListServices } from "../../hooks/useGetListServices";
 
 interface DialogCreateNewServiceProps extends UseDialogReturn {}
 
@@ -18,9 +21,11 @@ const DialogCreateNewService = ({
   });
 
   const { mutate: mutateInsert, isLoading: isInserting } = useInsertService({
-    onSuccess: () => {
+    onSuccess: async () => {
       onCloseDialog();
       methods.reset();
+
+      await preFetchListServices();
     },
   });
 
