@@ -23,6 +23,11 @@ export const defaultDiscountByDoneTask = {
   discount: 0,
 };
 
+export const defaultCustomField = {
+  key: "",
+  value: {},
+};
+
 export const defaultValueServiceCollection: TypeFormService = {
   city: [
     {
@@ -122,4 +127,5 @@ export const defaultValueServiceCollection: TypeFormService = {
   linkContentInCar: "",
   minMoneyDeposite: 0,
   detail: {},
+  customField: [],
 };

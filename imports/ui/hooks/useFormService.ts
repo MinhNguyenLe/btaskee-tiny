@@ -1,5 +1,6 @@
 import { useFormContext, UseFormReset } from "react-hook-form";
 import { TypeFormService } from "../utils/types";
+import { mapCustomFieldForClient } from "../utils/utils";
 import useGetServiceDetail, {
   UseGetServiceDetail,
 } from "./useGetServiceDetail";
@@ -72,9 +73,8 @@ function useFormService({
       if (data.shortText) setValue("shortText", data.shortText);
       if (data.tip) setValue("tip", data.tip);
 
-      // const test =
-      // data.city[0]?.district && data.city[0]?.district[0]?.time[0]?.date;
-      // console.log(test, typeof test);
+      if (data.customField)
+        setValue("customField", mapCustomFieldForClient(data.customField));
     },
   });
 

@@ -1,10 +1,11 @@
 import { TypeFormService } from "./../utils/types";
 import { useMutation } from "@tanstack/react-query";
-import { meteorMethodCall } from "../utils/utils";
+import { mapCustomFieldForServer, meteorMethodCall } from "../utils/utils";
 
 const useInsertService = (options) => {
-  function mutationCallback(data: TypeFormService): any {
+  function mutationCallback({ customField, ...data }: TypeFormService): any {
     meteorMethodCall("insertNewService", {
+      customField: mapCustomFieldForServer(customField),
       ...data,
     });
   }

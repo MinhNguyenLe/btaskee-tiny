@@ -118,6 +118,19 @@ export interface Service {
   isOpenGoMarketDefault: boolean;
   linkContentInCar: string;
   minMoneyDeposite: number;
+  //custom field
+  customField?: CustomFieldServer[];
 }
 
-export interface TypeFormService extends Omit<Service, "_id"> {}
+interface CustomFieldServer {
+  [key: string]: any;
+}
+
+interface CustomFieldClient {
+  key: string;
+  value: any;
+}
+
+export interface TypeFormService extends Omit<Service, "_id" | "customField"> {
+  customField: CustomFieldClient[];
+}

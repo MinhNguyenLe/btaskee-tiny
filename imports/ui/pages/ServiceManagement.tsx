@@ -14,9 +14,6 @@ export const ServiceManagement = () => {
 
   const [idService, setIdService] = useState<Service["_id"]>("");
 
-  const { isLoading: isLoadingServiceDetail, data: serviceDetail } =
-    useGetServiceDetail({ idService });
-
   const { open, onOpenDialog, onCloseDialog } = useDialog();
   const {
     open: openFormCreateService,
@@ -28,8 +25,6 @@ export const ServiceManagement = () => {
     onOpenDialog();
     setIdService(idService);
   };
-
-  console.log(isLoadingServiceDetail, serviceDetail);
 
   if (isLoading) return <>Loading services... </>;
 

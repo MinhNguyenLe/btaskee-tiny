@@ -62,11 +62,12 @@ const DialogServiceDetail = ({
 
   const { mutate: mutateUpdate, isLoading: isUpdating } = useUpdateService({
     onSuccess: async () => {
+      methods.reset();
+
       await preFetchDetailService(idService);
       await preFetchListServices();
 
       onCloseDialog();
-      methods.reset();
     },
   });
 

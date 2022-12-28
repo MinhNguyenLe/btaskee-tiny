@@ -15,17 +15,30 @@ function TextFieldControl({
   name,
   control,
   label,
+  type,
   ...props
 }: TextFieldControlProps) {
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field, fieldState, formState }) => {
-        const { ref, ...rest } = field;
+      render={({ field }) => {
+        const { ref, onChange, ...rest } = field;
 
         return (
-          <TextFieldBase label={label} innerRef={ref} {...rest} {...props} />
+          <TextFieldBase
+            onChange={(e) => {
+              if (type === "number") {
+                onChange(Number(e.target.value));
+              }
+              onChange(e.target.value);
+            }}
+            label={label}
+            innerRef={ref}
+            type={type}
+            {...rest}
+            {...props}
+          />
         );
       }}
     />

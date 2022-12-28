@@ -21,6 +21,9 @@ import TipRequirement from "./TipRequirement";
 import TextFieldNumber from "../../TextFieldStandard/TextFieldNumber";
 import TextFieldString from "../../TextFieldStandard/TextFieldString";
 import DatePickerControl from "../../../hook-form/DatePickerControl";
+import JSONEditorControl from "../../../hook-form/JSONEditorControl";
+import CustomField from "./CustomDataService";
+import CustomDataService from "./CustomDataService";
 
 export interface FormServiceProps {
   isLoading?: boolean;
@@ -162,12 +165,17 @@ const FormService = ({ isLoading }: FormServiceProps) => {
           onChange={(e) => triggerStatus(e.target.checked)}
         />
       </Box>
-      <JSONDetail
+      {/* <JSONDetail
         placeholder={getValues("detail")}
         onChange={(e) => {
           if (!e.error) setValue("detail", JSON.parse(e.json));
         }}
-      />
+      /> */}
+      <GroupBg>
+        <TypographyBase title="Detail" color="primary"></TypographyBase>
+        <JSONEditorControl height="200px" control={control} name="detail" />
+      </GroupBg>
+      <CustomDataService control={control} />
       <GroupBg>
         <GroupLang control={control} title="Text:" namePrefix="text" />
       </GroupBg>
