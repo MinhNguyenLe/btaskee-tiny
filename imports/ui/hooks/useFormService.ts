@@ -22,6 +22,7 @@ function useFormService({
   const { isLoading } = useGetServiceDetail({
     idService,
     onSuccess: (data) => {
+      console.log(data);
       if (data.costSuggestion) setValue("costSuggestion", data.costSuggestion);
       if (data.defaultTaskTime)
         setValue("defaultTaskTime", data.defaultTaskTime);

@@ -10,7 +10,6 @@ const TimePickerBase = () => {
 
   const handleChange = (newValue: Dayjs | null) => {
     setValue(newValue);
-    console.log(newValue?.hour());
   };
 
   return (

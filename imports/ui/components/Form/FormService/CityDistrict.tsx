@@ -1,6 +1,6 @@
 import React from "react";
-import { useFieldArray } from "react-hook-form";
-import { ControlHookForm } from "../../../utils/types";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import { ControlHookForm, TypeFormService } from "../../../utils/types";
 import { Box } from "@mui/material";
 import TextFieldControl from "../../../hook-form/TextFieldControl";
 import AddItem from "./AddItem";
@@ -9,6 +9,7 @@ import TypographyBase from "../../../mui-base/Typography/TypographyBase";
 import BoxCenter from "../../Grid/BoxCenter";
 import BoxChild from "./BoxChild";
 import DatePickerControl from "../../../hook-form/DatePickerControl";
+import CloneButton from "./CloneButton";
 
 export interface CityDistrictProps {
   nestIndex: number;
@@ -20,6 +21,14 @@ const CityDistrict = ({ nestIndex, control }: CityDistrictProps) => {
     control,
     name: `city.${nestIndex}.district`,
   });
+
+  const { getValues } = useFormContext<TypeFormService>();
+
+  const onCloneDataDistrict = (index: number) => {
+    const dataDistricts = getValues(`city.${nestIndex}.district`);
+
+    if (dataDistricts) append(dataDistricts[index]);
+  };
 
   return (
     <BoxChild>
@@ -37,6 +46,10 @@ const CityDistrict = ({ nestIndex, control }: CityDistrictProps) => {
                 label="Name"
               />
               <RemoveItem title="district" onClick={() => remove(index)} />
+              <CloneButton
+                title="district"
+                onClick={() => onCloneDataDistrict(index)}
+              />
             </BoxCenter>
             <CityDistrictTime
               control={control}
@@ -65,6 +78,15 @@ const CityDistrictTime = ({
     control,
     name: `city.${nestIndex1}.district.${nestIndex2}.time`,
   });
+
+  const { getValues } = useFormContext<TypeFormService>();
+
+  const onCloneDataDistrictTime = (index: number) => {
+    const dataDistrictTime = getValues(
+      `city.${nestIndex1}.district.${nestIndex2}.time`
+    );
+    if (dataDistrictTime) append(dataDistrictTime[index]);
+  };
 
   return (
     <BoxChild>
@@ -114,6 +136,10 @@ const CityDistrictTime = ({
               type="number"
             />
             <RemoveItem onClick={() => remove(index)} />
+            <CloneButton
+              title="district's time"
+              onClick={() => onCloneDataDistrictTime(index)}
+            />
           </BoxCenter>
         );
       })}

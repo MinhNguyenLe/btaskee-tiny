@@ -30,8 +30,8 @@ const GroupDiscountByDoneTask = ({ control }: GroupDiscountByDoneTaskProps) => {
         <AddItem
           onClick={() =>
             append({
-              number: 3,
-              discount: 2,
+              number: 0,
+              discount: 0,
             })
           }
         />

@@ -30,8 +30,7 @@ function TextFieldControl({
             onChange={(e) => {
               if (type === "number") {
                 onChange(Number(e.target.value));
-              }
-              onChange(e.target.value);
+              } else onChange(e.target.value);
             }}
             label={label}
             innerRef={ref}

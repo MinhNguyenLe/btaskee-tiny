@@ -51,6 +51,7 @@ const DialogServiceDetail = ({
   idService,
 }: DialogServiceDetailProps) => {
   const [value, setValue] = React.useState(0);
+  console.log(1);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);

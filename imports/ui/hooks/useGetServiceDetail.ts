@@ -18,8 +18,12 @@ export const preFetchDetailService = (idService: string) => {
 };
 
 const useGetServiceDetail = ({ idService, onSuccess }: UseGetServiceDetail) => {
+  const callback = () => {
+    meteorMethodCall("getServiceDetail", idService).then((a) => console.log(a));
+  };
+
   return useQuery({
-    queryKey: [keyStr(idService)],
+    queryKey: [`service-detail-${idService}`],
     queryFn: () => meteorMethodCall("getServiceDetail", idService),
     enabled: Boolean(idService),
     onSuccess,

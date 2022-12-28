@@ -51,7 +51,7 @@ const CustomDataService = ({ control }: CustomDataServiceProps) => {
                 <TypographyBase title="Value:" color="primary"></TypographyBase>
                 <JSONEditorControl
                   height="200px"
-                  width="200px"
+                  width="600px"
                   control={control}
                   name={`customField.${index}.value`}
                 />
