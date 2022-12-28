@@ -6,7 +6,6 @@ const useInsertService = (options) => {
   function mutationCallback(data: TypeFormService): any {
     meteorMethodCall("insertNewService", {
       ...data,
-      limitDateOfBooking: new Date(data.limitDateOfBooking).toISOString(),
     });
   }
 

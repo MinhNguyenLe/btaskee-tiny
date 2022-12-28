@@ -6,33 +6,40 @@ import DatePickerBase, {
 import TextFieldBase from "../mui-base/TextField/TextFieldBase";
 import { ControlHookForm } from "../utils/types";
 
-export interface DatePickerControlProps<TInputDate, TDate>
+export interface DatePickerControlProps
   extends Omit<
-    DatePickerBaseProps<TInputDate, TDate>,
+    DatePickerBaseProps<Date, Date>,
     "name" | "renderInput" | "value" | "onChange" | "onBlur"
   > {
   control: ControlHookForm;
   name: string;
 }
 
-function DatePickerControl<TInputDate, TDate>({
+function DatePickerControl({
   name,
   control,
   ...props
-}: DatePickerControlProps<TInputDate, TDate>) {
+}: DatePickerControlProps) {
   return (
     <Controller
       name={name}
       control={control}
       render={({ field, fieldState, formState }) => {
-        const { ref, ...rest } = field;
+        const { ref, value, onChange, ...rest } = field;
 
         return (
-          <DatePickerBase<TInputDate, TDate>
+          <DatePickerBase<Date, Date>
             renderInput={(params) => (
               <TextFieldBase innerRef={ref} {...params} />
             )}
-            {...rest}
+            value={new Date(value)}
+            onChange={(event) => {
+              if (event) {
+                onChange(new Date(event));
+              } else throw new Error("Your date is incorrect!");
+            }}
+            inputFormat="MM/DD/YYYY"
+            // {...rest}
             {...props}
           />
         );

@@ -8,7 +8,7 @@ import RemoveItem from "./RemoveItem";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
 import BoxCenter from "../../Grid/BoxCenter";
 import BoxChild from "./BoxChild";
-import DateDistrict from "./DateDistrict";
+import DatePickerControl from "../../../hook-form/DatePickerControl";
 
 export interface CityDistrictProps {
   nestIndex: number;
@@ -85,12 +85,12 @@ const CityDistrictTime = ({
       {fields.map((item, index) => {
         return (
           <BoxCenter key={item.id}>
-            <DateDistrict
+            <DatePickerControl
               control={control}
               label="Date"
               name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.date`}
             />
-            <DateDistrict
+            <DatePickerControl
               control={control}
               name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.endDate`}
               label="End date"

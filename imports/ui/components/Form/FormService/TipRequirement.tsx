@@ -85,7 +85,7 @@ interface ApplyForCitiesProps {
 const ApplyForCities = ({ control, nestIndex }: ApplyForCitiesProps) => {
   const { fields, remove, append } = useFieldArray({
     control,
-    name: `tip.requirements`,
+    name: `tip.requirements.${nestIndex}.applyForCities`,
   });
 
   return (

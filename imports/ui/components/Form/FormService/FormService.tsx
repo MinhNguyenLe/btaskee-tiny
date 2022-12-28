@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 
 import { TypeFormService } from "../../../utils/types";
-import TextFieldControl from "../../../hook-form/TextFieldControl";
 import GroupLang from "./GroupLang";
 import CheckboxControl from "../../../hook-form/CheckboxControl";
 import { isActive } from "../../../utils/utils";
@@ -12,7 +11,6 @@ import GroupDiscountByDuration from "./GroupDiscountByDuration";
 import GroupDiscountByDoneTask from "./GroupDiscountByDoneTask";
 import GroupCity from "./GroupCity";
 import JSONDetail from "./JSONDetail";
-import DateDistrict from "./DateDistrict";
 import GroupBg from "./GroupBg";
 import PauseSetting from "./PauseSetting";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
@@ -20,6 +18,9 @@ import BoxChild from "./BoxChild";
 import PriceSettingFeeWeekendForCity from "./PriceSettingFeeWeekendForCity";
 import PriceSettingSuperPriceTime from "./PriceSettingSuperPriceTime";
 import TipRequirement from "./TipRequirement";
+import TextFieldNumber from "../../TextFieldStandard/TextFieldNumber";
+import TextFieldString from "../../TextFieldStandard/TextFieldString";
+import DatePickerControl from "../../../hook-form/DatePickerControl";
 
 export interface FormServiceProps {
   isLoading?: boolean;
@@ -39,129 +40,93 @@ const FormService = ({ isLoading }: FormServiceProps) => {
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "20ch" },
+        "& .MuiTextField-root": { m: 1, width: "24ch" },
       }}
       noValidate
       autoComplete="off"
     >
       <Box>
-        <DateDistrict
+        <DatePickerControl
           control={control}
           name="limitDateOfBooking"
           label="Limit date of booking"
         />
-        <TextFieldControl
+        <TextFieldNumber control={control} name="weight" label="Weight" />
+        <TextFieldNumber
           control={control}
-          variant="standard"
-          name="weight"
-          type="number"
-          label="Weight"
-        />
-        <TextFieldControl
-          control={control}
-          variant="standard"
           name="costSuggestion"
-          type="number"
           label="Cost suggestion"
         />
-        <TextFieldControl
+        <TextFieldNumber
           control={control}
-          variant="standard"
           name="defaultTaskTime"
-          type="number"
           label="DefaultTask Time"
         />
-        <TextFieldControl
-          variant="standard"
-          control={control}
-          name="icon"
-          label="Icon"
-        />
-        <TextFieldControl
+        <TextFieldString control={control} name="icon" label="Icon" />
+        <TextFieldString
           // InputProps={{
           //   readOnly: true,
           // }}
-          variant="standard"
           control={control}
           name="name"
           label="Service's name"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldNumber
           control={control}
           name="minutesPostTaskAfterNow"
           label="Minutes post task after now"
-          type="number"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldNumber
           control={control}
           name="minAvgRating"
           label="Min avg rating"
-          type="number"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldNumber
           control={control}
           name="minTaskDone"
           label="Min task done"
-          type="number"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldNumber
           control={control}
           name="serviceFeeLeaderTasker"
           label="Servce fee leader tasker"
-          type="number"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldNumber
           control={control}
           name="limitNumberAcceptTaskInDay"
           label="Limit number accept task in day"
-          type="number"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldNumber
           control={control}
           name="maximumPSI"
           label="Maximum PSI"
-          type="number"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldNumber
           control={control}
           name="minTaskOfSubscription"
           label="Min task of subscription"
-          type="number"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldNumber
           control={control}
           name="minMoneyDeposite"
           label="Min money deposite"
-          type="number"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldString
           control={control}
           name="requireTaskerVersion"
           label="Require tasker version"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldString
           control={control}
           name="taskServiceId"
           label="Task service id"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldString
           control={control}
           name="requireAskerVersion"
           label="Require asker version"
         />
-        <TextFieldControl
-          variant="standard"
+        <TextFieldString
           control={control}
           name="linkContentInCar"
           label="Link content in car"
@@ -219,49 +184,35 @@ const FormService = ({ isLoading }: FormServiceProps) => {
       <PauseSetting control={control} />
       <GroupBg>
         <TypographyBase title="Posting limits" color="primary"></TypographyBase>
-        <TextFieldControl
-          variant="standard"
+        <TextFieldString
           control={control}
           name="postingLimits.from"
           label="From"
         />
-        <TextFieldControl
-          variant="standard"
-          control={control}
-          name="postingLimits.to"
-          label="To"
-        />
+        <TextFieldString control={control} name="postingLimits.to" label="To" />
       </GroupBg>
       <GroupBg>
         <TypographyBase title="Price setting" color="primary"></TypographyBase>
         <BoxChild>
-          <TextFieldControl
-            variant="standard"
+          <TextFieldNumber
             control={control}
             name="priceSetting.costForChooseTasker"
             label="Cost for choose tasker"
-            type="number"
           />
-          <TextFieldControl
-            variant="standard"
+          <TextFieldNumber
             control={control}
             name="priceSetting.emergencyTaskWithin"
             label="Emergency task within"
-            type="number"
           />
-          <TextFieldControl
-            variant="standard"
+          <TextFieldNumber
             control={control}
             name="priceSetting.feeForEmergencyTask"
             label="Fee for emergency task"
-            type="number"
           />
-          <TextFieldControl
-            variant="standard"
+          <TextFieldNumber
             control={control}
             name="priceSetting.feeForWeekend"
             label="Fee for weekend"
-            type="number"
           />
           <PriceSettingFeeWeekendForCity control={control} />
           <PriceSettingSuperPriceTime control={control} />
