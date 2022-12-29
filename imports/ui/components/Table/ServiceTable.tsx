@@ -1,17 +1,24 @@
-import React from "react";
-import TableBase from "../../mui-base/Table/TableBase";
+import React, { useState } from "react";
+import {
+  SorTableRow,
+  DragAndDropTableBase,
+} from "../../mui-base/Table/TableBase";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { Service } from "../../utils/types";
 import ServiceIcon from "../Icon/ServiceIcon";
 
-interface ServiceTableProps {
+import { arrayMove } from "react-sortable-hoc";
+
+export interface ServiceTableProps {
   rows: Service[] | unknown; //TODO: refactor type
   headers: string[];
   onClickRow: (idService) => void;
 }
 
 const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
+  const [services, setServices] = useState(rows);
+
   const header = (
     <TableRow>
       {headers.map((header, index) => (
@@ -22,12 +29,24 @@ const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
     </TableRow>
   );
 
+  const onDragAndDropRecord = (oldIndex, newIndex) => {
+    if (services && Array.isArray(services)) {
+      console.log(
+        "DRAG AND DROP ------",
+        arrayMove(services, oldIndex, newIndex)
+      );
+
+      setServices(arrayMove(services, oldIndex, newIndex));
+    } else throw new Error("Why don't have data of services");
+  };
+
   const body = (
     <>
-      {rows &&
-        Array.isArray(rows) &&
-        rows.map((row) => (
-          <TableRow
+      {services &&
+        Array.isArray(services) &&
+        services.map((row, index) => (
+          <SorTableRow
+            index={index}
             key={row._id}
             hover
             sx={{
@@ -43,18 +62,19 @@ const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
             <TableCell>
               <ServiceIcon src={row.icon} alt="Icon not found" loading="lazy" />
             </TableCell>
-          </TableRow>
+          </SorTableRow>
         ))}
     </>
   );
 
   return (
-    <TableBase
+    <DragAndDropTableBase
+      dragAndDropRow={onDragAndDropRecord}
       sx={{ minWidth: 650 }}
       size="small"
       header={header}
       body={body}
-    ></TableBase>
+    ></DragAndDropTableBase>
   );
 };
 

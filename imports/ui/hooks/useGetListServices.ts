@@ -6,14 +6,14 @@ const keyStr = "list-services";
 
 export const preFetchListServices = () => {
   return queryClient.prefetchQuery({
-    queryKey: [keyStr],
+    queryKey: ["list-services"],
     queryFn: () => meteorMethodCall("getListServicesForTable"),
   });
 };
 
 const useGetListServices = () => {
   return useQuery({
-    queryKey: [keyStr],
+    queryKey: ["list-services"],
     queryFn: () => meteorMethodCall("getListServicesForTable"),
   });
 };

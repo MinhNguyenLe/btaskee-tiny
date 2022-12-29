@@ -72,3 +72,11 @@ export const mapCustomFieldForServer = (
 
   return customFieldServer;
 };
+
+// export const deepCheckValid = (object: any) => {
+//   if (!object || typeof object !== "object") {
+//     throw new Error("what the heo");
+//   }
+
+//   Object.keys(object).forEach();
+// };

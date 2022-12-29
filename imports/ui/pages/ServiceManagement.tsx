@@ -39,7 +39,7 @@ export const ServiceManagement = () => {
       <ServiceTable
         onClickRow={(idService) => onClickRow(idService)}
         rows={services}
-        headers={["Title", "Status", "Icon"]}
+        headers={["Drag and drop", "Title", "Status", "Icon"]}
       />
       <DialogServiceDetailControl
         open={open}
