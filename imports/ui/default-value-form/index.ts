@@ -108,7 +108,6 @@ export const defaultValueServiceCollection: TypeFormService = {
       },
     ],
   },
-  weight: 1,
   minutesPostTaskAfterNow: 0,
   minAvgRating: 0,
   minTaskDone: 0,

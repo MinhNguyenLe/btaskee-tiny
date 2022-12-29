@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import ServiceTable from "../components/Table/ServiceTable";
 import useDialog from "../hooks/useDialog";
 import useGetListServices from "../hooks/useGetListServices";
-import useGetServiceDetail from "../hooks/useGetServiceDetail";
 import { Box, Button } from "@mui/material";
 import DialogCreateNewService from "../components/Dialog/DialogCreateNewService";
 import { Service } from "../utils/types";
 import DialogServiceDetailControl from "../hook-form/DialogServiceDetailControl";
+import useDragAndDropService from "../hooks/useDragAndDropService";
 
 //TODO: refactor re-render
 export const ServiceManagement = () => {
   const { isLoading, data: services } = useGetListServices();
+
+  const [isDragAndDrop, setIsDragAndDrop] = useState<boolean>(false);
 
   const [idService, setIdService] = useState<Service["_id"]>("");
 
@@ -26,6 +28,8 @@ export const ServiceManagement = () => {
     setIdService(idService);
   };
 
+  const { mutate } = useDragAndDropService();
+
   if (isLoading) return <>Loading services... </>;
 
   return (
@@ -35,6 +39,9 @@ export const ServiceManagement = () => {
         <Button onClick={onOpenFormCreateService} type="button">
           Create new service
         </Button>
+        {/* <Button onClick={onOpenFormCreateService} type="button">
+          Save new data's order
+        </Button> */}
       </Box>
       <ServiceTable
         onClickRow={(idService) => onClickRow(idService)}
@@ -51,6 +58,7 @@ export const ServiceManagement = () => {
         open={openFormCreateService}
         onOpenDialog={onOpenFormCreateService}
         onCloseDialog={onCloseFormCreateService}
+        weight={Array.isArray(services) ? services?.length : 0}
       />
     </>
   );

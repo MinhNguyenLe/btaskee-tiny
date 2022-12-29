@@ -6,14 +6,15 @@ import { useForm, FormProvider } from "react-hook-form";
 import { TypeFormService } from "../../utils/types";
 import { defaultValueServiceCollection } from "../../default-value-form";
 import useInsertService from "../../hooks/userInsertService";
-import { queryClient } from "../../AppProvider";
-import { meteorMethodCall } from "../../utils/utils";
 import { preFetchListServices } from "../../hooks/useGetListServices";
 
-interface DialogCreateNewServiceProps extends UseDialogReturn {}
+interface DialogCreateNewServiceProps extends UseDialogReturn {
+  weight: number;
+}
 
 const DialogCreateNewService = ({
   open,
+  weight,
   onCloseDialog,
 }: DialogCreateNewServiceProps) => {
   const methods = useForm<TypeFormService>({
@@ -21,11 +22,11 @@ const DialogCreateNewService = ({
   });
 
   const { mutate: mutateInsert, isLoading: isInserting } = useInsertService({
-    onSuccess: async () => {
-      onCloseDialog();
-      methods.reset();
-
-      await preFetchListServices();
+    onSuccess: () => {
+      preFetchListServices().then(() => {
+        onCloseDialog();
+        methods.reset();
+      });
     },
   });
 
@@ -39,7 +40,7 @@ const DialogCreateNewService = ({
         title="Create new service"
         content={content}
         maxWidth="lg"
-        onSave={() => mutateInsert(methods.getValues())}
+        onSave={() => mutateInsert({ ...methods.getValues(), weight })}
       />
     </FormProvider>
   );

@@ -22,7 +22,6 @@ import TextFieldNumber from "../../TextFieldStandard/TextFieldNumber";
 import TextFieldString from "../../TextFieldStandard/TextFieldString";
 import DatePickerControl from "../../../hook-form/DatePickerControl";
 import JSONEditorControl from "../../../hook-form/JSONEditorControl";
-import CustomField from "./CustomDataService";
 import CustomDataService from "./CustomDataService";
 
 export interface FormServiceProps {
@@ -30,7 +29,7 @@ export interface FormServiceProps {
 }
 
 const FormService = ({ isLoading }: FormServiceProps) => {
-  const { control, setValue, getValues } = useFormContext<TypeFormService>();
+  const { control, setValue } = useFormContext<TypeFormService>();
 
   const triggerStatus = (isChecked: boolean) => {
     if (isChecked) setValue("status", "ACTIVE");
@@ -54,7 +53,6 @@ const FormService = ({ isLoading }: FormServiceProps) => {
           name="limitDateOfBooking"
           label="Limit date of booking"
         />
-        <TextFieldNumber control={control} name="weight" label="Weight" />
         <TextFieldNumber
           control={control}
           name="costSuggestion"

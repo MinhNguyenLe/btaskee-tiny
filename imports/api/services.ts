@@ -2,12 +2,24 @@ import { Mongo } from "meteor/mongo";
 
 export const ServicesCollection = new Mongo.Collection("services");
 
+const verifyWeightRecord = (services) => {
+  return services.map((service, index) => {
+    return {
+      ...service,
+      weight: index,
+    };
+  });
+};
+
 Meteor.methods({
   getListServicesForTable() {
-    return ServicesCollection.find(
+    const listServices = ServicesCollection.find(
       {},
-      { fields: { _id: 1, status: 1, icon: 1, text: 1 } }
+      { fields: { _id: 1, status: 1, icon: 1, text: 1, weight: 1 } }
     ).fetch();
+
+    // return verifyWeightRecord(listServices);
+    return listServices;
   },
 
   getServiceDetail(idService: string) {
@@ -33,4 +45,6 @@ Meteor.methods({
       return ServicesCollection.remove({ _id: idService });
     } else throw new Error("Id not found");
   },
+
+  updateAfterDragAndDropRecord(data) {},
 });

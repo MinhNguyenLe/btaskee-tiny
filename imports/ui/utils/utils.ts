@@ -14,8 +14,7 @@ export const convertWithCurrency = ({
 
 export function meteorMethodCall(query, ...args) {
   return new Promise((resolve, reject) => {
-    Meteor.call(query, ...args, (error, result) => {
-      console.log(result, "---------------------------", query);
+    return Meteor.call(query, ...args, (error, result) => {
       if (error) reject(error);
       else resolve(result);
     });

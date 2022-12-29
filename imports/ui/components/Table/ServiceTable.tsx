@@ -9,6 +9,7 @@ import { Service } from "../../utils/types";
 import ServiceIcon from "../Icon/ServiceIcon";
 
 import { arrayMove } from "react-sortable-hoc";
+import { queryClient } from "../../AppProvider";
 
 export interface ServiceTableProps {
   rows: Service[] | unknown; //TODO: refactor type
@@ -17,8 +18,6 @@ export interface ServiceTableProps {
 }
 
 const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
-  const [services, setServices] = useState(rows);
-
   const header = (
     <TableRow>
       {headers.map((header, index) => (
@@ -30,21 +29,19 @@ const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
   );
 
   const onDragAndDropRecord = (oldIndex, newIndex) => {
-    if (services && Array.isArray(services)) {
-      console.log(
-        "DRAG AND DROP ------",
-        arrayMove(services, oldIndex, newIndex)
+    if (rows && Array.isArray(rows)) {
+      queryClient.setQueryData(
+        ["list-services"],
+        arrayMove(rows, oldIndex, newIndex)
       );
-
-      setServices(arrayMove(services, oldIndex, newIndex));
     } else throw new Error("Why don't have data of services");
   };
 
   const body = (
     <>
-      {services &&
-        Array.isArray(services) &&
-        services.map((row, index) => (
+      {rows &&
+        Array.isArray(rows) &&
+        rows.map((row, index) => (
           <SorTableRow
             index={index}
             key={row._id}

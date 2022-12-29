@@ -51,7 +51,6 @@ const DialogServiceDetail = ({
   idService,
 }: DialogServiceDetailProps) => {
   const [value, setValue] = React.useState(0);
-  console.log(1);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -64,7 +63,6 @@ const DialogServiceDetail = ({
   const { mutate: mutateUpdate, isLoading: isUpdating } = useUpdateService({
     onSuccess: async () => {
       methods.reset();
-
       await preFetchDetailService(idService);
       await preFetchListServices();
 

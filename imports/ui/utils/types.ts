@@ -99,7 +99,7 @@ export interface Service {
   tip: {
     requirements: TipRequirements[];
   };
-  weight: number;
+  weight?: number;
   _id: string;
   minutesPostTaskAfterNow: Number;
   minAvgRating: number;
