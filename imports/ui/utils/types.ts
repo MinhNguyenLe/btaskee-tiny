@@ -99,7 +99,7 @@ export interface Service {
   tip: {
     requirements: TipRequirements[];
   };
-  weight?: number;
+  weight: number;
   _id: string;
   minutesPostTaskAfterNow: Number;
   minAvgRating: number;
@@ -131,6 +131,7 @@ interface CustomFieldClient {
   value: any;
 }
 
-export interface TypeFormService extends Omit<Service, "_id" | "customField"> {
+export interface TypeFormService
+  extends Omit<Service, "_id" | "customField" | "weight"> {
   customField: CustomFieldClient[];
 }

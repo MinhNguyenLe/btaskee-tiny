@@ -79,3 +79,13 @@ export const mapCustomFieldForServer = (
 
 //   Object.keys(object).forEach();
 // };
+
+export function sortArrayByKey<T>({
+  array,
+  key,
+}: {
+  array: Array<T>;
+  key: string;
+}) {
+  // if (!array || !Array.isArray(array) || "index" in array[0]) return [];
+}

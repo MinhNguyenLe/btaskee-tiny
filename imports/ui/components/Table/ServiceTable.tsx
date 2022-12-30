@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   SorTableRow,
   DragAndDropTableBase,
@@ -10,14 +10,22 @@ import ServiceIcon from "../Icon/ServiceIcon";
 
 import { arrayMove } from "react-sortable-hoc";
 import { queryClient } from "../../AppProvider";
+import { OrderService } from "../../hooks/useDragAndDropService";
+import { updateListServicesFromClient } from "../../hooks/useGetListServices";
 
 export interface ServiceTableProps {
-  rows: Service[] | unknown; //TODO: refactor type
+  rows: Service[];
   headers: string[];
   onClickRow: (idService) => void;
+  setIsDragAndDrop: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
+const ServiceTable = ({
+  rows,
+  headers,
+  onClickRow,
+  setIsDragAndDrop,
+}: ServiceTableProps) => {
   const header = (
     <TableRow>
       {headers.map((header, index) => (
@@ -29,12 +37,19 @@ const ServiceTable = ({ rows, headers, onClickRow }: ServiceTableProps) => {
   );
 
   const onDragAndDropRecord = (oldIndex, newIndex) => {
-    if (rows && Array.isArray(rows)) {
-      queryClient.setQueryData(
-        ["list-services"],
-        arrayMove(rows, oldIndex, newIndex)
-      );
-    } else throw new Error("Why don't have data of services");
+    if (!rows || !Array.isArray(rows)) {
+      throw new Error("Why don't have data of services");
+    }
+
+    queryClient.setQueryData(["list-services"], (oldData) => {
+      if (Array.isArray(oldData)) {
+        console.log(arrayMove(oldData, oldIndex, newIndex), "change");
+        return arrayMove(oldData, oldIndex, newIndex);
+      }
+      throw new Error("Data drag and drop incorrect !");
+    });
+
+    setIsDragAndDrop(true);
   };
 
   const body = (

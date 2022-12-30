@@ -10,7 +10,7 @@ import useDragAndDropService from "../hooks/useDragAndDropService";
 
 //TODO: refactor re-render
 export const ServiceManagement = () => {
-  const { isLoading, data: services } = useGetListServices();
+  const { isLoading, data: services = [] } = useGetListServices();
 
   const [isDragAndDrop, setIsDragAndDrop] = useState<boolean>(false);
 
@@ -28,22 +28,49 @@ export const ServiceManagement = () => {
     setIdService(idService);
   };
 
-  const { mutate } = useDragAndDropService();
+  const { mutate: mutateDragAndDrop, isLoading: isDraggingAndDropping } =
+    useDragAndDropService();
 
-  if (isLoading) return <>Loading services... </>;
+  const onSaveNewOrder = async () => {
+    await mutateDragAndDrop(
+      services
+        .map((item, index) => {
+          return {
+            idService: item._id,
+            weight: item.weight,
+            newWeight: index,
+          };
+        })
+        .filter((item) => item.weight !== item.newWeight)
+        .map((newOrder) => {
+          return {
+            idService: newOrder.idService,
+            weight: newOrder.newWeight,
+          };
+        })
+    );
+
+    setIsDragAndDrop(false);
+  };
+
+  if (isLoading || isDraggingAndDropping) return <>Loading services... </>;
 
   return (
     <>
       <Box display="flex" justifyContent="space-between">
         <h1>Service Management</h1>
-        <Button onClick={onOpenFormCreateService} type="button">
-          Create new service
-        </Button>
-        {/* <Button onClick={onOpenFormCreateService} type="button">
-          Save new data's order
-        </Button> */}
+        {!isDragAndDrop ? (
+          <Button onClick={onOpenFormCreateService} type="button">
+            Create new service
+          </Button>
+        ) : (
+          <Button onClick={onSaveNewOrder} type="button">
+            Save new data's order
+          </Button>
+        )}
       </Box>
       <ServiceTable
+        setIsDragAndDrop={setIsDragAndDrop}
         onClickRow={(idService) => onClickRow(idService)}
         rows={services}
         headers={["Drag and drop", "Title", "Status", "Icon"]}
@@ -58,7 +85,6 @@ export const ServiceManagement = () => {
         open={openFormCreateService}
         onOpenDialog={onOpenFormCreateService}
         onCloseDialog={onCloseFormCreateService}
-        weight={Array.isArray(services) ? services?.length : 0}
       />
     </>
   );

@@ -22,61 +22,45 @@ function useFormService({
   const { isLoading } = useGetServiceDetail({
     idService,
     onSuccess: (data) => {
-      // why ?
-      console.log(data);
-      if (data.costSuggestion) setValue("costSuggestion", data.costSuggestion);
-      if (data.defaultTaskTime)
-        setValue("defaultTaskTime", data.defaultTaskTime);
-      if (data.icon) setValue("icon", data.icon);
-      if (data.name) setValue("name", data.name);
-      if (data.onlyShowTasker) setValue("onlyShowTasker", data.onlyShowTasker);
-      if (data.status) setValue("status", data.status);
-      if (data.text.vi) setValue("text.vi", data.text.vi);
-      if (data.text.en) setValue("text.en", data.text.en);
-      if (data.text.ko) setValue("text.ko", data.text.ko);
-      if (data.text.th) setValue("text.th", data.text.th);
-      if (data.discountByDuration)
-        setValue("discountByDuration", data.discountByDuration);
-      if (data.discountByDoneTask)
-        setValue("discountByDoneTask", data.discountByDoneTask);
-      if (data.minutesPostTaskAfterNow)
-        setValue("minutesPostTaskAfterNow", data.minutesPostTaskAfterNow);
-      if (data.minAvgRating) setValue("minAvgRating", data.minAvgRating);
-      if (data.minTaskDone) setValue("minTaskDone", data.minTaskDone);
-      if (data.serviceFeeLeaderTasker)
-        setValue("serviceFeeLeaderTasker", data.serviceFeeLeaderTasker);
-      if (data.isTesting) setValue("isTesting", data.isTesting);
-      if (data.isNewService) setValue("isNewService", data.isNewService);
-      if (data.requireTaskerVersion)
-        setValue("requireTaskerVersion", data.requireTaskerVersion);
-      if (data.limitDateOfBooking)
-        setValue("limitDateOfBooking", data.limitDateOfBooking);
-      if (data.limitNumberAcceptTaskInDay)
-        setValue("limitNumberAcceptTaskInDay", data.limitNumberAcceptTaskInDay);
-      if (data.isSubscription) setValue("isSubscription", data.isSubscription);
-      if (data.taskServiceId) setValue("taskServiceId", data.taskServiceId);
-      if (data.maximumPSI) setValue("maximumPSI", data.maximumPSI);
-      if (data.minTaskOfSubscription)
-        setValue("minTaskOfSubscription", data.minTaskOfSubscription);
-      if (data.requireAskerVersion)
-        setValue("requireAskerVersion", data.requireAskerVersion);
-      if (data.isOpenGoMarketDefault)
-        setValue("isOpenGoMarketDefault", data.isOpenGoMarketDefault);
-      if (data.linkContentInCar)
-        setValue("linkContentInCar", data.linkContentInCar);
-      if (data.minMoneyDeposite)
-        setValue("minMoneyDeposite", data.minMoneyDeposite);
-      if (data.weight) setValue("weight", data.weight);
-      if (data.detail) setValue("detail", data.detail);
-      if (data.city) setValue("city", data.city);
-      if (data.pauseSetting) setValue("pauseSetting", data.pauseSetting);
-      if (data.postingLimits) setValue("postingLimits", data.postingLimits);
-      if (data.priceSetting) setValue("priceSetting", data.priceSetting);
-      if (data.shortText) setValue("shortText", data.shortText);
-      if (data.tip) setValue("tip", data.tip);
+      console.log("DETAIL ------", data);
 
-      if (data.customField)
-        setValue("customField", mapCustomFieldForClient(data.customField));
+      setValue("costSuggestion", data.costSuggestion);
+      setValue("defaultTaskTime", data.defaultTaskTime);
+      setValue("icon", data.icon);
+      setValue("name", data.name);
+      setValue("onlyShowTasker", data.onlyShowTasker);
+      setValue("status", data.status);
+      setValue("text.vi", data.text.vi);
+      setValue("text.en", data.text.en);
+      setValue("text.ko", data.text.ko);
+      setValue("text.th", data.text.th);
+      setValue("discountByDuration", data.discountByDuration);
+      setValue("discountByDoneTask", data.discountByDoneTask);
+      setValue("minutesPostTaskAfterNow", data.minutesPostTaskAfterNow);
+      setValue("minAvgRating", data.minAvgRating);
+      setValue("minTaskDone", data.minTaskDone);
+      setValue("serviceFeeLeaderTasker", data.serviceFeeLeaderTasker);
+      setValue("isTesting", data.isTesting);
+      setValue("isNewService", data.isNewService);
+      setValue("requireTaskerVersion", data.requireTaskerVersion);
+      setValue("limitDateOfBooking", data.limitDateOfBooking);
+      setValue("limitNumberAcceptTaskInDay", data.limitNumberAcceptTaskInDay);
+      setValue("isSubscription", data.isSubscription);
+      setValue("taskServiceId", data.taskServiceId);
+      setValue("maximumPSI", data.maximumPSI);
+      setValue("minTaskOfSubscription", data.minTaskOfSubscription);
+      setValue("requireAskerVersion", data.requireAskerVersion);
+      setValue("isOpenGoMarketDefault", data.isOpenGoMarketDefault);
+      setValue("linkContentInCar", data.linkContentInCar);
+      setValue("minMoneyDeposite", data.minMoneyDeposite);
+      setValue("detail", data.detail);
+      setValue("city", data.city);
+      setValue("pauseSetting", data.pauseSetting);
+      setValue("postingLimits", data.postingLimits);
+      setValue("priceSetting", data.priceSetting);
+      setValue("shortText", data.shortText);
+      setValue("tip", data.tip);
+      setValue("customField", mapCustomFieldForClient(data.customField));
     },
   });
 

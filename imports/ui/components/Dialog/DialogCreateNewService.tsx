@@ -8,13 +8,10 @@ import { defaultValueServiceCollection } from "../../default-value-form";
 import useInsertService from "../../hooks/userInsertService";
 import { preFetchListServices } from "../../hooks/useGetListServices";
 
-interface DialogCreateNewServiceProps extends UseDialogReturn {
-  weight: number;
-}
+interface DialogCreateNewServiceProps extends UseDialogReturn {}
 
 const DialogCreateNewService = ({
   open,
-  weight,
   onCloseDialog,
 }: DialogCreateNewServiceProps) => {
   const methods = useForm<TypeFormService>({
@@ -40,7 +37,7 @@ const DialogCreateNewService = ({
         title="Create new service"
         content={content}
         maxWidth="lg"
-        onSave={() => mutateInsert({ ...methods.getValues(), weight })}
+        onSave={() => mutateInsert({ ...methods.getValues() })}
       />
     </FormProvider>
   );

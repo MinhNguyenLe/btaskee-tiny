@@ -1,28 +1,17 @@
 import { useMutation } from "@tanstack/react-query";
 import { meteorMethodCall } from "../utils/utils";
 
-export interface MutationCallbackProps {
-  idService1: string;
-  idService2: string;
+export interface OrderService {
+  idService: string;
+  weight: number;
 }
 
 const useDragAndDropService = () => {
-  function mutationCallback({
-    idService1,
-    idService2,
-  }: MutationCallbackProps): any {
-    meteorMethodCall("updateAfterDragAndDropRecord", {
-      idService1,
-      idService2,
-    });
+  async function mutationCallback(listNewOrders: OrderService[]) {
+    return meteorMethodCall("updateAfterDragAndDropRecord", listNewOrders);
   }
 
   return useMutation(mutationCallback);
 };
 
 export default useDragAndDropService;
-
-/**
- * order:
- *
- */
