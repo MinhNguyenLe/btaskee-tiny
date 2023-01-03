@@ -2,7 +2,7 @@ import React from "react";
 import { useFieldArray } from "react-hook-form";
 import TextFieldControl from "../../../hook-form/TextFieldControl";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
-import { ControlHookForm, TypeFormService } from "../../../utils/types";
+import { ControlHookForm, TypeFormService } from "../../../../utils/types";
 import GroupBg from "./GroupBg";
 import AddItem from "./AddItem";
 import RemoveItem from "./RemoveItem";

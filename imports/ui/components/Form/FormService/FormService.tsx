@@ -3,10 +3,10 @@ import { Box } from "@mui/material";
 
 import { useFormContext } from "react-hook-form";
 
-import { TypeFormService } from "../../../utils/types";
+import { TypeFormService } from "../../../../utils/types";
 import GroupLang from "./GroupLang";
 import CheckboxControl from "../../../hook-form/CheckboxControl";
-import { isActive } from "../../../utils/utils";
+import { isActive } from "../../../../utils/utils";
 import GroupDiscountByDuration from "./GroupDiscountByDuration";
 import GroupDiscountByDoneTask from "./GroupDiscountByDoneTask";
 import GroupCity from "./GroupCity";

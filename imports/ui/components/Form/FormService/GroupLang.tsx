@@ -2,7 +2,7 @@ import React from "react";
 import TextFieldControl from "../../../hook-form/TextFieldControl";
 
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
-import { ControlHookForm } from "../../../utils/types";
+import { ControlHookForm } from "../../../../utils/types";
 import BoxCenter from "../../Grid/BoxCenter";
 
 interface GroupLangProps {

@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useFormContext } from "react-hook-form";
 import { queryClient } from "../AppProvider";
-import { Service, TypeFormService } from "../utils/types";
-import { mapCustomFieldForClient, meteorMethodCall } from "../utils/utils";
+import { Service, TypeFormService } from "../../utils/types";
+import { mapCustomFieldForClient, meteorMethodCall } from "../../utils/utils";
 
 export interface UseGetServiceDetail {
   idService: string;
@@ -14,7 +14,7 @@ const keyStr = (idService: string) => `service-detail-${idService}`;
 export const preFetchDetailService = (idService: string) => {
   return queryClient.prefetchQuery({
     queryKey: [keyStr(idService)],
-    queryFn: () => meteorMethodCall("getServiceDetail", idService),
+    queryFn: () => meteorMethodCall("services.getById", idService),
   });
 };
 
@@ -23,7 +23,7 @@ const useGetServiceDetail = ({ idService, onSuccess }: UseGetServiceDetail) => {
 
   return useQuery({
     queryKey: [`service-detail-${idService}`],
-    queryFn: () => meteorMethodCall("getServiceDetail", idService),
+    queryFn: () => meteorMethodCall("services.getById", idService),
     enabled: Boolean(idService),
     onSuccess,
   });

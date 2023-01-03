@@ -3,7 +3,7 @@ import TextFieldBase, {
   TextFieldBaseProps,
 } from "../mui-base/TextField/TextFieldBase";
 import { Controller } from "react-hook-form";
-import { ControlHookForm } from "../utils/types";
+import { ControlHookForm } from "../../utils/types";
 
 export interface TextFieldControlProps
   extends Omit<TextFieldBaseProps, "innerRef" | "name"> {

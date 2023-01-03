@@ -4,7 +4,7 @@ import useDialog from "../hooks/useDialog";
 import useGetListServices from "../hooks/useGetListServices";
 import { Box, Button } from "@mui/material";
 import DialogCreateNewService from "../components/Dialog/DialogCreateNewService";
-import { Service } from "../utils/types";
+import { Service } from "../../utils/types";
 import DialogServiceDetailControl from "../hook-form/DialogServiceDetailControl";
 import useDragAndDropService from "../hooks/useDragAndDropService";
 

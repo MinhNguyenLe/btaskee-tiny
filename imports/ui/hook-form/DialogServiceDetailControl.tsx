@@ -4,7 +4,7 @@ import DialogServiceDetail, {
   DialogServiceDetailProps,
 } from "../components/Dialog/DialogServiceDetail";
 import { defaultValueServiceCollection } from "../default-value-form";
-import { TypeFormService } from "../utils/types";
+import { TypeFormService } from "../../utils/types";
 
 const DialogServiceDetailControl = (props: DialogServiceDetailProps) => {
   const methods = useForm<TypeFormService>({

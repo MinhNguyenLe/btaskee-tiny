@@ -1,6 +1,6 @@
 import { useFormContext, UseFormReset } from "react-hook-form";
-import { TypeFormService } from "../utils/types";
-import { mapCustomFieldForClient } from "../utils/utils";
+import { TypeFormService } from "../../utils/types";
+import { mapCustomFieldForClient } from "../../utils/utils";
 import useGetServiceDetail, {
   UseGetServiceDetail,
 } from "./useGetServiceDetail";

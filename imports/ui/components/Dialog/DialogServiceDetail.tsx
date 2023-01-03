@@ -5,7 +5,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import useFormService from "../../hooks/useFormService";
-import { Service, TypeFormService } from "../../utils/types";
+import { Service, TypeFormService } from "../../../utils/types";
 import FormService from "../Form/FormService/FormService";
 import useUpdateService from "../../hooks/useUpdateService";
 import { useFormContext } from "react-hook-form";

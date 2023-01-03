@@ -5,13 +5,11 @@ import {
 } from "../../mui-base/Table/TableBase";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import { Service } from "../../utils/types";
+import { Service } from "../../../utils/types";
 import ServiceIcon from "../Icon/ServiceIcon";
 
 import { arrayMove } from "react-sortable-hoc";
 import { queryClient } from "../../AppProvider";
-import { OrderService } from "../../hooks/useDragAndDropService";
-import { updateListServicesFromClient } from "../../hooks/useGetListServices";
 
 export interface ServiceTableProps {
   rows: Service[];

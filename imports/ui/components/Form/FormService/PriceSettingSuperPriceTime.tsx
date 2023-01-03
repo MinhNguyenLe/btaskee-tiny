@@ -3,7 +3,7 @@ import React from "react";
 import { useFieldArray } from "react-hook-form";
 import TextFieldControl from "../../../hook-form/TextFieldControl";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
-import { ControlHookForm } from "../../../utils/types";
+import { ControlHookForm } from "../../../../utils/types";
 import BoxCenter from "../../Grid/BoxCenter";
 import AddItem from "./AddItem";
 import BoxChild from "./BoxChild";

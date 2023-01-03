@@ -1,6 +1,6 @@
 import React from "react";
 import { Controller } from "react-hook-form";
-import { ControlHookForm } from "../utils/types";
+import { ControlHookForm } from "../../utils/types";
 import locale from "react-json-editor-ajrm/locale/en";
 import JSONInput from "react-json-editor-ajrm";
 

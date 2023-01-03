@@ -4,7 +4,7 @@ import { useFieldArray } from "react-hook-form";
 import JSONEditorControl from "../../../hook-form/JSONEditorControl";
 import TextFieldControl from "../../../hook-form/TextFieldControl";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
-import { ControlHookForm, TypeFormService } from "../../../utils/types";
+import { ControlHookForm, TypeFormService } from "../../../../utils/types";
 import BoxCenter from "../../Grid/BoxCenter";
 import AddItem from "./AddItem";
 import GroupBg from "./GroupBg";

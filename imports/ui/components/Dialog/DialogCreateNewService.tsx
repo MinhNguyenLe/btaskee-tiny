@@ -3,7 +3,7 @@ import { UseDialogReturn } from "../../hooks/useDialog";
 import DialogBase from "../../mui-base/Dialog/DialogBase";
 import FormService from "../Form/FormService/FormService";
 import { useForm, FormProvider } from "react-hook-form";
-import { TypeFormService } from "../../utils/types";
+import { TypeFormService } from "../../../utils/types";
 import { defaultValueServiceCollection } from "../../default-value-form";
 import useInsertService from "../../hooks/userInsertService";
 import { preFetchListServices } from "../../hooks/useGetListServices";

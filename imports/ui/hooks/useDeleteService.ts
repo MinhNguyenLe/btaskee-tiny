@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { meteorMethodCall } from "../utils/utils";
+import { meteorMethodCall } from "../../utils/utils";
 
 const useDeleteService = ({
   idService,
@@ -9,7 +9,7 @@ const useDeleteService = ({
   onSuccess: () => void;
 }) => {
   function mutationCallback(): any {
-    meteorMethodCall("deleteService", idService);
+    meteorMethodCall("services.deleteById", idService);
   }
 
   return useMutation(mutationCallback, { onSuccess });

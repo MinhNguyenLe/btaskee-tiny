@@ -27,18 +27,6 @@ export const isActive = (status: any) => {
   return status.toLowerCase() === "active";
 };
 
-/**
- *
- * @param customField
- * {
- *  [key]: json
- * }
- * ->
- * [{
- *  key:string,
- *  value: json
- * }]
- */
 export const mapCustomFieldForClient = (
   customFieldServer: Service["customField"]
 ) => {
@@ -71,21 +59,3 @@ export const mapCustomFieldForServer = (
 
   return customFieldServer;
 };
-
-// export const deepCheckValid = (object: any) => {
-//   if (!object || typeof object !== "object") {
-//     throw new Error("what the heo");
-//   }
-
-//   Object.keys(object).forEach();
-// };
-
-export function sortArrayByKey<T>({
-  array,
-  key,
-}: {
-  array: Array<T>;
-  key: string;
-}) {
-  // if (!array || !Array.isArray(array) || "index" in array[0]) return [];
-}

@@ -1,6 +1,6 @@
 import React from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { ControlHookForm, TypeFormService } from "../../../utils/types";
+import { ControlHookForm, TypeFormService } from "../../../../utils/types";
 import { Box } from "@mui/material";
 import TextFieldControl from "../../../hook-form/TextFieldControl";
 import AddItem from "./AddItem";

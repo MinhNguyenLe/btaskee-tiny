@@ -4,7 +4,7 @@ import { Controller } from "react-hook-form";
 import CheckboxBase, {
   CheckboxBaseProps,
 } from "../mui-base/Checkbox/CheckboxBase";
-import { ControlHookForm } from "../utils/types";
+import { ControlHookForm } from "../../utils/types";
 
 export interface CheckboxControlProps
   extends Omit<CheckboxBaseProps, "name" | "innerRef"> {

@@ -1,4 +1,4 @@
-import { TypeFormService } from "../utils/types";
+import { TypeFormService } from "../../utils/types";
 
 export const defaultCityDistrict = {
   name: "Quan Btaskee",
