@@ -6,7 +6,9 @@
     "start-local": "MONGO_URL=mongodb://127.0.0.1:27017 meteor run --port 3003",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
-    "visualize": "meteor --production --extra-packages bundle-visualizer"
+    "test-debug": "CLIENT_TEST_REPORTER=tap MOCHA_REPORTER=xunit SERVER_MOCHA_OUTPUT=$PWD/unit_server.xml CLIENT_MOCHA_OUTPUT=$PWD/unit_client.xml  meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer",
+    "unit-test": "TEST_BROWSER_DRIVER=chrome ROOT_URL=http://localhost:60859 METEOR_PACKAGE_DIRS=~/Dev/Erik-Vulcan/packages meteor test-packages ./packages/* --port 60859 --settings settings-dev.json --driver-package meteortesting:mocha --raw-logs"
   },
   "dependencies": {
     "@babel/runtime": "^7.17.9",
@@ -17,26 +19,55 @@
     "@mui/material": "^5.11.1",
     "@mui/x-date-pickers": "^5.0.12",
     "@tanstack/react-query": "^4.20.4",
+    "@types/chai": "^4.3.4",
+    "@types/enzyme": "^3.10.12",
+    "@types/jsdom": "^20.0.1",
     "@types/meteor": "^2.8.2",
     "@types/react-json-editor-ajrm": "^2.5.3",
+    "@types/sinon": "^10.0.13",
+    "babel-register": "^6.26.0",
+    "canvas": "^2.11.0",
     "dayjs": "^1.11.7",
-    "enzyme": "^3.11.0",
-    "meteor-node-stubs": "^1.2.1",
+    "expect": "^29.3.1",
+    "jsdom": "^20.0.3",
+    "meteor-node-stubs": "^1.2.5",
+    "meteor-require": "^1.0.0",
+    "mocha": "^10.2.0",
+    "perf_hooks": "0.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.41.0",
     "react-json-editor-ajrm": "^2.5.13",
-    "react-sortable-hoc": "^2.0.0"
+    "react-sortable-hoc": "^2.0.0",
+    "sinon": "^15.0.1"
   },
   "meteor": {
     "mainModule": {
       "client": "client/main.tsx",
       "server": "server/main.ts"
     },
-    "testModule": "tests/main.ts"
+    "testModule": "tests/main.ts",
+    "nodeModules": {
+      "recompile": {
+        "very-modern-package": [
+          "client",
+          "server"
+        ],
+        "alternate-notation-for-client-and-server": true,
+        "somewhat-modern-package": "legacy",
+        "another-package": [
+          "legacy",
+          "server"
+        ]
+      }
+    }
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
-    "chai": "^4.3.7"
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
+    "chai": "^4.3.7",
+    "enzyme": "^3.11.0",
+    "jsdom-global": "^3.0.2",
+    "phantomjs-prebuilt": "^2.1.16"
   }
 }

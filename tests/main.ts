@@ -1,6 +1,14 @@
 import assert from "assert";
-
+import { Factory } from "meteor/dburles:factory";
+import { Services } from "../imports/api/services/collection";
+import "jsdom-global/register";
 import "/imports/api/services/services.test.ts";
+
+import "/imports/ui/components/Dialog/DialogServiceDetail.test.tsx";
+
+Factory.define("services", Services, {
+  name: "John Smith",
+});
 
 describe("app-react", function () {
   it("package.json has correct name", async function () {

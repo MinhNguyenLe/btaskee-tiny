@@ -1,0 +1,16 @@
+<testsuite name="Mocha Tests" tests="5" failures="0" errors="1" skipped="0" timestamp="Wed, 04 Jan 2023 08:26:22 GMT" time="0.07">
+<testcase classname="Services methods" name="can delete services" time="0.005"/>
+<testcase classname="Services methods" name="can insert new services" time="0.004"/>
+<testcase classname="DialogServiceDetail" name="should render DialogServiceDetail" time="0.01"><failure>expected false to equal true
+
+      + expected - actual
+
+      -false
+      +true
+      
+AssertionError: expected false to equal true
+    at Test.&#x3C;anonymous&#x3E; (imports/ui/components/Dialog/DialogServiceDetail.test.tsx:38:65)
+    at run (packages/meteortesting:mocha-core/server.js:36:29)</failure></testcase>
+<testcase classname="app-react" name="package.json has correct name" time="0"/>
+<testcase classname="app-react" name="server is not client" time="0"/>
+</testsuite>

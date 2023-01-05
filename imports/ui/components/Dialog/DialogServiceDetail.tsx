@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { UseDialogReturn } from "../../hooks/useDialog";
 import DialogBase from "../../mui-base/Dialog/DialogBase";
 import Tabs from "@mui/material/Tabs";
@@ -12,7 +12,8 @@ import { useFormContext } from "react-hook-form";
 import { preFetchDetailService } from "../../hooks/useGetServiceDetail";
 import { preFetchListServices } from "../../hooks/useGetListServices";
 import useDeleteService from "../../hooks/useDeleteService";
-export interface DialogServiceDetailProps extends UseDialogReturn {
+export interface DialogServiceDetailProps
+  extends Omit<UseDialogReturn, "onOpenDialog"> {
   idService: Service["_id"];
 }
 
@@ -56,13 +57,13 @@ const DialogServiceDetail = ({
     setValue(newValue);
   };
 
-  const { isLoading } = useFormService({ idService });
+  const { reset, getValues } = useFormContext<TypeFormService>();
 
-  const methods = useFormContext<TypeFormService>();
+  const { isLoading } = useFormService({ idService });
 
   const { mutate: mutateUpdate, isLoading: isUpdating } = useUpdateService({
     onSuccess: async () => {
-      methods.reset();
+      reset();
       await preFetchDetailService(idService);
       await preFetchListServices();
 
@@ -74,7 +75,7 @@ const DialogServiceDetail = ({
     idService,
     onSuccess: async () => {
       onCloseDialog();
-      methods.reset();
+      reset();
 
       await preFetchListServices();
     },
@@ -101,10 +102,10 @@ const DialogServiceDetail = ({
     </Box>
   );
 
-  const onCloseDialogServiceDetail = () => {
+  const onCloseDialogServiceDetail = useCallback(() => {
     onCloseDialog();
-    // reset();
-  };
+    reset();
+  }, []);
 
   return (
     <DialogBase
@@ -116,7 +117,7 @@ const DialogServiceDetail = ({
       }
       maxWidth="lg"
       onDelete={deleteService}
-      onSave={() => mutateUpdate({ idService, data: methods.getValues() })}
+      onSave={() => mutateUpdate({ idService, data: getValues() })}
     />
   );
 };
