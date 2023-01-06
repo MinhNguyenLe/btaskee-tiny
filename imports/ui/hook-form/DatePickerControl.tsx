@@ -30,7 +30,7 @@ function DatePickerControl({
         return (
           <DatePickerBase<Date, Date>
             renderInput={(params) => (
-              <TextFieldBase innerRef={ref} {...params} />
+              <TextFieldBase name={name} innerRef={ref} {...params} />
             )}
             value={new Date(value)}
             onChange={(event) => {

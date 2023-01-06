@@ -4,7 +4,8 @@
         "strict": true,
         "strictNullChecks": true,
         "types": [
-            "node"
+            "node",
+            "cypress"
         ],
         "baseUrl": ".",
         "lib": [
@@ -19,5 +20,8 @@
         "typeRoots": [
             "./.npm/package/node_modules/@types"
         ]
-    }
+    },
+    "include": [
+        "**/*.ts"
+    ]
 }
