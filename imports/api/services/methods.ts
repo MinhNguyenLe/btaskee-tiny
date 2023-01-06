@@ -37,14 +37,14 @@ Meteor.methods({
   },
 
   "services.updateById"(idService, data) {
-    if (typeof data !== "object") {
-      throw new Meteor.Error("No data to update");
+    if (typeof data !== "object" || !idService) {
+      throw new Meteor.Error("No data or idService to update");
     } else Services.update(idService, data);
   },
 
   "services.deleteById"(idService) {
     if (!idService) {
-      throw new Meteor.Error("Id not found");
+      throw new Meteor.Error("No idService to delete");
     } else Services.remove({ _id: idService });
   },
 

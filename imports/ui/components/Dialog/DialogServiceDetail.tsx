@@ -4,14 +4,12 @@ import DialogBase from "../../mui-base/Dialog/DialogBase";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import useFormService from "../../hooks/useFormService";
+import customHooks from "../../hooks";
 import { Service, TypeFormService } from "../../../utils/types";
 import FormService from "../Form/FormService/FormService";
-import useUpdateService from "../../hooks/useUpdateService";
 import { useFormContext } from "react-hook-form";
 import { preFetchDetailService } from "../../hooks/useGetServiceDetail";
 import { preFetchListServices } from "../../hooks/useGetListServices";
-import useDeleteService from "../../hooks/useDeleteService";
 export interface DialogServiceDetailProps
   extends Omit<UseDialogReturn, "onOpenDialog"> {
   idService: Service["_id"];
@@ -59,27 +57,29 @@ const DialogServiceDetail = ({
 
   const { reset, getValues } = useFormContext<TypeFormService>();
 
-  const { isLoading } = useFormService({ idService });
+  const { isLoading } = customHooks.useFormService({ idService });
 
-  const { mutate: mutateUpdate, isLoading: isUpdating } = useUpdateService({
-    onSuccess: async () => {
-      reset();
-      await preFetchDetailService(idService);
-      await preFetchListServices();
+  const { mutate: mutateUpdate, isLoading: isUpdating } =
+    customHooks.useUpdateService({
+      onSuccess: async () => {
+        reset();
+        await preFetchDetailService(idService);
+        await preFetchListServices();
 
-      onCloseDialog();
-    },
-  });
+        onCloseDialog();
+      },
+    });
 
-  const { mutate: deleteService, isLoading: isDeleting } = useDeleteService({
-    idService,
-    onSuccess: async () => {
-      onCloseDialog();
-      reset();
+  const { mutate: deleteService, isLoading: isDeleting } =
+    customHooks.useDeleteService({
+      idService,
+      onSuccess: async () => {
+        onCloseDialog();
+        reset();
 
-      await preFetchListServices();
-    },
-  });
+        await preFetchListServices();
+      },
+    });
 
   const content = (
     <Box sx={{ width: "100%" }}>

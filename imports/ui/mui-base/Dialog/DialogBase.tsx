@@ -28,10 +28,10 @@ export default function DialogBase({
     <Dialog
       open={open}
       onClose={onCloseDialog}
-      aria-labelledby="alert-dialog-title"
+      aria-labelledby="dialog-title"
       {...props}
     >
-      <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+      <DialogTitle id="dialog-title">{title}</DialogTitle>
       <DialogContent>{content}</DialogContent>
       <DialogActions>
         <Button onClick={onSave} autoFocus>

@@ -18,7 +18,9 @@ const useUpdateService = (options) => {
     });
   }
 
-  return useMutation(mutationCallback, options);
+  const { mutate, isLoading } = useMutation(mutationCallback, options);
+
+  return { mutate, isLoading };
 };
 
 export default useUpdateService;

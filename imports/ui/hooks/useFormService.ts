@@ -7,17 +7,16 @@ import useGetServiceDetail, {
 
 interface UseFormServiceReturn {
   isLoading: boolean;
-  reset: UseFormReset<TypeFormService>;
 }
 
 interface UseFormServiceParams {
   idService: UseGetServiceDetail["idService"];
 }
 
-function useFormService({
+export function useFormService({
   idService,
 }: UseFormServiceParams): UseFormServiceReturn {
-  const { setValue, reset } = useFormContext<TypeFormService>();
+  const { setValue } = useFormContext<TypeFormService>();
 
   const { isLoading } = useGetServiceDetail({
     idService,
@@ -64,7 +63,7 @@ function useFormService({
     },
   });
 
-  return { isLoading, reset };
+  return { isLoading };
 }
 
 export default useFormService;

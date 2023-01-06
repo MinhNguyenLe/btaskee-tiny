@@ -12,7 +12,9 @@ const useDeleteService = ({
     meteorMethodCall("services.deleteById", idService);
   }
 
-  return useMutation(mutationCallback, { onSuccess });
+  const { mutate, isLoading } = useMutation(mutationCallback, { onSuccess });
+
+  return { mutate, isLoading };
 };
 
 export default useDeleteService;

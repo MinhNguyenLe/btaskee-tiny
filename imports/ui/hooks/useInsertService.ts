@@ -1,4 +1,4 @@
-import { TypeFormService } from "./../../utils/types";
+import { TypeFormService } from "../../utils/types";
 import { useMutation } from "@tanstack/react-query";
 import { mapCustomFieldForServer, meteorMethodCall } from "../../utils/utils";
 
