@@ -1,7 +1,7 @@
 import React from "react";
 import { UseDialogReturn } from "../../hooks/useDialog";
 import DialogBase from "../../mui-base/Dialog/DialogBase";
-import FormService from "../Form/FormService/FormService";
+import FormService from "../FormService";
 import { useForm, FormProvider } from "react-hook-form";
 import { TypeFormService } from "../../../utils/types";
 import { defaultValueServiceCollection } from "../../default-value-form";
@@ -34,7 +34,7 @@ const DialogCreateNewService = ({
       <DialogBase
         open={open}
         onCloseDialog={onCloseDialog}
-        title="Create new service"
+        titleHeader="Create new service"
         content={content}
         maxWidth="lg"
         onSave={() => mutateInsert({ ...methods.getValues() })}

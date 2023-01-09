@@ -1,10 +1,10 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import CheckboxControl from "../../../hook-form/CheckboxControl";
-import TextFieldControl from "../../../hook-form/TextFieldControl";
-import TypographyBase from "../../../mui-base/Typography/TypographyBase";
-import { ControlHookForm, TypeFormService } from "../../../../utils/types";
-import BoxCenter from "../../Grid/BoxCenter";
+import CheckboxControl from "../../hook-form/CheckboxControl";
+import TextFieldControl from "../../hook-form/TextFieldControl";
+import TypographyBase from "../../mui-base/Typography/TypographyBase";
+import { ControlHookForm, TypeFormService } from "../../../utils/types";
+import BoxCenter from "../base/Grid/BoxCenter";
 import AddItem from "./AddItem";
 import BoxChild from "./BoxChild";
 import GroupBg from "./GroupBg";

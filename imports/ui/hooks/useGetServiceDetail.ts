@@ -19,11 +19,20 @@ export const preFetchDetailService = (idService: string) => {
 };
 
 const useGetServiceDetail = ({ idService, onSuccess }: UseGetServiceDetail) => {
-  const { setValue, reset } = useFormContext<TypeFormService>();
+  async function queryFn() {
+    const data = (await meteorMethodCall(
+      "services.getById",
+      idService
+    )) as Service[];
+
+    if (!data) return [];
+
+    return data;
+  }
 
   return useQuery({
     queryKey: [`service-detail-${idService}`],
-    queryFn: () => meteorMethodCall("services.getById", idService),
+    queryFn: queryFn,
     enabled: Boolean(idService),
     onSuccess,
   });

@@ -8,9 +8,9 @@ import { stub, spy, mock, createSandbox, assert, expectation } from "sinon";
 import { render, mount, shallow } from "../../../../../tests/enzyme";
 
 import AllTheProviders from "../../../test-utils";
-import FormService from "../../Form/FormService/FormService";
+import FormService from "../../FormService";
 import DialogBase from "../../../mui-base/Dialog/DialogBase";
-import customHooks from "../../../hooks/";
+import customHooks from "../../../hooks";
 
 const mockResetHookForm = spy();
 const mockGetValuesHookForm = spy();

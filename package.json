@@ -67,6 +67,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.1",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
+    "babel-plugin-module-resolver": "^4.1.0",
     "chai": "^4.3.7",
     "cypress": "^12.3.0",
     "enzyme": "^3.11.0",

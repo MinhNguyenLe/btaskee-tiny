@@ -6,10 +6,11 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import customHooks from "../../hooks";
 import { Service, TypeFormService } from "../../../utils/types";
-import FormService from "../Form/FormService/FormService";
+import FormService from "../FormService";
 import { useFormContext } from "react-hook-form";
 import { preFetchDetailService } from "../../hooks/useGetServiceDetail";
 import { preFetchListServices } from "../../hooks/useGetListServices";
+import ServiceDetail from "../ServiceDetail";
 export interface DialogServiceDetailProps
   extends Omit<UseDialogReturn, "onOpenDialog"> {
   idService: Service["_id"];
@@ -57,7 +58,10 @@ const DialogServiceDetail = ({
 
   const { reset, getValues } = useFormContext<TypeFormService>();
 
-  const { isLoading } = customHooks.useFormService({ idService });
+  const { isLoading: isLoadingDetailData, data: serviceDetail } =
+    customHooks.useFormService({
+      idService,
+    });
 
   const { mutate: mutateUpdate, isLoading: isUpdating } =
     customHooks.useUpdateService({
@@ -83,18 +87,8 @@ const DialogServiceDetail = ({
 
   const content = (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          <Tab label="Service's detail" {...a11yProps(0)} />
-          <Tab label="Edit information" {...a11yProps(1)} />
-        </Tabs>
-      </Box>
       <TabPanel value={value} index={0}>
-        <FormService />
+        <ServiceDetail serviceDetail={serviceDetail} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <FormService />
@@ -111,11 +105,27 @@ const DialogServiceDetail = ({
     <DialogBase
       open={open}
       onCloseDialog={onCloseDialogServiceDetail}
-      title="Service's detail"
+      titleHeader={
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+          >
+            <Tab label="Service's detail" {...a11yProps(0)} />
+            <Tab label="Edit information" {...a11yProps(1)} />
+          </Tabs>
+        </Box>
+      }
       content={
-        isLoading || isUpdating || isDeleting ? <>Loading ...</> : content
+        isLoadingDetailData || isUpdating || isDeleting ? (
+          <>Loading ...</>
+        ) : (
+          content
+        )
       }
       maxWidth="lg"
+      fullWidth
       onDelete={deleteService}
       onSave={() => mutateUpdate({ idService, data: getValues() })}
     />

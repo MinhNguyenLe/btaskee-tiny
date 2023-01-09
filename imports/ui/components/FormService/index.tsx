@@ -3,25 +3,25 @@ import { Box } from "@mui/material";
 
 import { useFormContext } from "react-hook-form";
 
-import { TypeFormService } from "../../../../utils/types";
+import { TypeFormService } from "../../../utils/types";
 import GroupLang from "./GroupLang";
-import CheckboxControl from "../../../hook-form/CheckboxControl";
-import { isActive } from "../../../../utils/utils";
+import CheckboxControl from "../../hook-form/CheckboxControl";
+import { isActive } from "../../../utils/utils";
 import GroupDiscountByDuration from "./GroupDiscountByDuration";
 import GroupDiscountByDoneTask from "./GroupDiscountByDoneTask";
 import GroupCity from "./GroupCity";
 import JSONDetail from "./JSONDetail";
 import GroupBg from "./GroupBg";
 import PauseSetting from "./PauseSetting";
-import TypographyBase from "../../../mui-base/Typography/TypographyBase";
+import TypographyBase from "../../mui-base/Typography/TypographyBase";
 import BoxChild from "./BoxChild";
 import PriceSettingFeeWeekendForCity from "./PriceSettingFeeWeekendForCity";
 import PriceSettingSuperPriceTime from "./PriceSettingSuperPriceTime";
 import TipRequirement from "./TipRequirement";
-import TextFieldNumber from "../../TextFieldStandard/TextFieldNumber";
-import TextFieldString from "../../TextFieldStandard/TextFieldString";
-import DatePickerControl from "../../../hook-form/DatePickerControl";
-import JSONEditorControl from "../../../hook-form/JSONEditorControl";
+import TextFieldNumber from "../base/TextFieldStandard/TextFieldNumber";
+import TextFieldString from "../base/TextFieldStandard/TextFieldString";
+import DatePickerControl from "../../hook-form/DatePickerControl";
+import JSONEditorControl from "../../hook-form/JSONEditorControl";
 import CustomDataService from "./CustomDataService";
 
 export interface FormServiceProps {
@@ -159,16 +159,10 @@ const FormService = ({ isLoading }: FormServiceProps) => {
           logicChecked={isActive}
           control={control}
           name="status"
-          label="Active"
+          label="Status"
           onChange={(e) => triggerStatus(e.target.checked)}
         />
       </Box>
-      {/* <JSONDetail
-        placeholder={getValues("detail")}
-        onChange={(e) => {
-          if (!e.error) setValue("detail", JSON.parse(e.json));
-        }}
-      /> */}
       <GroupBg>
         <TypographyBase title="Detail" color="primary"></TypographyBase>
         <JSONEditorControl height="200px" control={control} name="detail" />

@@ -17,10 +17,8 @@ function useGetListServices() {
       false // true -> cheat to reset weight
     )) as Service[];
 
+    console.log("LIST ----- ", data);
     if (!data) return [];
-
-    console.log("LIST_DATA ----------- ", data);
-
     return [...data].sort((a, b) => {
       return a.weight - b.weight;
     });

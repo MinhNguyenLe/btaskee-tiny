@@ -2,7 +2,7 @@ import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import DialogServiceDetail, {
   DialogServiceDetailProps,
-} from "../components/Dialog/DialogServiceDetail";
+} from "../components/DialogServiceDetail/DialogServiceDetail";
 import { defaultValueServiceCollection } from "../default-value-form";
 import { TypeFormService } from "../../utils/types";
 

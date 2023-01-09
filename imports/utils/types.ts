@@ -29,20 +29,6 @@ interface City {
   }>;
 }
 
-interface CityServices {
-  name: string;
-  text: Lang;
-  prices: {
-    HPFrom: number;
-    HPTo: number;
-    price: number;
-  };
-  discountByQty: {
-    qty: number;
-    discount: number;
-  };
-}
-
 interface TipRequirements {
   type: number;
   cost: number;
@@ -101,7 +87,7 @@ export interface Service {
   };
   weight: number;
   _id: string;
-  minutesPostTaskAfterNow: Number;
+  minutesPostTaskAfterNow: number;
   minAvgRating: number;
   minTaskDone: number;
   serviceFeeLeaderTasker: number;

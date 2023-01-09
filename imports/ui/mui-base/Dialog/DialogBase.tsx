@@ -9,7 +9,7 @@ import { UseDialogReturn } from "../../hooks/useDialog";
 interface DialogBaseProps
   extends DialogProps,
     Omit<UseDialogReturn, "onOpenDialog"> {
-  title: string;
+  titleHeader: JSX.Element | string;
   content: JSX.Element;
   onSave?: () => void;
   onDelete?: () => void;
@@ -18,7 +18,7 @@ interface DialogBaseProps
 export default function DialogBase({
   open,
   onCloseDialog,
-  title,
+  titleHeader,
   content,
   onSave,
   onDelete,
@@ -31,7 +31,7 @@ export default function DialogBase({
       aria-labelledby="dialog-title"
       {...props}
     >
-      <DialogTitle id="dialog-title">{title}</DialogTitle>
+      <DialogTitle id="dialog-title">{titleHeader}</DialogTitle>
       <DialogContent>{content}</DialogContent>
       <DialogActions>
         <Button onClick={onSave} autoFocus>

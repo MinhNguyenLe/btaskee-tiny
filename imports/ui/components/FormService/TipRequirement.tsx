@@ -1,10 +1,10 @@
 import { Box, Divider } from "@mui/material";
 import React from "react";
 import { useFieldArray } from "react-hook-form";
-import TextFieldControl from "../../../hook-form/TextFieldControl";
-import TypographyBase from "../../../mui-base/Typography/TypographyBase";
-import { ControlHookForm } from "../../../../utils/types";
-import BoxCenter from "../../Grid/BoxCenter";
+import TextFieldControl from "../../hook-form/TextFieldControl";
+import TypographyBase from "../../mui-base/Typography/TypographyBase";
+import { ControlHookForm } from "../../../utils/types";
+import BoxCenter from "../base/Grid/BoxCenter";
 import AddItem from "./AddItem";
 import BoxChild from "./BoxChild";
 import GroupLang from "./GroupLang";

@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import ServiceTable from "../components/Table/ServiceTable";
+import ServiceTable from "../components/ServiceTable";
 import useDialog from "../hooks/useDialog";
 import useGetListServices from "../hooks/useGetListServices";
 import { Box, Button } from "@mui/material";
-import DialogCreateNewService from "../components/Dialog/DialogCreateNewService";
+import DialogCreateNewService from "../components/DialogCreateNewService/DialogCreateNewService";
 import { Service } from "../../utils/types";
 import DialogServiceDetailControl from "../hook-form/DialogServiceDetailControl";
 import useDragAndDropService from "../hooks/useDragAndDropService";
 
 //TODO: refactor re-render
 export const ServiceManagement = () => {
-  const { isLoading, data: services = [] } = useGetListServices();
+  const { isLoading: isLoadingListServices, data: services = [] } =
+    useGetListServices();
 
   const [isDragAndDrop, setIsDragAndDrop] = useState<boolean>(false);
 
@@ -53,7 +54,8 @@ export const ServiceManagement = () => {
     setIsDragAndDrop(false);
   };
 
-  if (isLoading || isDraggingAndDropping) return <>Loading services... </>;
+  if (isLoadingListServices || isDraggingAndDropping)
+    return <>Loading services... </>;
 
   return (
     <>
@@ -77,7 +79,6 @@ export const ServiceManagement = () => {
       />
       <DialogServiceDetailControl
         open={open}
-        onOpenDialog={onOpenDialog}
         onCloseDialog={onCloseDialog}
         idService={idService}
       />

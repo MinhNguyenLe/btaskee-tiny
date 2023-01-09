@@ -2,14 +2,14 @@ import { Services } from "./collection";
 
 Meteor.methods({
   "services.getAll"(isResetWeight) {
-    const listServices = Services.find(
-      {},
-      { fields: { _id: 1, status: 1, icon: 1, text: 1, weight: 1 } }
-    ).fetch();
-
     //cheat
     if (isResetWeight) {
       console.log("!!!!! cheat reset weight");
+
+      const listServices = Services.find(
+        {},
+        { fields: { _id: 1, status: 1, icon: 1, text: 1, weight: 1 } }
+      ).fetch();
 
       listServices.forEach((service, index) => {
         Services.update(service._id, {
@@ -19,8 +19,8 @@ Meteor.methods({
     }
 
     return Services.find(
-      {},
-      { fields: { _id: 1, status: 1, icon: 1, text: 1, weight: 1 } }
+      {}
+      // { fields: { _id: 1, status: 1, icon: 1, text: 1, weight: 1 } }
     ).fetch();
   },
 

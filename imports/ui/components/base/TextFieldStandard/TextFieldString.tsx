@@ -1,7 +1,7 @@
 import React from "react";
 import TextFieldControl, {
   TextFieldControlProps,
-} from "../../hook-form/TextFieldControl";
+} from "../../../hook-form/TextFieldControl";
 
 export interface TextFieldStringProps
   extends Pick<TextFieldControlProps, "control" | "name" | "label"> {}

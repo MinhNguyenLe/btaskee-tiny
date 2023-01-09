@@ -1,9 +1,9 @@
 import React from "react";
-import TextFieldControl from "../../../hook-form/TextFieldControl";
+import TextFieldControl from "../../hook-form/TextFieldControl";
 
-import TypographyBase from "../../../mui-base/Typography/TypographyBase";
-import { ControlHookForm } from "../../../../utils/types";
-import BoxCenter from "../../Grid/BoxCenter";
+import TypographyBase from "../../mui-base/Typography/TypographyBase";
+import { ControlHookForm } from "../../../utils/types";
+import BoxCenter from "../base/Grid/BoxCenter";
 
 interface GroupLangProps {
   title: string;

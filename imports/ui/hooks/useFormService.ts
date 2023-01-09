@@ -1,5 +1,5 @@
-import { useFormContext, UseFormReset } from "react-hook-form";
-import { TypeFormService } from "../../utils/types";
+import { useFormContext } from "react-hook-form";
+import { Service, TypeFormService } from "../../utils/types";
 import { mapCustomFieldForClient } from "../../utils/utils";
 import useGetServiceDetail, {
   UseGetServiceDetail,
@@ -7,6 +7,7 @@ import useGetServiceDetail, {
 
 interface UseFormServiceReturn {
   isLoading: boolean;
+  data?: Service;
 }
 
 interface UseFormServiceParams {
@@ -18,7 +19,7 @@ export function useFormService({
 }: UseFormServiceParams): UseFormServiceReturn {
   const { setValue } = useFormContext<TypeFormService>();
 
-  const { isLoading } = useGetServiceDetail({
+  const { isLoading, data } = useGetServiceDetail({
     idService,
     onSuccess: (data) => {
       console.log("DETAIL ------", data);
@@ -63,7 +64,7 @@ export function useFormService({
     },
   });
 
-  return { isLoading };
+  return { isLoading, data };
 }
 
 export default useFormService;
