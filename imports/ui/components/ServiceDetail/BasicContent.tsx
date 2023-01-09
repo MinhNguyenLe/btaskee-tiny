@@ -1,12 +1,11 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-import TypographyBold from "../base/TypographyWeight/TypographyBold";
-import TypographyRegular from "../base/TypographyWeight/TypographyRegular";
+import { TypographyRegular, TypographyBold } from "../base/TypographyWeight";
 
-interface BasicContentProps {
+export interface BasicContentProps {
   boldText: string;
-  regularText?: string | Date | number | boolean;
+  regularText?: null | string | Date | number | boolean;
 }
 
 const BasicContent = ({ boldText, regularText }: BasicContentProps) => {

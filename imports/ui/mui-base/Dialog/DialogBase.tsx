@@ -35,12 +35,12 @@ export default function DialogBase({
       <DialogContent>{content}</DialogContent>
       <DialogActions>
         {onSave ? (
-          <Button onClick={onSave} autoFocus>
+          <Button color="success" onClick={onSave} autoFocus>
             Save
           </Button>
         ) : null}
         {onDelete ? (
-          <Button onClick={onDelete} autoFocus>
+          <Button color="error" onClick={onDelete} autoFocus>
             Delete
           </Button>
         ) : null}

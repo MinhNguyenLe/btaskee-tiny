@@ -3,6 +3,8 @@ import React from "react";
 import { Service } from "../../../utils/types";
 import JSONContent from "./JSONContent";
 import BasicContent from "./BasicContent";
+import { convertWithCurrency } from "../../../utils/utils";
+import ListRows from "./ListRows";
 
 interface ServiceDetailProps {
   serviceDetail?: Service;
@@ -16,7 +18,14 @@ const ServiceDetail = ({ serviceDetail }: ServiceDetailProps) => {
       <BasicContent boldText="Name" regularText={serviceDetail.name} />
       <BasicContent
         boldText="Cose Suggestion"
-        regularText={serviceDetail.costSuggestion}
+        regularText={
+          serviceDetail?.costSuggestion
+            ? convertWithCurrency({
+                cost: serviceDetail.costSuggestion,
+                currency: "vi-VN",
+              })
+            : null
+        }
       />
       <BasicContent
         boldText="Limit date of booking"
@@ -107,13 +116,47 @@ const ServiceDetail = ({ serviceDetail }: ServiceDetailProps) => {
         boldText="Discount By Duration"
         regularText={JSON.stringify(serviceDetail?.discountByDuration, null, 2)}
       />
-      <JSONContent
+      <ListRows
         boldText="Text"
-        regularText={JSON.stringify(serviceDetail?.text, null, 2)}
+        list={[
+          {
+            mediumText: "Vietnamese",
+            regularText: serviceDetail?.text?.vi,
+          },
+          {
+            mediumText: "Thailand",
+            regularText: serviceDetail?.text?.th,
+          },
+          {
+            mediumText: "Korea",
+            regularText: serviceDetail?.text?.ko,
+          },
+          {
+            mediumText: "English",
+            regularText: serviceDetail?.text?.en,
+          },
+        ]}
       />
-      <JSONContent
+      <ListRows
         boldText="Short Text"
-        regularText={JSON.stringify(serviceDetail?.shortText, null, 2)}
+        list={[
+          {
+            mediumText: "Vietnamese",
+            regularText: serviceDetail?.shortText?.vi,
+          },
+          {
+            mediumText: "Thailand",
+            regularText: serviceDetail?.shortText?.th,
+          },
+          {
+            mediumText: "Korea",
+            regularText: serviceDetail?.shortText?.ko,
+          },
+          {
+            mediumText: "English",
+            regularText: serviceDetail?.shortText?.en,
+          },
+        ]}
       />
       <JSONContent
         boldText="Tip"

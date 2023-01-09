@@ -1,8 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-import TypographyBold from "../base/TypographyWeight/TypographyBold";
-import TypographyRegular from "../base/TypographyWeight/TypographyRegular";
+import { TypographyRegular, TypographyBold } from "../base/TypographyWeight";
 
 interface JSONContentProps {
   boldText: string;

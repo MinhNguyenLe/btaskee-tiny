@@ -7,7 +7,7 @@ interface ConvertWithCurrency {
 
 export const convertWithCurrency = ({
   cost,
-  currency,
+  currency, //vi-VN
 }: ConvertWithCurrency): string => {
   return `${cost.toLocaleString(currency)} VND`;
 };
