@@ -3,8 +3,8 @@ import { useFieldArray } from "react-hook-form";
 import TextFieldControl from "../../hook-form/TextFieldControl";
 import TypographyBase from "../../mui-base/Typography/TypographyBase";
 import { ControlHookForm, TypeFormService } from "../../../utils/types";
-import GroupBg from "./GroupBg";
-import AddItem from "./AddItem";
+import GroupBg from "./common/GroupBg";
+import AddItem from "./common/AddItem";
 import RemoveItem from "./RemoveItem";
 import BoxCenter from "../base/Grid/BoxCenter";
 

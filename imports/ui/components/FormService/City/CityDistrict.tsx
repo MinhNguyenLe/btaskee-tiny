@@ -1,15 +1,15 @@
 import React from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { ControlHookForm, TypeFormService } from "../../../utils/types";
+import { ControlHookForm, TypeFormService } from "../../../../utils/types";
 import { Box } from "@mui/material";
-import TextFieldControl from "../../hook-form/TextFieldControl";
-import AddItem from "./AddItem";
-import RemoveItem from "./RemoveItem";
-import TypographyBase from "../../mui-base/Typography/TypographyBase";
-import BoxCenter from "../base/Grid/BoxCenter";
-import BoxChild from "./BoxChild";
-import DatePickerControl from "../../hook-form/DatePickerControl";
-import CloneButton from "./CloneButton";
+import TextFieldControl from "../../../hook-form/TextFieldControl";
+import AddItem from "../common/AddItem";
+import RemoveItem from "../RemoveItem";
+import TypographyBase from "../../../mui-base/Typography/TypographyBase";
+import BoxCenter from "../../base/Grid/BoxCenter";
+import BoxChild from "../common/BoxChild";
+import DatePickerControl from "../../../hook-form/DatePickerControl";
+import CloneButton from "../common/CloneButton";
 
 export interface CityDistrictProps {
   nestIndex: number;

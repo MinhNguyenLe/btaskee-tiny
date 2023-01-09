@@ -1,27 +1,22 @@
 import { Box, Divider } from "@mui/material";
 import React from "react";
-import {
-  useFieldArray,
-  useFormContext,
-  UseFormGetValues,
-} from "react-hook-form";
-import TextFieldControl from "../../hook-form/TextFieldControl";
-import TypographyBase from "../../mui-base/Typography/TypographyBase";
-import { ControlHookForm, TypeFormService } from "../../../utils/types";
-import BoxCenter from "../base/Grid/BoxCenter";
-import AddItem from "./AddItem";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import { ControlHookForm, TypeFormService } from "../../../../utils/types";
+import TypographyBase from "../../../mui-base/Typography/TypographyBase";
+import BoxCenter from "../../base/Grid/BoxCenter";
+import TextFieldNumber from "../../base/TextFieldStandard/TextFieldNumber";
+import TextFieldString from "../../base/TextFieldStandard/TextFieldString";
+import AddItem from "../common/AddItem";
+import CloneButton from "../common/CloneButton";
+import GroupBg from "../common/GroupBg";
+import RemoveItem from "../RemoveItem";
 import CityDistrict from "./CityDistrict";
-import GroupBg from "./GroupBg";
-import RemoveItem from "./RemoveItem";
-import CloneButton from "./CloneButton";
-import TextFieldNumber from "../base/TextFieldStandard/TextFieldNumber";
-import TextFieldString from "../base/TextFieldStandard/TextFieldString";
 
-export interface GroupCityProps {
+export interface CityProps {
   control: ControlHookForm;
 }
 
-const GroupCity = ({ control }: GroupCityProps) => {
+const City = ({ control }: CityProps) => {
   const { fields, append, prepend, remove, swap, move, insert } =
     useFieldArray<TypeFormService>({
       control,
@@ -92,4 +87,4 @@ const GroupCity = ({ control }: GroupCityProps) => {
   );
 };
 
-export default GroupCity;
+export default City;

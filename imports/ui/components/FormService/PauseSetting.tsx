@@ -5,9 +5,9 @@ import TextFieldControl from "../../hook-form/TextFieldControl";
 import TypographyBase from "../../mui-base/Typography/TypographyBase";
 import { ControlHookForm, TypeFormService } from "../../../utils/types";
 import BoxCenter from "../base/Grid/BoxCenter";
-import AddItem from "./AddItem";
-import BoxChild from "./BoxChild";
-import GroupBg from "./GroupBg";
+import AddItem from "./common/AddItem";
+import BoxChild from "./common/BoxChild";
+import GroupBg from "./common/GroupBg";
 import GroupLang from "./GroupLang";
 import RemoveItem from "./RemoveItem";
 

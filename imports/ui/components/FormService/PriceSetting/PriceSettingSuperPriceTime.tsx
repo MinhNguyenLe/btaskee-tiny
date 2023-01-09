@@ -1,13 +1,13 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { useFieldArray } from "react-hook-form";
-import TextFieldControl from "../../hook-form/TextFieldControl";
-import TypographyBase from "../../mui-base/Typography/TypographyBase";
-import { ControlHookForm } from "../../../utils/types";
-import BoxCenter from "../base/Grid/BoxCenter";
-import AddItem from "./AddItem";
-import BoxChild from "./BoxChild";
-import RemoveItem from "./RemoveItem";
+import TextFieldControl from "../../../hook-form/TextFieldControl";
+import TypographyBase from "../../../mui-base/Typography/TypographyBase";
+import { ControlHookForm } from "../../../../utils/types";
+import BoxCenter from "../../base/Grid/BoxCenter";
+import AddItem from "../common/AddItem";
+import BoxChild from "../common/BoxChild";
+import RemoveItem from "../RemoveItem";
 
 export interface PriceSettingSuperPriceTimeProps {
   control: ControlHookForm;

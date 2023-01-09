@@ -9,20 +9,18 @@ import CheckboxControl from "../../hook-form/CheckboxControl";
 import { isActive } from "../../../utils/utils";
 import GroupDiscountByDuration from "./GroupDiscountByDuration";
 import GroupDiscountByDoneTask from "./GroupDiscountByDoneTask";
-import GroupCity from "./GroupCity";
-import JSONDetail from "./JSONDetail";
-import GroupBg from "./GroupBg";
+import City from "./City";
+import GroupBg from "./common/GroupBg";
 import PauseSetting from "./PauseSetting";
 import TypographyBase from "../../mui-base/Typography/TypographyBase";
-import BoxChild from "./BoxChild";
-import PriceSettingFeeWeekendForCity from "./PriceSettingFeeWeekendForCity";
-import PriceSettingSuperPriceTime from "./PriceSettingSuperPriceTime";
-import TipRequirement from "./TipRequirement";
 import TextFieldNumber from "../base/TextFieldStandard/TextFieldNumber";
 import TextFieldString from "../base/TextFieldStandard/TextFieldString";
 import DatePickerControl from "../../hook-form/DatePickerControl";
 import JSONEditorControl from "../../hook-form/JSONEditorControl";
 import CustomDataService from "./CustomDataService";
+import PriceSetting from "./PriceSetting";
+import Tip from "./Tip";
+import PostingLimits from "./PostingLimits";
 
 export interface FormServiceProps {
   isLoading?: boolean;
@@ -64,14 +62,7 @@ const FormService = ({ isLoading }: FormServiceProps) => {
           label="DefaultTask Time"
         />
         <TextFieldString control={control} name="icon" label="Icon" />
-        <TextFieldString
-          // InputProps={{
-          //   readOnly: true,
-          // }}
-          control={control}
-          name="name"
-          label="Service's name"
-        />
+        <TextFieldString control={control} name="name" label="Service's name" />
         <TextFieldNumber
           control={control}
           name="minutesPostTaskAfterNow"
@@ -178,50 +169,13 @@ const FormService = ({ isLoading }: FormServiceProps) => {
           namePrefix="shortText"
         />
       </GroupBg>
-      <GroupCity control={control} />
+      <City control={control} />
       <GroupDiscountByDuration control={control} />
       <GroupDiscountByDoneTask control={control} />
       <PauseSetting control={control} />
-      <GroupBg>
-        <TypographyBase title="Posting limits" color="primary"></TypographyBase>
-        <TextFieldString
-          control={control}
-          name="postingLimits.from"
-          label="From"
-        />
-        <TextFieldString control={control} name="postingLimits.to" label="To" />
-      </GroupBg>
-      <GroupBg>
-        <TypographyBase title="Price setting" color="primary"></TypographyBase>
-        <BoxChild>
-          <TextFieldNumber
-            control={control}
-            name="priceSetting.costForChooseTasker"
-            label="Cost for choose tasker"
-          />
-          <TextFieldNumber
-            control={control}
-            name="priceSetting.emergencyTaskWithin"
-            label="Emergency task within"
-          />
-          <TextFieldNumber
-            control={control}
-            name="priceSetting.feeForEmergencyTask"
-            label="Fee for emergency task"
-          />
-          <TextFieldNumber
-            control={control}
-            name="priceSetting.feeForWeekend"
-            label="Fee for weekend"
-          />
-          <PriceSettingFeeWeekendForCity control={control} />
-          <PriceSettingSuperPriceTime control={control} />
-        </BoxChild>
-      </GroupBg>
-      <GroupBg>
-        <TypographyBase title="Tip" color="primary"></TypographyBase>
-        <TipRequirement control={control} />
-      </GroupBg>
+      <PostingLimits control={control} />
+      <PriceSetting control={control} />
+      <Tip control={control} />
     </Box>
   );
 };

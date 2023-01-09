@@ -6,8 +6,8 @@ import TextFieldControl from "../../hook-form/TextFieldControl";
 import TypographyBase from "../../mui-base/Typography/TypographyBase";
 import { ControlHookForm, TypeFormService } from "../../../utils/types";
 import BoxCenter from "../base/Grid/BoxCenter";
-import AddItem from "./AddItem";
-import GroupBg from "./GroupBg";
+import AddItem from "./common/AddItem";
+import GroupBg from "./common/GroupBg";
 import RemoveItem from "./RemoveItem";
 
 interface CustomDataServiceProps {
