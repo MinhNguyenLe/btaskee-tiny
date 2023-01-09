@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import { UseDialogReturn } from "../../hooks/useDialog";
 import DialogBase from "../../mui-base/Dialog/DialogBase";
-import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import customHooks from "../../hooks";
@@ -11,38 +10,10 @@ import { useFormContext } from "react-hook-form";
 import { preFetchDetailService } from "../../hooks/useGetServiceDetail";
 import { preFetchListServices } from "../../hooks/useGetListServices";
 import ServiceDetail from "../ServiceDetail";
+import TabsBase, { TabPanelsBase } from "../../mui-base/Tab/TabBase";
 export interface DialogServiceDetailProps
   extends Omit<UseDialogReturn, "onOpenDialog"> {
   idService: Service["_id"];
-}
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
-  );
-}
-
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
 }
 
 const DialogServiceDetail = ({
@@ -50,11 +21,7 @@ const DialogServiceDetail = ({
   onCloseDialog,
   idService,
 }: DialogServiceDetailProps) => {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+  const { value, handleChange } = customHooks.useTabs();
 
   const { reset, getValues } = useFormContext<TypeFormService>();
 
@@ -85,21 +52,58 @@ const DialogServiceDetail = ({
       },
     });
 
-  const content = (
-    <Box sx={{ width: "100%" }}>
-      <TabPanel value={value} index={0}>
-        <ServiceDetail serviceDetail={serviceDetail} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <FormService />
-      </TabPanel>
-    </Box>
-  );
-
   const onCloseDialogServiceDetail = useCallback(() => {
     onCloseDialog();
     reset();
   }, []);
+
+  const listTabs = [
+    {
+      label: "Detail",
+    },
+    {
+      label: "Basic",
+    },
+    {
+      label: "City",
+    },
+    {
+      label: "Detail",
+    },
+    {
+      label: "Language",
+    },
+    {
+      label: "Custom field",
+    },
+    {
+      label: "Another",
+    },
+  ];
+
+  const listTabPanels = [
+    {
+      children: <ServiceDetail serviceDetail={serviceDetail} />,
+    },
+    {
+      children: <FormService typeForm="basic" />,
+    },
+    {
+      children: <FormService typeForm="city" />,
+    },
+    {
+      children: <FormService typeForm="detail" />,
+    },
+    {
+      children: <FormService typeForm="language" />,
+    },
+    {
+      children: <FormService typeForm="customField" />,
+    },
+    {
+      children: <FormService typeForm="another" />,
+    },
+  ];
 
   return (
     <DialogBase
@@ -107,21 +111,21 @@ const DialogServiceDetail = ({
       onCloseDialog={onCloseDialogServiceDetail}
       titleHeader={
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
+          <TabsBase
             value={value}
-            onChange={handleChange}
+            handleChange={handleChange}
             aria-label="basic tabs example"
-          >
-            <Tab label="Service's detail" {...a11yProps(0)} />
-            <Tab label="Edit information" {...a11yProps(1)} />
-          </Tabs>
+            listTabs={listTabs}
+          ></TabsBase>
         </Box>
       }
       content={
         isLoadingDetailData || isUpdating || isDeleting ? (
-          <>Loading ...</>
+          <span>Loading ...</span>
         ) : (
-          content
+          <Box sx={{ width: "100%" }}>
+            <TabPanelsBase listTabPanels={listTabPanels} value={value} />
+          </Box>
         )
       }
       maxWidth="lg"

@@ -1,17 +1,22 @@
-import React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import { Box } from "@mui/material";
+import React, { PropsWithChildren } from "react";
+import Tabs, { TabsProps } from "@mui/material/Tabs";
+import { Box, Tab, TabProps } from "@mui/material";
+import { UseTabsReturn } from "../../hooks/useTabs";
 
-export interface TabBaseProps {}
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
 
-interface TabPanelProps {
+export interface TabPanelBaseProps {
   children?: React.ReactNode;
   index: number;
   value: number;
 }
 
-function TabPanel(props: TabPanelProps) {
+function TabPanelBase(props: TabPanelBaseProps) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -27,36 +32,53 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
+interface ListTabPanels extends Pick<TabPanelBaseProps, "children"> {}
+
+interface TabPanelsBaseProps {
+  listTabPanels: ListTabPanels[];
+  value: number;
 }
 
-const TabBase = () => {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-
+export function TabPanelsBase({ listTabPanels, value }: TabPanelsBaseProps) {
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          <Tab label="Service's detail" {...a11yProps(0)} />
-          <Tab label="Edit information" {...a11yProps(1)} />
-        </Tabs>
-      </Box>
-      <TabPanel value={value} index={0}></TabPanel>
-      <TabPanel value={value} index={1}></TabPanel>
-    </Box>
+    <>
+      {listTabPanels.map((tabPanel, index) => {
+        return (
+          <TabPanelBase key={index} value={value} index={index}>
+            {tabPanel.children}
+          </TabPanelBase>
+        );
+      })}
+    </>
+  );
+}
+
+export interface TabBaseProps extends TabProps {}
+
+const TabBase = ({ ...props }: TabBaseProps) => {
+  return <Tab {...props} />;
+};
+
+interface ListTabs extends Pick<TabBaseProps, "label"> {}
+
+interface TabsBaseProps extends UseTabsReturn, Omit<TabsProps, "value"> {
+  listTabs: ListTabs[];
+}
+
+const TabsBase = ({
+  value,
+  handleChange,
+  children,
+  listTabs,
+  ...props
+}: TabsBaseProps) => {
+  return (
+    <Tabs value={value} onChange={handleChange} {...props}>
+      {listTabs.map((tab, index) => {
+        return <TabBase key={index} label={tab.label} {...a11yProps(index)} />;
+      })}
+    </Tabs>
   );
 };
 
-export default TabBase;
+export default TabsBase;
