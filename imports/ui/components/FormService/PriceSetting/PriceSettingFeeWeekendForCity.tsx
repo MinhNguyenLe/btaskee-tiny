@@ -7,7 +7,7 @@ import { ControlHookForm } from "../../../../utils/types";
 import BoxCenter from "../../base/Grid/BoxCenter";
 import AddItem from "../common/AddItem";
 import BoxChild from "../common/BoxChild";
-import RemoveItem from "../RemoveItem";
+import RemoveItem from "../common/RemoveItem";
 
 export interface PriceSettingFeeWeekendForCityProps {
   control: ControlHookForm;
@@ -16,7 +16,7 @@ export interface PriceSettingFeeWeekendForCityProps {
 const PriceSettingFeeWeekendForCity = ({
   control,
 }: PriceSettingFeeWeekendForCityProps) => {
-  const { fields, remove, append } = useFieldArray({
+  const { fields, remove, prepend } = useFieldArray({
     control,
     name: `priceSetting.feeWeekendApplyForCity`,
   });
@@ -29,12 +29,16 @@ const PriceSettingFeeWeekendForCity = ({
           color="primary"
           mr="8px"
         />
-        <AddItem onClick={() => append("")} />
+        <AddItem onClick={() => prepend("Example fee")} />
       </BoxCenter>
       {fields.map((item, index) => {
         return (
           <Box key={item.id}>
-            <BoxCenter>
+            <BoxCenter
+              sx={{
+                "& .MuiTextField-root": { m: 1, width: "48ch" },
+              }}
+            >
               <TextFieldControl
                 control={control}
                 name={`priceSetting.feeWeekendApplyForCity.${index}`}

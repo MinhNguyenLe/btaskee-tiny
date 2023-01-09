@@ -41,20 +41,24 @@ const FormService = ({ isLoading, typeForm = "basic" }: FormServiceProps) => {
     else setValue("status", "INACTIVE");
   };
 
-  if (isLoading) return <>Loading (inserting or updating data) ...</>;
+  if (isLoading) return <span>Loading (inserting or updating data) ...</span>;
 
   return (
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "24ch" },
+        "& .MuiTextField-root": { m: 1, width: "20ch" },
       }}
       noValidate
       autoComplete="off"
     >
       {typeForm === "basic" ? (
         <>
-          <Box>
+          <Box
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "36ch" },
+            }}
+          >
             <DatePickerControl
               control={control}
               name="limitDateOfBooking"
@@ -137,7 +141,11 @@ const FormService = ({ isLoading, typeForm = "basic" }: FormServiceProps) => {
               label="Link content in car"
             />
           </Box>
-          <Box>
+          <Box
+            sx={{
+              "& .MuiFormControlLabel-root": { m: 1, width: "36ch" },
+            }}
+          >
             <CheckboxControl
               control={control}
               name="onlyShowTasker"
@@ -190,7 +198,7 @@ const FormService = ({ isLoading, typeForm = "basic" }: FormServiceProps) => {
           <GroupBg>
             <GroupLang
               control={control}
-              title="short text:"
+              title="Short text:"
               namePrefix="shortText"
             />
           </GroupBg>

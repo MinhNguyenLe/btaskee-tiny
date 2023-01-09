@@ -18,9 +18,10 @@ const BasicContent = ({ boldText, regularText }: BasicContentProps) => {
           if (!regularText) return "";
           if (typeof regularText === "boolean")
             return regularText ? "Yes" : "No";
-          if (typeof regularText !== "string") return regularText.toString();
+          if (typeof regularText === "number") return regularText.toString();
+          if (typeof regularText === "string") return regularText;
 
-          return regularText;
+          return regularText.toLocaleDateString("en-US");
         })()}
       ></TypographyRegular>
     </Box>

@@ -4,12 +4,11 @@ import { ControlHookForm, TypeFormService } from "../../../../utils/types";
 import { Box } from "@mui/material";
 import TextFieldControl from "../../../hook-form/TextFieldControl";
 import AddItem from "../common/AddItem";
-import RemoveItem from "../RemoveItem";
+import RemoveItem from "../common/RemoveItem";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
 import BoxCenter from "../../base/Grid/BoxCenter";
-import BoxChild from "../common/BoxChild";
 import DatePickerControl from "../../../hook-form/DatePickerControl";
-import CloneButton from "../common/CloneButton";
+import { BoxDeleteAndCloneItem, Layer2, Layer3 } from "../common/Layer";
 
 export interface CityDistrictProps {
   nestIndex: number;
@@ -17,7 +16,7 @@ export interface CityDistrictProps {
 }
 
 const CityDistrict = ({ nestIndex, control }: CityDistrictProps) => {
-  const { fields, remove, append } = useFieldArray({
+  const { fields, remove, prepend } = useFieldArray({
     control,
     name: `city.${nestIndex}.district`,
   });
@@ -27,39 +26,42 @@ const CityDistrict = ({ nestIndex, control }: CityDistrictProps) => {
   const onCloneDataDistrict = (index: number) => {
     const dataDistricts = getValues(`city.${nestIndex}.district`);
 
-    if (dataDistricts) append(dataDistricts[index]);
+    if (dataDistricts) prepend(dataDistricts[index]);
   };
 
   return (
-    <BoxChild>
+    <Box>
       <BoxCenter>
         <TypographyBase title="District" color="primary" mr="8px" />
-        <AddItem onClick={() => append({ name: "" })} />
+        <AddItem onClick={() => prepend({ name: "Example name", time: [] })} />
       </BoxCenter>
       {fields.map((item, index) => {
         return (
-          <Box key={item.id}>
-            <BoxCenter>
+          <Layer2 key={item.id}>
+            <BoxDeleteAndCloneItem
+              deleteItem={{ onClick: () => remove(index) }}
+              cloneItem={{ onClick: () => onCloneDataDistrict(index) }}
+            />
+            <Box
+              sx={{
+                "& .MuiTextField-root": { m: 1, width: "48ch" },
+              }}
+            >
               <TextFieldControl
                 control={control}
                 name={`city.${nestIndex}.district.${index}.name`}
                 label="Name"
               />
-              <RemoveItem title="district" onClick={() => remove(index)} />
-              <CloneButton
-                title="district"
-                onClick={() => onCloneDataDistrict(index)}
-              />
-            </BoxCenter>
+            </Box>
             <CityDistrictTime
               control={control}
               nestIndex1={nestIndex}
               nestIndex2={index}
             />
-          </Box>
+          </Layer2>
         );
       })}
-    </BoxChild>
+    </Box>
   );
 };
 
@@ -74,7 +76,7 @@ const CityDistrictTime = ({
   nestIndex2,
   control,
 }: CityDistrictTimeProps) => {
-  const { fields, remove, append } = useFieldArray({
+  const { fields, remove, prepend } = useFieldArray({
     control,
     name: `city.${nestIndex1}.district.${nestIndex2}.time`,
   });
@@ -85,16 +87,16 @@ const CityDistrictTime = ({
     const dataDistrictTime = getValues(
       `city.${nestIndex1}.district.${nestIndex2}.time`
     );
-    if (dataDistrictTime) append(dataDistrictTime[index]);
+    if (dataDistrictTime) prepend(dataDistrictTime[index]);
   };
 
   return (
-    <BoxChild>
+    <Box>
       <BoxCenter>
         <TypographyBase title="District's Time" color="primary" mr="8px" />
         <AddItem
           onClick={() =>
-            append({
+            prepend({
               date: new Date(),
               endDate: new Date(),
               endTime: 0,
@@ -106,44 +108,49 @@ const CityDistrictTime = ({
       </BoxCenter>
       {fields.map((item, index) => {
         return (
-          <BoxCenter key={item.id}>
-            <DatePickerControl
-              control={control}
-              label="Date"
-              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.date`}
+          <Layer3 key={item.id}>
+            <BoxDeleteAndCloneItem
+              deleteItem={{ onClick: () => remove(index) }}
+              cloneItem={{ onClick: () => onCloneDataDistrictTime(index) }}
             />
-            <DatePickerControl
-              control={control}
-              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.endDate`}
-              label="End date"
-            />
-            <TextFieldControl
-              control={control}
-              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.percent`}
-              label="Percent"
-              type="number"
-            />
-            <TextFieldControl
-              control={control}
-              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.endTime`}
-              label="End time"
-              type="number"
-            />
-            <TextFieldControl
-              control={control}
-              name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.startTime`}
-              label="Start time"
-              type="number"
-            />
-            <RemoveItem onClick={() => remove(index)} />
-            <CloneButton
-              title="district's time"
-              onClick={() => onCloneDataDistrictTime(index)}
-            />
-          </BoxCenter>
+            <Box
+              sx={{
+                "& .MuiTextField-root": { m: 1, width: "28ch" },
+              }}
+            >
+              <DatePickerControl
+                control={control}
+                label="Date"
+                name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.date`}
+              />
+              <DatePickerControl
+                control={control}
+                name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.endDate`}
+                label="End date"
+              />
+              <TextFieldControl
+                control={control}
+                name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.percent`}
+                label="Percent"
+                type="number"
+              />
+              <TextFieldControl
+                control={control}
+                name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.endTime`}
+                label="End time"
+                type="number"
+              />
+              <TextFieldControl
+                control={control}
+                name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.startTime`}
+                label="Start time"
+                type="number"
+              />
+            </Box>
+          </Layer3>
         );
       })}
-    </BoxChild>
+    </Box>
   );
 };
 

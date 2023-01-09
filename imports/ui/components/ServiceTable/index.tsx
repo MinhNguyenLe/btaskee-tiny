@@ -67,10 +67,10 @@ const ServiceTable = ({
             }}
             onClick={() => onClickRow(row._id)}
           >
-            <TableCell>{row.text["en"]}</TableCell>
-            <TableCell>{row.status}</TableCell>
-            <TableCell>
-              <ServiceIcon src={row.icon} alt="Icon not found" loading="lazy" />
+            <TableCell align="center">{row.text["en"]}</TableCell>
+            <TableCell align="center">{row.status}</TableCell>
+            <TableCell align="center">
+              <ServiceIcon src={row.icon} alt="" loading="lazy" />
             </TableCell>
           </SorTableRow>
         ))}

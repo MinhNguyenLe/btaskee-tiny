@@ -59,7 +59,7 @@ const DialogServiceDetail = ({
 
   const listTabs = [
     {
-      label: "Detail",
+      label: "Information",
     },
     {
       label: "Basic",
@@ -130,8 +130,10 @@ const DialogServiceDetail = ({
       }
       maxWidth="lg"
       fullWidth
-      onDelete={deleteService}
-      onSave={() => mutateUpdate({ idService, data: getValues() })}
+      onDelete={value === 0 ? deleteService : undefined}
+      onSave={
+        value ? () => mutateUpdate({ idService, data: getValues() }) : undefined
+      }
     />
   );
 };

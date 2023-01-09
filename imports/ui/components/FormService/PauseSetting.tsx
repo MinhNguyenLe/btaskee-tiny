@@ -9,7 +9,7 @@ import AddItem from "./common/AddItem";
 import BoxChild from "./common/BoxChild";
 import GroupBg from "./common/GroupBg";
 import GroupLang from "./GroupLang";
-import RemoveItem from "./RemoveItem";
+import RemoveItem from "./common/RemoveItem";
 
 interface PauseSettingProps {
   control: ControlHookForm;

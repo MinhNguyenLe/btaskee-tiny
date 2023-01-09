@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React from "react";
 import { ControlHookForm } from "../../../../utils/types";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
@@ -12,12 +13,18 @@ const PostingLimits = ({ control }: PostingLimitsProps) => {
   return (
     <GroupBg>
       <TypographyBase title="Posting limits" color="primary"></TypographyBase>
-      <TextFieldString
-        control={control}
-        name="postingLimits.from"
-        label="From"
-      />
-      <TextFieldString control={control} name="postingLimits.to" label="To" />
+      <Box
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "48ch" },
+        }}
+      >
+        <TextFieldString
+          control={control}
+          name="postingLimits.from"
+          label="From"
+        />
+        <TextFieldString control={control} name="postingLimits.to" label="To" />
+      </Box>
     </GroupBg>
   );
 };

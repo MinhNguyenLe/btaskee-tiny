@@ -8,18 +8,17 @@ import { ControlHookForm, TypeFormService } from "../../../utils/types";
 import BoxCenter from "../base/Grid/BoxCenter";
 import AddItem from "./common/AddItem";
 import GroupBg from "./common/GroupBg";
-import RemoveItem from "./RemoveItem";
+import RemoveItem from "./common/RemoveItem";
 
 interface CustomDataServiceProps {
   control: ControlHookForm;
 }
 
 const CustomDataService = ({ control }: CustomDataServiceProps) => {
-  const { fields, append, prepend, remove, swap, move, insert } =
-    useFieldArray<TypeFormService>({
-      control,
-      name: "customField",
-    });
+  const { fields, append, prepend, remove } = useFieldArray<TypeFormService>({
+    control,
+    name: "customField",
+  });
 
   return (
     <GroupBg>
@@ -31,7 +30,7 @@ const CustomDataService = ({ control }: CustomDataServiceProps) => {
         />
         <AddItem
           onClick={() =>
-            append({
+            prepend({
               key: "",
               value: {},
             })

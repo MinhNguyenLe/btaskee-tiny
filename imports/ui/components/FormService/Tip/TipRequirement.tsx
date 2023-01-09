@@ -8,14 +8,15 @@ import BoxCenter from "../../base/Grid/BoxCenter";
 import AddItem from "../common/AddItem";
 import BoxChild from "../common/BoxChild";
 import GroupLang from "../GroupLang";
-import RemoveItem from "../RemoveItem";
+import RemoveItem from "../common/RemoveItem";
+import Layer1, { BoxDeleteItem } from "../common/Layer";
 
 export interface TipRequirementProps {
   control: ControlHookForm;
 }
 
 const TipRequirement = ({ control }: TipRequirementProps) => {
-  const { fields, remove, append } = useFieldArray({
+  const { fields, remove, prepend } = useFieldArray({
     control,
     name: `tip.requirements`,
   });
@@ -26,7 +27,7 @@ const TipRequirement = ({ control }: TipRequirementProps) => {
         <TypographyBase title="Requirement" color="primary" mr="8px" />
         <AddItem
           onClick={() =>
-            append({
+            prepend({
               type: 0,
               cost: 0,
               applyForCities: [""],
@@ -40,18 +41,23 @@ const TipRequirement = ({ control }: TipRequirementProps) => {
           }
         />
       </BoxCenter>
-      {fields.map((item, index) => {
-        return (
-          <BoxChild key={item.id}>
-            <Box mb={2}>
-              <GroupLang
-                title="Text:"
-                namePrefix={`tip.requirements.${index}.text`}
-                control={control}
-              />
-            </Box>
-            <BoxCenter>
-              <Box>
+      <BoxChild>
+        {fields.map((item, index) => {
+          return (
+            <Layer1 key={item.id}>
+              <BoxDeleteItem onClick={() => remove(index)} />
+              <Box mb={2}>
+                <GroupLang
+                  title="Text:"
+                  namePrefix={`tip.requirements.${index}.text`}
+                  control={control}
+                />
+              </Box>
+              <Box
+                sx={{
+                  "& .MuiTextField-root": { m: 1, width: "48ch" },
+                }}
+              >
                 <TextFieldControl
                   control={control}
                   name={`tip.requirements.${index}.type`}
@@ -65,14 +71,13 @@ const TipRequirement = ({ control }: TipRequirementProps) => {
                   type="number"
                 />
               </Box>
-              <RemoveItem title="requirements" onClick={() => remove(index)} />
-            </BoxCenter>
-            <BoxCenter>
-              <ApplyForCities control={control} nestIndex={index} />
-            </BoxCenter>
-          </BoxChild>
-        );
-      })}
+              <BoxCenter>
+                <ApplyForCities control={control} nestIndex={index} />
+              </BoxCenter>
+            </Layer1>
+          );
+        })}
+      </BoxChild>
     </BoxChild>
   );
 };
@@ -83,7 +88,7 @@ interface ApplyForCitiesProps {
 }
 
 const ApplyForCities = ({ control, nestIndex }: ApplyForCitiesProps) => {
-  const { fields, remove, append } = useFieldArray({
+  const { fields, remove, prepend } = useFieldArray({
     control,
     name: `tip.requirements.${nestIndex}.applyForCities`,
   });
@@ -92,18 +97,23 @@ const ApplyForCities = ({ control, nestIndex }: ApplyForCitiesProps) => {
     <Box>
       <BoxCenter>
         <TypographyBase title="Apply for cities" color="primary" mr="8px" />
-        <AddItem onClick={() => append("")} />
+        <AddItem onClick={() => prepend("yes")} />
       </BoxCenter>
       {fields.map((item, index) => {
         return (
-          <Box key={item.id}>
+          <Box
+            key={item.id}
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "48ch" },
+            }}
+          >
             <BoxCenter>
               <TextFieldControl
                 control={control}
                 name={`tip.requirements.${nestIndex}.applyForCities.${index}`}
                 label="City"
               />
-              <RemoveItem title="city" onClick={() => remove(index)} />
+              <RemoveItem onClick={() => remove(index)} />
             </BoxCenter>
           </Box>
         );

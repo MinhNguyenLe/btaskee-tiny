@@ -7,7 +7,7 @@ import { ControlHookForm } from "../../../../utils/types";
 import BoxCenter from "../../base/Grid/BoxCenter";
 import AddItem from "../common/AddItem";
 import BoxChild from "../common/BoxChild";
-import RemoveItem from "../RemoveItem";
+import RemoveItem from "../common/RemoveItem";
 
 export interface PriceSettingSuperPriceTimeProps {
   control: ControlHookForm;
@@ -16,7 +16,7 @@ export interface PriceSettingSuperPriceTimeProps {
 const PriceSettingSuperPriceTime = ({
   control,
 }: PriceSettingSuperPriceTimeProps) => {
-  const { fields, remove, append } = useFieldArray({
+  const { fields, remove, prepend } = useFieldArray({
     control,
     name: `priceSetting.surgePriceTime`,
   });
@@ -27,7 +27,7 @@ const PriceSettingSuperPriceTime = ({
         <TypographyBase title="Super price time" color="primary" mr="8px" />
         <AddItem
           onClick={() =>
-            append({
+            prepend({
               start: 0,
               end: 0,
               rate: 0,
@@ -38,7 +38,11 @@ const PriceSettingSuperPriceTime = ({
       {fields.map((item, index) => {
         return (
           <Box key={item.id}>
-            <BoxCenter>
+            <BoxCenter
+              sx={{
+                "& .MuiTextField-root": { m: 1, width: "36ch" },
+              }}
+            >
               <TextFieldControl
                 control={control}
                 name={`priceSetting.surgePriceTime.${index}.start`}

@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React from "react";
 import { ControlHookForm } from "../../../../utils/types";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
@@ -15,7 +16,11 @@ const PriceSetting = ({ control }: PriceSettingProps) => {
   return (
     <GroupBg>
       <TypographyBase title="Price setting" color="primary"></TypographyBase>
-      <BoxChild>
+      <Box
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "48ch" },
+        }}
+      >
         <TextFieldNumber
           control={control}
           name="priceSetting.costForChooseTasker"
@@ -38,7 +43,7 @@ const PriceSetting = ({ control }: PriceSettingProps) => {
         />
         <PriceSettingFeeWeekendForCity control={control} />
         <PriceSettingSuperPriceTime control={control} />
-      </BoxChild>
+      </Box>
     </GroupBg>
   );
 };

@@ -34,9 +34,11 @@ export default function DialogBase({
       <DialogTitle id="dialog-title">{titleHeader}</DialogTitle>
       <DialogContent>{content}</DialogContent>
       <DialogActions>
-        <Button onClick={onSave} autoFocus>
-          Save
-        </Button>
+        {onSave ? (
+          <Button onClick={onSave} autoFocus>
+            Save
+          </Button>
+        ) : null}
         {onDelete ? (
           <Button onClick={onDelete} autoFocus>
             Delete

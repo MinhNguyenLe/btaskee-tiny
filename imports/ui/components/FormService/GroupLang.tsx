@@ -4,6 +4,7 @@ import TextFieldControl from "../../hook-form/TextFieldControl";
 import TypographyBase from "../../mui-base/Typography/TypographyBase";
 import { ControlHookForm } from "../../../utils/types";
 import BoxCenter from "../base/Grid/BoxCenter";
+import { Box } from "@mui/material";
 
 interface GroupLangProps {
   title: string;
@@ -15,7 +16,11 @@ const GroupLang = ({ namePrefix, title, control }: GroupLangProps) => {
   return (
     <>
       <TypographyBase title={title} color="primary"></TypographyBase>
-      <BoxCenter>
+      <Box
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "48ch" },
+        }}
+      >
         {[
           { name: `${namePrefix}.vi`, label: "Vietnamese" },
           { name: `${namePrefix}.en`, label: "English" },
@@ -32,7 +37,7 @@ const GroupLang = ({ namePrefix, title, control }: GroupLangProps) => {
             />
           );
         })}
-      </BoxCenter>
+      </Box>
     </>
   );
 };

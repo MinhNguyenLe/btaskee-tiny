@@ -5,7 +5,7 @@ import TypographyBase from "../../mui-base/Typography/TypographyBase";
 import { ControlHookForm, TypeFormService } from "../../../utils/types";
 import GroupBg from "./common/GroupBg";
 import AddItem from "./common/AddItem";
-import RemoveItem from "./RemoveItem";
+import RemoveItem from "./common/RemoveItem";
 import BoxCenter from "../base/Grid/BoxCenter";
 
 interface GroupDiscountByDoneTaskProps {
@@ -13,11 +13,10 @@ interface GroupDiscountByDoneTaskProps {
 }
 
 const GroupDiscountByDoneTask = ({ control }: GroupDiscountByDoneTaskProps) => {
-  const { fields, append, prepend, remove, swap, move, insert } =
-    useFieldArray<TypeFormService>({
-      control,
-      name: "discountByDoneTask",
-    });
+  const { fields, append, prepend, remove } = useFieldArray<TypeFormService>({
+    control,
+    name: "discountByDoneTask",
+  });
 
   return (
     <GroupBg>
@@ -29,7 +28,7 @@ const GroupDiscountByDoneTask = ({ control }: GroupDiscountByDoneTaskProps) => {
         />
         <AddItem
           onClick={() =>
-            append({
+            prepend({
               number: 0,
               discount: 0,
             })
@@ -38,7 +37,12 @@ const GroupDiscountByDoneTask = ({ control }: GroupDiscountByDoneTaskProps) => {
       </BoxCenter>
       {fields.map((field, index) => {
         return (
-          <BoxCenter key={field.id}>
+          <BoxCenter
+            key={field.id}
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "48ch" },
+            }}
+          >
             <TextFieldControl
               control={control}
               type="number"

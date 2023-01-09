@@ -5,7 +5,7 @@ import TypographyBase from "../../mui-base/Typography/TypographyBase";
 import { ControlHookForm, TypeFormService } from "../../../utils/types";
 import GroupBg from "./common/GroupBg";
 import AddItem from "./common/AddItem";
-import RemoveItem from "./RemoveItem";
+import RemoveItem from "./common/RemoveItem";
 import BoxCenter from "../base/Grid/BoxCenter";
 
 interface GroupDiscountByDurationProps {
@@ -16,11 +16,10 @@ const GroupDiscountByDuration = ({
   control,
   ...props
 }: GroupDiscountByDurationProps) => {
-  const { fields, append, prepend, remove, swap, move, insert } =
-    useFieldArray<TypeFormService>({
-      control,
-      name: "discountByDuration",
-    });
+  const { fields, append, prepend, remove } = useFieldArray<TypeFormService>({
+    control,
+    name: "discountByDuration",
+  });
 
   return (
     <GroupBg>
@@ -28,7 +27,7 @@ const GroupDiscountByDuration = ({
         <TypographyBase title="Discount by duration" color="primary" mr="8px" />
         <AddItem
           onClick={() =>
-            append({
+            prepend({
               duration: 0,
               discount: 0,
             })
@@ -37,7 +36,12 @@ const GroupDiscountByDuration = ({
       </BoxCenter>
       {fields.map((field, index) => {
         return (
-          <BoxCenter key={field.id}>
+          <BoxCenter
+            key={field.id}
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "48ch" },
+            }}
+          >
             <TextFieldControl
               control={control}
               type="number"
