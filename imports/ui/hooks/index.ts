@@ -7,6 +7,7 @@ import useGetServiceDetail from "./useGetServiceDetail";
 import useInsertService from "./useInsertService";
 import useUpdateService from "./useUpdateService";
 import useTabs from "./useTabs";
+import useSnackbar from "./useSnackbar";
 
 const customHooks = {
   useDeleteService,
@@ -18,6 +19,7 @@ const customHooks = {
   useFormService,
   useGetListServices,
   useTabs,
+  useSnackbar,
 };
 
 export default customHooks;

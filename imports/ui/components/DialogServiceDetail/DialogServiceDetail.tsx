@@ -23,6 +23,8 @@ const DialogServiceDetail = ({
 }: DialogServiceDetailProps) => {
   const { value, handleChange } = customHooks.useTabs();
 
+  const { onOpenSnackbar } = customHooks.useSnackbar();
+
   const { reset, getValues } = useFormContext<TypeFormService>();
 
   const { isLoading: isLoadingDetailData, data: serviceDetail } =
@@ -33,11 +35,10 @@ const DialogServiceDetail = ({
   const { mutate: mutateUpdate, isLoading: isUpdating } =
     customHooks.useUpdateService({
       onSuccess: async () => {
-        reset();
+        onCloseDialog();
+        onOpenSnackbar("Update service successful !", "success");
         await preFetchDetailService(idService);
         await preFetchListServices();
-
-        onCloseDialog();
       },
     });
 
@@ -46,15 +47,14 @@ const DialogServiceDetail = ({
       idService,
       onSuccess: async () => {
         onCloseDialog();
-        reset();
-
+        onOpenSnackbar("Delete service successful !", "success");
         await preFetchListServices();
+        reset();
       },
     });
 
   const onCloseDialogServiceDetail = useCallback(() => {
     onCloseDialog();
-    reset();
   }, []);
 
   const listTabs = [

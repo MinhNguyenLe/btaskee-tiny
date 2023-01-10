@@ -7,6 +7,7 @@ import { TypeFormService } from "../../../utils/types";
 import { defaultValueServiceCollection } from "../../default-value-form";
 import useInsertService from "../../hooks/useInsertService";
 import { preFetchListServices } from "../../hooks/useGetListServices";
+import customHooks from "../../hooks";
 
 interface DialogCreateNewServiceProps extends UseDialogReturn {}
 
@@ -18,10 +19,13 @@ const DialogCreateNewService = ({
     defaultValues: defaultValueServiceCollection,
   });
 
+  const { onOpenSnackbar } = customHooks.useSnackbar();
+
   const { mutate: mutateInsert, isLoading: isInserting } = useInsertService({
     onSuccess: () => {
       preFetchListServices().then(() => {
         onCloseDialog();
+        onOpenSnackbar("Create service successful !", "success");
         methods.reset();
       });
     },

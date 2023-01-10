@@ -19,6 +19,11 @@ function useGetListServices() {
 
     console.log("LIST ----- ", data);
     if (!data) return [];
+
+    console.log("DEBUG weight", "----------");
+    data.map((item) => console.log(item.weight));
+    console.log("----------");
+
     return [...data].sort((a, b) => {
       return a.weight - b.weight;
     });
