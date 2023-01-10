@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { UseDialogReturn } from "../../hooks/useDialog";
 import DialogBase from "../../mui-base/Dialog/DialogBase";
 import Tab from "@mui/material/Tab";
@@ -11,6 +11,7 @@ import { preFetchDetailService } from "../../hooks/useGetServiceDetail";
 import { preFetchListServices } from "../../hooks/useGetListServices";
 import ServiceDetail from "../ServiceDetail";
 import TabsBase, { TabPanelsBase } from "../../mui-base/Tab/TabBase";
+import { ConfirmDialogContext } from "../../AppProvider";
 export interface DialogServiceDetailProps
   extends Omit<UseDialogReturn, "onOpenDialog"> {
   idService: Service["_id"];
@@ -21,6 +22,8 @@ const DialogServiceDetail = ({
   onCloseDialog,
   idService,
 }: DialogServiceDetailProps) => {
+  const { callback, onOpen } = useContext(ConfirmDialogContext);
+
   const { value, handleChange } = customHooks.useTabs();
 
   const { onOpenSnackbar } = customHooks.useSnackbar();
@@ -105,6 +108,25 @@ const DialogServiceDetail = ({
     },
   ];
 
+  const onSave = !value
+    ? undefined
+    : () => {
+        callback.current = {
+          onAccept: () => mutateUpdate({ idService, data: getValues() }),
+        };
+        onOpen();
+      };
+
+  const onDelete =
+    value !== 0
+      ? undefined
+      : () => {
+          callback.current = {
+            onAccept: deleteService,
+          };
+          onOpen();
+        };
+
   return (
     <DialogBase
       open={open}
@@ -130,10 +152,8 @@ const DialogServiceDetail = ({
       }
       maxWidth="lg"
       fullWidth
-      onDelete={value === 0 ? deleteService : undefined}
-      onSave={
-        value ? () => mutateUpdate({ idService, data: getValues() }) : undefined
-      }
+      onDelete={onDelete}
+      onSave={onSave}
     />
   );
 };

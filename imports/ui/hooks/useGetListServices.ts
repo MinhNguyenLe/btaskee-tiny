@@ -21,7 +21,11 @@ function useGetListServices() {
     if (!data) return [];
 
     console.log("DEBUG weight", "----------");
-    data.map((item) => console.log(item.weight));
+    [...data]
+      .sort((a, b) => {
+        return a.weight - b.weight;
+      })
+      .map((item) => console.log(item.weight));
     console.log("----------");
 
     return [...data].sort((a, b) => {

@@ -1,28 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ServiceTable from "../components/ServiceTable";
-import useDialog from "../hooks/useDialog";
-import useGetListServices from "../hooks/useGetListServices";
 import { Box, Button } from "@mui/material";
 import DialogCreateNewService from "../components/DialogCreateNewService/DialogCreateNewService";
 import { Service } from "../../utils/types";
 import DialogServiceDetailControl from "../hook-form/DialogServiceDetailControl";
-import useDragAndDropService from "../hooks/useDragAndDropService";
+import customHooks from "../hooks";
+import { ConfirmDialogContext } from "../AppProvider";
 
-//TODO: refactor re-render
 export const ServiceManagement = () => {
+  const { callback, onOpen } = useContext(ConfirmDialogContext);
+
   const { isLoading: isLoadingListServices, data: services = [] } =
-    useGetListServices();
+    customHooks.useGetListServices();
 
   const [isDragAndDrop, setIsDragAndDrop] = useState<boolean>(false);
 
   const [idService, setIdService] = useState<Service["_id"]>("");
 
-  const { open, onOpenDialog, onCloseDialog } = useDialog();
+  const { onOpenSnackbar } = customHooks.useSnackbar();
+
+  const { open, onOpenDialog, onCloseDialog } = customHooks.useDialog();
   const {
     open: openFormCreateService,
     onOpenDialog: onOpenFormCreateService,
     onCloseDialog: onCloseFormCreateService,
-  } = useDialog();
+  } = customHooks.useDialog();
 
   const onClickRow = (idService: string) => {
     onOpenDialog();
@@ -30,9 +32,11 @@ export const ServiceManagement = () => {
   };
 
   const { mutate: mutateDragAndDrop, isLoading: isDraggingAndDropping } =
-    useDragAndDropService();
+    customHooks.useDragAndDropService();
 
   const onSaveNewOrder = async () => {
+    console.log("Run callback oh ye !!1");
+
     await mutateDragAndDrop(
       services
         .map((item, index) => {
@@ -51,6 +55,8 @@ export const ServiceManagement = () => {
         })
     );
 
+    onOpenSnackbar("Change order of services successful !", "success");
+
     setIsDragAndDrop(false);
   };
 
@@ -66,7 +72,13 @@ export const ServiceManagement = () => {
             Create new service
           </Button>
         ) : (
-          <Button onClick={onSaveNewOrder} type="button">
+          <Button
+            onClick={() => {
+              callback.current = { onAccept: onSaveNewOrder };
+              onOpen();
+            }}
+            type="button"
+          >
             Save new data's order
           </Button>
         )}
