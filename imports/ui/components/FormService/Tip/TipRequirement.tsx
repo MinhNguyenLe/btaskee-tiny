@@ -10,6 +10,7 @@ import BoxChild from "../common/BoxChild";
 import GroupLang from "../GroupLang";
 import RemoveItem from "../common/RemoveItem";
 import Layer1, { BoxDeleteItem } from "../common/Layer";
+import { defaultTipRequirement } from "../../../default-value-form";
 
 export interface TipRequirementProps {
   control: ControlHookForm;
@@ -25,21 +26,7 @@ const TipRequirement = ({ control }: TipRequirementProps) => {
     <BoxChild>
       <BoxCenter>
         <TypographyBase title="Requirement" color="primary" mr="8px" />
-        <AddItem
-          onClick={() =>
-            prepend({
-              type: 0,
-              cost: 0,
-              applyForCities: [""],
-              text: {
-                vi: "",
-                en: "",
-                th: "",
-                ko: "",
-              },
-            })
-          }
-        />
+        <AddItem onClick={() => prepend(defaultTipRequirement)} />
       </BoxCenter>
       <BoxChild>
         {fields.map((item, index) => {
@@ -97,7 +84,7 @@ const ApplyForCities = ({ control, nestIndex }: ApplyForCitiesProps) => {
     <Box>
       <BoxCenter>
         <TypographyBase title="Apply for cities" color="primary" mr="8px" />
-        <AddItem onClick={() => prepend("yes")} />
+        <AddItem onClick={() => prepend("Accept")} />
       </BoxCenter>
       {fields.map((item, index) => {
         return (

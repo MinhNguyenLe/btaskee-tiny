@@ -29,7 +29,7 @@ const PriceSettingFeeWeekendForCity = ({
           color="primary"
           mr="8px"
         />
-        <AddItem onClick={() => prepend("Example fee")} />
+        <AddItem onClick={() => prepend("0")} />
       </BoxCenter>
       {fields.map((item, index) => {
         return (

@@ -1,7 +1,6 @@
 import React, { useCallback, useContext } from "react";
 import { UseDialogReturn } from "../../hooks/useDialog";
 import DialogBase from "../../mui-base/Dialog/DialogBase";
-import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import customHooks from "../../hooks";
 import { Service, TypeFormService } from "../../../utils/types";
@@ -24,7 +23,7 @@ const DialogServiceDetail = ({
 }: DialogServiceDetailProps) => {
   const { callback, onOpen } = useContext(ConfirmDialogContext);
 
-  const { value, handleChange } = customHooks.useTabs();
+  const { value, handleChange, resetTab } = customHooks.useTabs();
 
   const { onOpenSnackbar } = customHooks.useSnackbar();
 
@@ -58,6 +57,7 @@ const DialogServiceDetail = ({
 
   const onCloseDialogServiceDetail = useCallback(() => {
     onCloseDialog();
+    resetTab();
   }, []);
 
   const listTabs = [
@@ -69,12 +69,6 @@ const DialogServiceDetail = ({
     },
     {
       label: "City",
-    },
-    {
-      label: "Detail",
-    },
-    {
-      label: "Language",
     },
     {
       label: "Custom field",
@@ -94,12 +88,7 @@ const DialogServiceDetail = ({
     {
       children: <FormService typeForm="city" />,
     },
-    {
-      children: <FormService typeForm="detail" />,
-    },
-    {
-      children: <FormService typeForm="language" />,
-    },
+
     {
       children: <FormService typeForm="customField" />,
     },

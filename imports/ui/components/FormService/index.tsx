@@ -24,13 +24,7 @@ import PostingLimits from "./PostingLimits";
 
 export interface FormServiceProps {
   isLoading?: boolean;
-  typeForm?:
-    | "basic"
-    | "city"
-    | "customField"
-    | "detail"
-    | "language"
-    | "another";
+  typeForm?: "basic" | "city" | "customField" | "another";
 }
 
 const FormService = ({ isLoading, typeForm = "basic" }: FormServiceProps) => {
@@ -179,19 +173,6 @@ const FormService = ({ isLoading, typeForm = "basic" }: FormServiceProps) => {
               onChange={(e) => triggerStatus(e.target.checked)}
             />
           </Box>
-        </>
-      ) : null}
-      {typeForm === "detail" ? (
-        <GroupBg>
-          <TypographyBase title="Detail" color="primary"></TypographyBase>
-          <JSONEditorControl height="200px" control={control} name="detail" />
-        </GroupBg>
-      ) : null}
-      {typeForm === "customField" ? (
-        <CustomDataService control={control} />
-      ) : null}
-      {typeForm === "language" ? (
-        <>
           <GroupBg>
             <GroupLang control={control} title="Text:" namePrefix="text" />
           </GroupBg>
@@ -202,6 +183,15 @@ const FormService = ({ isLoading, typeForm = "basic" }: FormServiceProps) => {
               namePrefix="shortText"
             />
           </GroupBg>
+        </>
+      ) : null}
+      {typeForm === "customField" ? (
+        <>
+          <GroupBg>
+            <TypographyBase title="Detail" color="primary"></TypographyBase>
+            <JSONEditorControl height="200px" control={control} name="detail" />
+          </GroupBg>
+          <CustomDataService control={control} />
         </>
       ) : null}
       {typeForm === "city" ? <City control={control} /> : null}

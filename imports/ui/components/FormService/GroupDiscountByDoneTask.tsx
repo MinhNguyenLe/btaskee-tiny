@@ -7,6 +7,7 @@ import GroupBg from "./common/GroupBg";
 import AddItem from "./common/AddItem";
 import RemoveItem from "./common/RemoveItem";
 import BoxCenter from "../base/Grid/BoxCenter";
+import { defaultDiscountByDoneTask } from "../../default-value-form";
 
 interface GroupDiscountByDoneTaskProps {
   control: ControlHookForm;
@@ -26,14 +27,7 @@ const GroupDiscountByDoneTask = ({ control }: GroupDiscountByDoneTaskProps) => {
           color="primary"
           mr="8px"
         />
-        <AddItem
-          onClick={() =>
-            prepend({
-              number: 0,
-              discount: 0,
-            })
-          }
-        />
+        <AddItem onClick={() => prepend(defaultDiscountByDoneTask)} />
       </BoxCenter>
       {fields.map((field, index) => {
         return (

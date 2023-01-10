@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { ControlHookForm, TypeFormService } from "../../../../utils/types";
+import { defaultCity } from "../../../default-value-form";
 import TypographyBase from "../../../mui-base/Typography/TypographyBase";
 import BoxCenter from "../../base/Grid/BoxCenter";
 import TextFieldNumber from "../../base/TextFieldStandard/TextFieldNumber";
@@ -31,28 +32,7 @@ const City = ({ control }: CityProps) => {
     <GroupBg>
       <BoxCenter>
         <TypographyBase title="City" color="primary" mr="8px" />
-        <AddItem
-          onClick={() =>
-            prepend({
-              name: "Example name",
-              baseCost: 10,
-              district: [
-                {
-                  name: "1",
-                  time: [
-                    {
-                      date: new Date(),
-                      endDate: new Date(),
-                      endTime: 0,
-                      percent: 0,
-                      startTime: 0,
-                    },
-                  ],
-                },
-              ],
-            })
-          }
-        />
+        <AddItem onClick={() => prepend(defaultCity)} />
       </BoxCenter>
       <Box>
         {fields.map((field, index) => {

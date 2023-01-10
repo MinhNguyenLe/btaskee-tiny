@@ -61,7 +61,9 @@ const TabBase = ({ ...props }: TabBaseProps) => {
 
 interface ListTabs extends Pick<TabBaseProps, "label"> {}
 
-interface TabsBaseProps extends UseTabsReturn, Omit<TabsProps, "value"> {
+interface TabsBaseProps
+  extends Omit<UseTabsReturn, "resetTab">,
+    Omit<TabsProps, "value"> {
   listTabs: ListTabs[];
 }
 

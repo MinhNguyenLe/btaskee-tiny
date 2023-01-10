@@ -44,7 +44,7 @@ interface SurgePriceTime {
 
 export interface Service {
   city: City[];
-  costSuggestion?: number;
+  costSuggestion: number | null;
   defaultTaskTime: number;
   detail: any;
   discountByDuration: Array<{

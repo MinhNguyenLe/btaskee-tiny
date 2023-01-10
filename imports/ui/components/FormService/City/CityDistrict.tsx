@@ -9,6 +9,7 @@ import TypographyBase from "../../../mui-base/Typography/TypographyBase";
 import BoxCenter from "../../base/Grid/BoxCenter";
 import DatePickerControl from "../../../hook-form/DatePickerControl";
 import { BoxDeleteAndCloneItem, Layer2, Layer3 } from "../common/Layer";
+import { defaultCityDistrict } from "../../../default-value-form";
 
 export interface CityDistrictProps {
   nestIndex: number;
@@ -33,7 +34,7 @@ const CityDistrict = ({ nestIndex, control }: CityDistrictProps) => {
     <Box>
       <BoxCenter>
         <TypographyBase title="District" color="primary" mr="8px" />
-        <AddItem onClick={() => prepend({ name: "Example name", time: [] })} />
+        <AddItem onClick={() => prepend(defaultCityDistrict)} />
       </BoxCenter>
       {fields.map((item, index) => {
         return (
@@ -94,17 +95,7 @@ const CityDistrictTime = ({
     <Box>
       <BoxCenter>
         <TypographyBase title="District's Time" color="primary" mr="8px" />
-        <AddItem
-          onClick={() =>
-            prepend({
-              date: new Date(),
-              endDate: new Date(),
-              endTime: 0,
-              percent: 0,
-              startTime: 0,
-            })
-          }
-        />
+        <AddItem onClick={() => prepend(defaultCityDistrict.time)} />
       </BoxCenter>
       {fields.map((item, index) => {
         return (
@@ -130,8 +121,8 @@ const CityDistrictTime = ({
               />
               <TextFieldControl
                 control={control}
-                name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.percent`}
-                label="Percent"
+                name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.startTime`}
+                label="Start time"
                 type="number"
               />
               <TextFieldControl
@@ -142,8 +133,8 @@ const CityDistrictTime = ({
               />
               <TextFieldControl
                 control={control}
-                name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.startTime`}
-                label="Start time"
+                name={`city.${nestIndex1}.district.${nestIndex2}.time.${index}.percent`}
+                label="Percent"
                 type="number"
               />
             </Box>

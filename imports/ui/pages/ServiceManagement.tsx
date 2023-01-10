@@ -65,7 +65,7 @@ export const ServiceManagement = () => {
 
   return (
     <>
-      <Box display="flex" justifyContent="space-between">
+      <Box display="flex" justifyContent="space-between" mb={4}>
         <h1>Service Management</h1>
         {!isDragAndDrop ? (
           <Button onClick={onOpenFormCreateService} type="button">

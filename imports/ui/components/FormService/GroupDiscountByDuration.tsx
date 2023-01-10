@@ -7,6 +7,7 @@ import GroupBg from "./common/GroupBg";
 import AddItem from "./common/AddItem";
 import RemoveItem from "./common/RemoveItem";
 import BoxCenter from "../base/Grid/BoxCenter";
+import { defaultDiscountByDuration } from "../../default-value-form";
 
 interface GroupDiscountByDurationProps {
   control: ControlHookForm;
@@ -25,14 +26,7 @@ const GroupDiscountByDuration = ({
     <GroupBg>
       <BoxCenter>
         <TypographyBase title="Discount by duration" color="primary" mr="8px" />
-        <AddItem
-          onClick={() =>
-            prepend({
-              duration: 0,
-              discount: 0,
-            })
-          }
-        />
+        <AddItem onClick={() => prepend(defaultDiscountByDuration)} />
       </BoxCenter>
       {fields.map((field, index) => {
         return (

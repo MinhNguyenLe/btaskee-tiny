@@ -2,15 +2,13 @@ import { TypeFormService } from "../../utils/types";
 
 export const defaultCityDistrict = {
   name: "Quan Btaskee",
-  time: [
-    {
-      date: new Date(),
-      endDate: new Date(),
-      endTime: 0,
-      percent: 0,
-      startTime: 0,
-    },
-  ],
+  time: [],
+};
+
+export const defaultCity = {
+  name: "",
+  baseCost: 0,
+  district: [],
 };
 
 export const defaultDiscountByDuration = {
@@ -26,6 +24,18 @@ export const defaultDiscountByDoneTask = {
 export const defaultCustomField = {
   key: "",
   value: {},
+};
+
+export const defaultTipRequirement = {
+  type: 0,
+  cost: 0,
+  applyForCities: [],
+  text: {
+    vi: "",
+    en: "",
+    th: "",
+    ko: "",
+  },
 };
 
 export const defaultValueServiceCollection: TypeFormService = {
@@ -71,14 +81,8 @@ export const defaultValueServiceCollection: TypeFormService = {
     emergencyTaskWithin: 0,
     feeForEmergencyTask: 0,
     feeForWeekend: 0,
-    feeWeekendApplyForCity: [""],
-    surgePriceTime: [
-      {
-        start: 0,
-        end: 0,
-        rate: 0,
-      },
-    ],
+    feeWeekendApplyForCity: [],
+    surgePriceTime: [],
   },
   shortText: {
     vi: "",
@@ -94,19 +98,7 @@ export const defaultValueServiceCollection: TypeFormService = {
     ko: "",
   },
   tip: {
-    requirements: [
-      {
-        type: 0,
-        cost: 0,
-        applyForCities: [""],
-        text: {
-          vi: "",
-          en: "",
-          th: "",
-          ko: "",
-        },
-      },
-    ],
+    requirements: [],
   },
   minutesPostTaskAfterNow: 0,
   minAvgRating: 0,

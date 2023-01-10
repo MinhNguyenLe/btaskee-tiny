@@ -9,6 +9,7 @@ import BoxCenter from "../base/Grid/BoxCenter";
 import AddItem from "./common/AddItem";
 import GroupBg from "./common/GroupBg";
 import RemoveItem from "./common/RemoveItem";
+import { defaultCustomField } from "../../default-value-form";
 
 interface CustomDataServiceProps {
   control: ControlHookForm;
@@ -28,14 +29,7 @@ const CustomDataService = ({ control }: CustomDataServiceProps) => {
           color="primary"
           mr="8px"
         />
-        <AddItem
-          onClick={() =>
-            prepend({
-              key: "",
-              value: {},
-            })
-          }
-        />
+        <AddItem onClick={() => prepend(defaultCustomField)} />
       </BoxCenter>
       {fields.map((field, index) => {
         return (
