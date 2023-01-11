@@ -34,7 +34,10 @@ const CityDistrict = ({ nestIndex, control }: CityDistrictProps) => {
     <Box>
       <BoxCenter>
         <TypographyBase title="District" color="primary" mr="8px" />
-        <AddItem onClick={() => prepend(defaultCityDistrict)} />
+        <AddItem
+          onClick={() => prepend(defaultCityDistrict)}
+          data-testid="District_add"
+        />
       </BoxCenter>
       {fields.map((item, index) => {
         return (

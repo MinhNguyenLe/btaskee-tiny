@@ -1,7 +1,7 @@
 import { TypeFormService } from "../../utils/types";
 
 export const defaultCityDistrict = {
-  name: "Quan Btaskee",
+  name: "",
   time: [],
 };
 
@@ -21,10 +21,7 @@ export const defaultDiscountByDoneTask = {
   discount: 0,
 };
 
-export const defaultCustomField = {
-  key: "",
-  value: {},
-};
+export const defaultCustomField = {};
 
 export const defaultTipRequirement = {
   type: 0,

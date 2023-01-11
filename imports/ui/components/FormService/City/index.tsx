@@ -11,7 +11,7 @@ import AddItem from "../common/AddItem";
 import GroupBg from "../common/GroupBg";
 import Layer1, { BoxDeleteAndCloneItem } from "../common/Layer";
 import CityDistrict from "./CityDistrict";
-
+//
 export interface CityProps {
   control: ControlHookForm;
 }
@@ -32,14 +32,16 @@ const City = ({ control }: CityProps) => {
     <GroupBg>
       <BoxCenter>
         <TypographyBase title="City" color="primary" mr="8px" />
-        <AddItem onClick={() => prepend(defaultCity)} />
+        <AddItem onClick={() => prepend(defaultCity)} data-testid="City_add" />
       </BoxCenter>
       <Box>
         {fields.map((field, index) => {
           return (
             <Layer1 key={field.id}>
               <BoxDeleteAndCloneItem
-                deleteItem={{ onClick: () => remove(index) }}
+                deleteItem={{
+                  onClick: () => remove(index),
+                }}
                 cloneItem={{ onClick: () => onCloneDataCity(index) }}
               />
               <Box

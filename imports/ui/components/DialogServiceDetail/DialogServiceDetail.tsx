@@ -41,6 +41,7 @@ const DialogServiceDetail = ({
         onOpenSnackbar("Update service successful !", "success");
         await preFetchDetailService(idService);
         await preFetchListServices();
+        resetTab();
       },
     });
 
@@ -52,6 +53,7 @@ const DialogServiceDetail = ({
         onOpenSnackbar("Delete service successful !", "success");
         await preFetchListServices();
         reset();
+        resetTab();
       },
     });
 
