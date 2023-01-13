@@ -10,6 +10,12 @@ describe("delete service", () => {
 
     createService(id);
 
+    cy.task(
+      "queryDb",
+    ).then(count => {
+      console.log(count,"------------ FROM DB E2E TESTING")
+    });
+
     cy.contains("button", "Accept")
       .click()
       .then(() => {
