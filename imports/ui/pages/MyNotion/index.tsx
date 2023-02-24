@@ -1,7 +1,8 @@
 import React from "react";
+import MyFullCalendar from "../../components/MyFullCalendar";
 
 const MyNotion = () => {
-  return <></>;
+  return <><MyFullCalendar/></>;
 };
 
 export default MyNotion;
