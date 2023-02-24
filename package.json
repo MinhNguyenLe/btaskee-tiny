@@ -27,7 +27,9 @@
     "@types/meteor": "^2.8.2",
     "@types/mongodb": "^4.0.7",
     "@types/react-json-editor-ajrm": "^2.5.3",
+    "@types/react-router-dom": "^5.3.3",
     "@types/sinon": "^10.0.13",
+    "antd": "^5.2.2",
     "babel-register": "^6.26.0",
     "canvas": "^2.11.0",
     "dayjs": "^1.11.7",
@@ -42,6 +44,7 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.41.0",
     "react-json-editor-ajrm": "^2.5.13",
+    "react-router-dom": "^6.8.1",
     "react-sortable-hoc": "^2.0.0",
     "sinon": "^15.0.1"
   },
@@ -68,6 +71,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
+    "@types/react-dom": "^18.0.11",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "chai": "^4.3.7",
