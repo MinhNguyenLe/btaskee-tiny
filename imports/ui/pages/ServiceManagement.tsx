@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ServiceTable from "../components/ServiceTable";
 import { Box, Button } from "@mui/material";
 import DialogCreateNewService from "../components/DialogCreateNewService/DialogCreateNewService";
@@ -6,8 +6,22 @@ import { Service } from "../../utils/types";
 import DialogServiceDetailControl from "../hook-form/DialogServiceDetailControl";
 import customHooks from "../hooks";
 import { ConfirmDialogContext } from "../AppProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { testDispatch } from "../redux/reducer/service/reducer";
 
 export const ServiceManagement = () => {
+  const state = useSelector<any, any>((state) => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(state, ">>>>>");
+
+    if (!state.serviceReducer.total) {
+      dispatch(testDispatch(1));
+    }
+  }, []);
+  console.log(state, "!!!s");
+
   const { callback, onOpen } = useContext(ConfirmDialogContext);
 
   const { isLoading: isLoadingListServices, data: services = [] } =

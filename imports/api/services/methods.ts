@@ -1,7 +1,13 @@
 import { Services } from "./collection";
+import { check, Match } from "meteor/check";
 
 Meteor.methods({
   "services.getAll"(isResetWeight) {
+    const test = ["1", 2, 3];
+
+    check(test, [Match.OneOf(Number, String)]);
+    
+    check(isResetWeight, Boolean);
     //cheat
     if (isResetWeight) {
       console.log("!!!!! cheat reset weight");
