@@ -1,0 +1,24 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"]
+      }
+    ]
+  ],
+  "sourceType": "unambiguous",
+  "presets": [
+    "airbnb",
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "chrome": 100
+        }
+      }
+    ],
+    "@babel/preset-typescript",
+    "@babel/preset-react"
+  ]
+}
