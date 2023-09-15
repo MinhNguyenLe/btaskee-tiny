@@ -27,6 +27,7 @@
     "@types/enzyme": "^3.10.12",
     "@types/jsdom": "^20.0.1",
     "@types/meteor": "^2.8.2",
+    "@types/meteor-percolate-migrations": "^1.0.0",
     "@types/react-json-editor-ajrm": "^2.5.3",
     "@types/react-router-dom": "^5.3.3",
     "@types/sinon": "^10.0.13",

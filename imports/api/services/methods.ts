@@ -1,12 +1,24 @@
 import { Services } from "./collection";
 import { check, Match } from "meteor/check";
+import { Migrations } from "meteor/percolate:migrations";
+
 
 Meteor.methods({
+  "services.migration"(version?: number) {
+    console.log(version, typeof version, " -> version");
+
+    Migrations.migrateTo(version + ",rerun" || "latest");
+    Migrations.getVersion();
+    const services = Services.find({}).fetch();
+
+    return { message: "Done", data: services };
+  },
+
   "services.getAll"(isResetWeight) {
     const test = ["1", 2, 3];
 
     check(test, [Match.OneOf(Number, String)]);
-    
+
     check(isResetWeight, Boolean);
     //cheat
     if (isResetWeight) {

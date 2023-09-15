@@ -8,6 +8,7 @@ import customHooks from "../hooks";
 import { ConfirmDialogContext } from "../AppProvider";
 import { useDispatch, useSelector } from "react-redux";
 import { testDispatch } from "../redux/reducer/service/reducer";
+import useMigration from "../hooks/useMigration";
 
 export const ServiceManagement = () => {
   const state = useSelector<any, any>((state) => state);
@@ -77,10 +78,15 @@ export const ServiceManagement = () => {
   if (isLoadingListServices || isDraggingAndDropping)
     return <>Loading services... </>;
 
+  const { fetch } = useMigration();
+
   return (
     <>
       <Box display="flex" justifyContent="space-between" mb={4}>
         <h1>Service Management</h1>
+        <Button onClick={() => fetch(2)} type="button">
+          Test Migration
+        </Button>
         {!isDragAndDrop ? (
           <Button onClick={onOpenFormCreateService} type="button">
             Create new service
