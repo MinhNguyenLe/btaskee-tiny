@@ -5,8 +5,11 @@ import {
   Users,
   FATransaction,
   MigrateTransactionLogger,
+  Summary,
 } from "../imports/api/services/collection";
 import { Promise } from "meteor/promise";
+
+import moment from "moment";
 
 const v8 = require("v8");
 
@@ -17,7 +20,7 @@ Migrations.add({
     const startMemoryUsage = v8.getHeapStatistics();
     console.log("startMemoryUsage --> ", startMemoryUsage);
 
-    const stackLimit = 10;
+    const stackLimit = 1000;
     let stackOrder = 1;
 
     Users.update(
@@ -236,6 +239,12 @@ Migrations.add({
       console.log("done each stack");
       // make objects eligible for garbage collection sooner
       users = null;
+
+      /**
+       * for(2015 -> 2023){
+       * }
+       */
+
       stackOrder++;
 
       const endOnePhase = v8.getHeapStatistics();
@@ -253,6 +262,37 @@ Migrations.add({
   down: function () {},
 });
 
+Migrations.add({
+  version: 2,
+  name: "VERSION 2",
+  up() {
+    FATransaction.find({}, { sort: { date: 1 }, limit: 1 });
+  },
+  down() {},
+});
+
+SyncedCron.add({
+  name: "id1",
+  schedule: function (parser) {
+    return parser.recur().on(moment().add(10, "seconds").toDate()).fullDate();
+  },
+  job: function () {
+    console.log("run job 1 in sync cron");
+  },
+});
+SyncedCron.add({
+  name: "id2",
+  schedule: function (parser) {
+    return parser.recur().on(moment().add(20, "seconds").toDate()).fullDate();
+  },
+  job: function () {
+    console.log("run job 2 in sync cron");
+  },
+});
+
 Meteor.startup(async () => {
-  Migrations.migrateTo(1);
+  console.log("server running !");
+
+  Migrations.migrateTo(2);
+  SyncedCron.start();
 });

@@ -45,3 +45,4 @@ hot-module-replacement@0.5.0
 dev-error-overlay@0.1.1
 peerlibrary:aws-sdk
 fetch
+littledata:synced-cron

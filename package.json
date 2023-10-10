@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "start-local": "MONGO_URL=mongodb://127.0.0.1:27017/tiny meteor --allow-incompatible-update run --port 3003",
+    "dev": "MONGO_URL=mongodb://127.0.0.1:27017/tiny meteor --allow-incompatible-update run --port 3003",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "test-debug": "CLIENT_TEST_REPORTER=tap MOCHA_REPORTER=xunit SERVER_MOCHA_OUTPUT=$PWD/unit_server.xml CLIENT_MOCHA_OUTPUT=$PWD/unit_client.xml  meteor test --full-app --driver-package meteortesting:mocha",
@@ -39,6 +39,7 @@
     "meteor-node-stubs": "^1.2.5",
     "meteor-require": "^1.0.0",
     "mocha": "^10.2.0",
+    "moment": "^2.29.4",
     "mongodb": "3.7.3",
     "perf_hooks": "0.0.1",
     "react": "^17.0.2",
